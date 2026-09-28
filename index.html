@@ -1101,7 +1101,21 @@ footer {
 <!-- =========================
      データ管理
 ========================= -->
+<section class="card">
+    <h2>📔 手帳</h2>
+    <p>今日の予定や勉強の予定をここで管理しよう！</p>
+</section>
+    <section class="card">
+    <h2>📅 カレンダー</h2>
 
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+        <button onclick="changeNotebookMonth(-1)">◀</button>
+        <h3 id="notebookMonthTitle" style="margin:0;"></h3>
+        <button onclick="changeNotebookMonth(1)">▶</button>
+    </div>
+
+    <div id="notebookCalendar"></div>
+</section>
 <section class="card">
 
     <h2>データ管理</h2>
@@ -3720,6 +3734,63 @@ function showPage(pageId) {
         window.scrollTo(0, 0);
     }
 }
+    let notebookDate = new Date();
+
+function renderNotebookCalendar() {
+    const year = notebookDate.getFullYear();
+    const month = notebookDate.getMonth();
+
+    document.getElementById("notebookMonthTitle").textContent =
+        year + "年 " + (month + 1) + "月";
+
+    const calendar = document.getElementById("notebookCalendar");
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    let html = `
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(7,1fr);
+            gap:5px;
+            text-align:center;
+        ">
+    `;
+
+    const week = ["日","月","火","水","木","金","土"];
+
+    week.forEach(day => {
+        html += `<div style="font-weight:bold;padding:8px;">${day}</div>`;
+    });
+
+    for (let i = 0; i < firstDay; i++) {
+        html += `<div></div>`;
+    }
+
+    for (let day = 1; day <= lastDate; day++) {
+        html += `
+            <div style="
+                padding:10px 4px;
+                border:1px solid #ddd;
+                border-radius:8px;
+                min-height:40px;
+            ">
+                ${day}
+            </div>
+        `;
+    }
+
+    html += `</div>`;
+
+    calendar.innerHTML = html;
+}
+
+function changeNotebookMonth(amount) {
+    notebookDate.setMonth(notebookDate.getMonth() + amount);
+    renderNotebookCalendar();
+}
+
+renderNotebookCalendar();
 </script>
 
 </body>
