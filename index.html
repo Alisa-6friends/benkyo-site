@@ -514,7 +514,78 @@ footer {
         height: 210px;
     }
 }
+/* =========================
+   メニュー・画面切り替え
+========================= */
 
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.main-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.menu-button {
+    min-height: 110px;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.menu-button:hover {
+    transform: translateY(-3px);
+}
+
+.menu-study {
+    border-left: 8px solid #4caf50;
+}
+
+.menu-quiz {
+    border-left: 8px solid #3498db;
+}
+
+.menu-school {
+    border-left: 8px solid #9b59b6;
+}
+
+.menu-notebook {
+    border-left: 8px solid #f39c12;
+}
+
+.back-button {
+    background: #333;
+    color: white;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+
+    .main-menu {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-button {
+        min-height: 90px;
+        font-size: 20px;
+    }
+}
 </style>
 </head>
 
@@ -527,6 +598,57 @@ footer {
 
 <div class="container">
 
+    <!-- =========================
+         ホーム
+    ========================= -->
+
+    <div id="homePage" class="page active">
+
+        <section class="card">
+            <h2 class="page-title">勉強してください！</h2>
+
+            <p style="text-align:center;">
+                何をしますか？
+            </p>
+
+            <div class="main-menu">
+
+                <button
+                    class="menu-button menu-study"
+                    onclick="showPage('studyPage')"
+                >
+                    📚<br>
+                    勉強する
+                </button>
+
+                <button
+                    class="menu-button menu-quiz"
+                    onclick="showPage('quizPage')"
+                >
+                    🧠<br>
+                    一問一答
+                </button>
+
+                <button
+                    class="menu-button menu-school"
+                    onclick="showPage('schoolPage')"
+                >
+                    🏫<br>
+                    進路
+                </button>
+
+                <button
+                    class="menu-button menu-notebook"
+                    onclick="showPage('notebookPage')"
+                >
+                    📔<br>
+                    手帳
+                </button>
+
+            </div>
+        </section>
+
+    </div>
 <!-- =========================
      誘惑
 ========================= -->
@@ -695,7 +817,8 @@ footer {
 
 </section>
 
-
+</div>
+    
 <!-- =========================
      間違えた問題
 ========================= -->
@@ -790,7 +913,8 @@ footer {
     <div id="questionList"></div>
 
 </section>
-
+    
+</div>
 
 <!-- =========================
      一問一答
@@ -871,6 +995,7 @@ footer {
 
 </section>
 
+    </div>
 
 <!-- =========================
      志望校
@@ -913,7 +1038,7 @@ footer {
     <input
         id="schoolName"
         type="text"
-        placeholder="例：東京大学"
+        placeholder="例：帝京平成大学"
     >
 
 
@@ -965,6 +1090,7 @@ footer {
 
 </section>
 
+    </div>
 
 <!-- =========================
      データ管理
@@ -3573,7 +3699,21 @@ function updateAllDisplays() {
 updateTimerDisplay();
 
 updateAllDisplays();
+function showPage(pageId) {
 
+    const pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    const target = document.getElementById(pageId);
+
+    if (target) {
+        target.classList.add("active");
+        window.scrollTo(0, 0);
+    }
+}
 </script>
 
 </body>
