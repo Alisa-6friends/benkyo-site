@@ -1092,6 +1092,54 @@ footer {
 </section>
 
     </div>
+    <!-- =========================
+     偏差値推移
+========================= -->
+
+<div id="hensachiPage" class="page">
+
+    <section class="card">
+
+        <h2>偏差値推移</h2>
+
+        <p>
+            模試などの偏差値の推移を記録できます。
+        </p>
+
+        <label>
+            日付
+        </label>
+
+        <input
+            id="hensachiDate"
+            type="date"
+        >
+
+        <label>
+            偏差値
+        </label>
+
+        <input
+            id="hensachiValue"
+            type="number"
+            min="0"
+            max="100"
+            step="0.1"
+            placeholder="例：65.5"
+        >
+
+        <button
+            class="record"
+            onclick="saveHensachi()"
+        >
+            偏差値を記録
+        </button>
+
+        <div id="hensachiList"></div>
+
+    </section>
+
+</div>
 <!-- =========================
      手帳
 ========================= -->
