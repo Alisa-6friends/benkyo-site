@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -382,6 +383,7 @@ footer {
     }
 }
 </style>
+
 </head>
 
 <body>
@@ -393,143 +395,130 @@ footer {
 
 <div class="container">
 
-    <!-- タイマー -->
-    <section class="card timer">
-        <h2>25分勉強タイマー</h2>
+```
+<section class="card timer">
+    <h2>25分勉強タイマー</h2>
 
-        <div id="timer">25:00</div>
+    <div id="timer">25:00</div>
 
-        <div>
-            <button class="start" onclick="startTimer()">スタート</button>
-            <button class="stop" onclick="stopTimer()">ストップ</button>
-            <button class="reset" onclick="resetTimer()">リセット</button>
-        </div>
+    <div>
+        <button class="start" onclick="startTimer()">スタート</button>
+        <button class="stop" onclick="stopTimer()">ストップ</button>
+        <button class="reset" onclick="resetTimer()">リセット</button>
+    </div>
 
-        <div id="selectedSubject">
-            教科を選択してください
-        </div>
+    <div id="selectedSubject">
+        教科を選択してください
+    </div>
 
-        <div class="subject-buttons">
-            <button onclick="selectSubject('国語')">国語</button>
-            <button onclick="selectSubject('数学')">数学</button>
-            <button onclick="selectSubject('英語')">英語</button>
-            <button onclick="selectSubject('理科')">理科</button>
-            <button onclick="selectSubject('社会')">社会</button>
-            <button onclick="selectSubject('実技')">実技</button>
-        </div>
+    <div class="subject-buttons">
+        <button onclick="selectSubject('国語')">国語</button>
+        <button onclick="selectSubject('数学')">数学</button>
+        <button onclick="selectSubject('英語')">英語</button>
+        <button onclick="selectSubject('理科')">理科</button>
+        <button onclick="selectSubject('社会')">社会</button>
+        <button onclick="selectSubject('実技')">実技</button>
+    </div>
 
-        <p id="timerStatus"></p>
-    </section>
+    <p id="timerStatus"></p>
+</section>
 
+<section class="card stats">
+    <h2>今日の勉強時間</h2>
+    <div id="todayTotal">0分</div>
+</section>
 
-    <!-- 今日の記録 -->
-    <section class="card stats">
-        <h2>今日の勉強時間</h2>
-        <div id="todayTotal">0分</div>
-    </section>
+<section class="card">
+    <h2>今日の教科別勉強時間</h2>
+    <div id="todayChart" class="chart"></div>
+</section>
 
+<section class="card">
+    <button class="record" onclick="openRecords()">
+        勉強記録を見る
+    </button>
+</section>
 
-    <!-- 今日の教科別グラフ -->
-    <section class="card">
-        <h2>今日の教科別勉強時間</h2>
-        <div id="todayChart" class="chart"></div>
-    </section>
+<section class="card">
+    <h2>間違えた問題</h2>
 
+    <p>
+        模試・学校のテスト・問題集などで間違えた問題を登録できます。
+    </p>
 
-    <!-- 記録ボタン -->
-    <section class="card">
-        <button class="record" onclick="openRecords()">
-            勉強記録を見る
-        </button>
-    </section>
+    <label>教科</label>
+    <select id="questionSubject">
+        <option value="国語">国語</option>
+        <option value="数学">数学</option>
+        <option value="英語">英語</option>
+        <option value="理科">理科</option>
+        <option value="社会">社会</option>
+        <option value="実技">実技</option>
+    </select>
 
+    <label>問題</label>
+    <textarea
+        id="questionText"
+        placeholder="例：食塩の化学式は？"
+    ></textarea>
 
-    <!-- 間違えた問題 -->
-    <section class="card">
-        <h2>間違えた問題</h2>
+    <label>答え</label>
+    <input
+        id="questionAnswer"
+        type="text"
+        placeholder="例：NaCl"
+    >
 
-        <p>
-            模試・学校のテスト・問題集などで間違えた問題を登録できます。
-        </p>
+    <button class="record" onclick="addQuestion()">
+        問題を登録
+    </button>
 
-        <label>教科</label>
-        <select id="questionSubject">
-            <option value="国語">国語</option>
-            <option value="数学">数学</option>
-            <option value="英語">英語</option>
-            <option value="理科">理科</option>
-            <option value="社会">社会</option>
-            <option value="実技">実技</option>
-        </select>
+    <div id="questionList"></div>
+</section>
 
-        <label>問題</label>
-        <textarea
-            id="questionText"
-            placeholder="例：食塩の化学式は？"
-        ></textarea>
+<section class="card">
+    <h2>一問一答</h2>
 
-        <label>答え</label>
-        <input
-            id="questionAnswer"
-            type="text"
-            placeholder="例：NaCl"
-        >
+    <p>
+        登録した間違えた問題をランダムな順番で一問ずつ解き直します。
+    </p>
 
-        <button class="record" onclick="addQuestion()">
-            問題を登録
-        </button>
+    <select id="quizSubjectSelect">
+        <option value="国語">国語</option>
+        <option value="数学">数学</option>
+        <option value="英語">英語</option>
+        <option value="理科">理科</option>
+        <option value="社会">社会</option>
+        <option value="実技">実技</option>
+    </select>
 
-        <div id="questionList"></div>
-    </section>
+    <button class="start" onclick="startQuiz()">
+        一問一答を開始
+    </button>
+</section>
 
+<section class="card">
+    <h2>誘惑に負けそうなとき</h2>
 
-    <!-- 一問一答 -->
-    <section class="card">
-        <h2>一問一答</h2>
+    <button class="warning" onclick="showWarning('YouTube')">
+        YouTube
+    </button>
 
-        <p>
-            登録した間違えた問題を一問ずつ解き直します。
-        </p>
+    <button class="warning" onclick="showWarning('ゲーム')">
+        ゲーム
+    </button>
 
-        <select id="quizSubjectSelect">
-            <option value="国語">国語</option>
-            <option value="数学">数学</option>
-            <option value="英語">英語</option>
-            <option value="理科">理科</option>
-            <option value="社会">社会</option>
-            <option value="実技">実技</option>
-        </select>
+    <div id="warningMessage" class="warning-message"></div>
+</section>
 
-        <button class="start" onclick="startQuiz()">
-            一問一答を開始
-        </button>
-    </section>
+<section class="card">
+    <h2>データ管理</h2>
 
-
-    <!-- 警告 -->
-    <section class="card">
-        <h2>誘惑に負けそうなとき</h2>
-
-        <button class="warning" onclick="showWarning('YouTube')">
-            YouTube
-        </button>
-
-        <button class="warning" onclick="showWarning('ゲーム')">
-            ゲーム
-        </button>
-
-        <div id="warningMessage" class="warning-message"></div>
-    </section>
-
-
-    <!-- デイリーリセット -->
-    <section class="card">
-        <h2>データ管理</h2>
-
-        <button class="reset" onclick="resetToday()">
-            今日の勉強記録をリセット
-        </button>
-    </section>
+    <button class="reset" onclick="resetToday()">
+        今日の勉強記録をリセット
+    </button>
+</section>
+```
 
 </div>
 
@@ -537,173 +526,168 @@ footer {
     勉強してください！
 </footer>
 
-
-<!-- 記録画面 -->
 <div id="recordsScreen" class="overlay">
 
-    <div class="overlay-content">
+```
+<div class="overlay-content">
 
-        <button class="close-button" onclick="closeRecords()">
-            ×
-        </button>
+    <button class="close-button" onclick="closeRecords()">
+        ×
+    </button>
 
-        <h2>勉強記録</h2>
+    <h2>勉強記録</h2>
 
-        <h3 id="calendarTitle"></h3>
+    <h3 id="calendarTitle"></h3>
 
-        <div id="calendar" class="calendar"></div>
+    <div id="calendar" class="calendar"></div>
 
-    </div>
+</div>
+```
 
 </div>
 
-
-<!-- クイズ画面 -->
 <div id="quizScreen" class="overlay">
 
-    <div class="overlay-content">
+```
+<div class="overlay-content">
 
-        <button class="close-button" onclick="closeQuiz()">
-            ×
-        </button>
+    <button class="close-button" onclick="closeQuiz()">
+        ×
+    </button>
 
-        <div class="quiz-box">
+    <div class="quiz-box">
 
-            <div id="quizNumber" class="quiz-number"></div>
+        <div id="quizNumber" class="quiz-number"></div>
 
-            <div id="quizQuestion" class="quiz-question"></div>
+        <div id="quizQuestion" class="quiz-question"></div>
 
-            <input
-                id="quizAnswer"
-                type="text"
-                placeholder="答えを入力してください"
-                autocomplete="off"
-            >
-
-            <button
-                id="checkAnswerButton"
-                class="start"
-                onclick="checkAnswer()"
-            >
-                答え合わせ
-            </button>
-
-            <div id="answerResult"></div>
-
-            <button
-                id="nextQuestionButton"
-                class="record"
-                onclick="nextQuestion()"
-                style="display:none;"
-            >
-                次の問題
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- クイズ結果 -->
-<div id="quizResultScreen" class="overlay">
-
-    <div class="overlay-content">
-
-        <div class="quiz-box">
-
-            <h2>一問一答 結果</h2>
-
-            <div
-                id="quizResultNumber"
-                class="quiz-result-number"
-            ></div>
-
-            <div
-                id="quizResultRate"
-                class="quiz-result-rate"
-            ></div>
-
-            <div
-                id="quizResultMessage"
-                class="quiz-result-message"
-            ></div>
-
-            <button class="start" onclick="closeQuizResult()">
-                もう一度やる
-            </button>
-
-            <button class="record" onclick="finishQuiz()">
-                終了
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- 25分達成画面 -->
-<div id="celebrationScreen" class="overlay">
-
-    <div class="overlay-content" style="text-align:center;">
-
-        <h2 style="font-size:40px;">
-            25分達成！！
-        </h2>
-
-        <p style="font-size:22px;">
-            よく頑張りました。
-        </p>
-
-        <p>
-            次の勉強へ進みましょう。
-        </p>
+        <input
+            id="quizAnswer"
+            type="text"
+            placeholder="答えを入力してください"
+            autocomplete="off"
+        >
 
         <button
+            id="checkAnswerButton"
             class="start"
-            onclick="nextStudy()"
+            onclick="checkAnswer()"
         >
-            次の勉強へ
+            答え合わせ
+        </button>
+
+        <div id="answerResult"></div>
+
+        <button
+            id="nextQuestionButton"
+            class="record"
+            onclick="nextQuestion()"
+            style="display:none;"
+        >
+            次の問題
         </button>
 
     </div>
 
 </div>
+```
 
+</div>
 
-<!-- フルスクリーン解除エラー -->
-<div id="errorScreen">
+<div id="quizResultScreen" class="overlay">
 
-    <h1>ERROR</h1>
+```
+<div class="overlay-content">
 
-    <p>
-        何やってるんですか？<br>
-        勉強してください！
+    <div class="quiz-box">
+
+        <h2>一問一答 結果</h2>
+
+        <div
+            id="quizResultNumber"
+            class="quiz-result-number"
+        ></div>
+
+        <div
+            id="quizResultRate"
+            class="quiz-result-rate"
+        ></div>
+
+        <div
+            id="quizResultMessage"
+            class="quiz-result-message"
+        ></div>
+
+        <button class="start" onclick="closeQuizResult()">
+            もう一度やる
+        </button>
+
+        <button class="record" onclick="finishQuiz()">
+            終了
+        </button>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<div id="celebrationScreen" class="overlay">
+
+```
+<div class="overlay-content" style="text-align:center;">
+
+    <h2 style="font-size:40px;">
+        25分達成！！
+    </h2>
+
+    <p style="font-size:22px;">
+        よく頑張りました。
     </p>
 
-    <img
-        src="benkyo_sitekudasai_KounoGento.png"
-        alt="勉強してください"
-    >
+    <p>
+        次の勉強へ進みましょう。
+    </p>
 
     <button
-        class="return-button"
-        onclick="returnToStudy()"
+        class="start"
+        onclick="nextStudy()"
     >
-        勉強に戻る
+        次の勉強へ
     </button>
 
 </div>
+```
 
+</div>
+
+<div id="errorScreen">
+
+```
+<h1>ERROR</h1>
+
+<p>
+    何やってるんですか？<br>
+    勉強してください！
+</p>
+
+<img
+    src="benkyo_sitekudasai_KounoGento.png"
+    alt="勉強してください"
+>
+
+<button
+    class="return-button"
+    onclick="returnToStudy()"
+>
+    勉強に戻る
+</button>
+```
+
+</div>
 
 <script>
-
-/* =========================
-   基本設定
-========================= */
 
 const subjects = [
     "国語",
@@ -721,10 +705,6 @@ let timerInterval = null;
 let timerRunning = false;
 
 
-/* =========================
-   日付
-========================= */
-
 function getDateKey() {
 
     const date = new Date();
@@ -736,10 +716,6 @@ function getDateKey() {
     return `${y}-${m}-${d}`;
 }
 
-
-/* =========================
-   タイマー表示
-========================= */
 
 function updateTimerDisplay() {
 
@@ -757,10 +733,6 @@ function updateTimerDisplay() {
         `${minutes}:${seconds}`;
 }
 
-
-/* =========================
-   教科選択
-========================= */
 
 function selectSubject(subject) {
 
@@ -784,10 +756,6 @@ function selectSubject(subject) {
 }
 
 
-/* =========================
-   タイマー開始
-========================= */
-
 function startTimer() {
 
     if (!selectedSubject) {
@@ -806,9 +774,6 @@ function startTimer() {
     document.getElementById("timerStatus").textContent =
         "勉強中……";
 
-    /*
-       フルスクリーン要求
-    */
     if (!document.fullscreenElement) {
 
         document.documentElement
@@ -835,10 +800,6 @@ function startTimer() {
 }
 
 
-/* =========================
-   タイマー停止
-========================= */
-
 function stopTimer() {
 
     if (!timerRunning) {
@@ -853,17 +814,9 @@ function stopTimer() {
     document.getElementById("timerStatus").textContent =
         "停止中";
 
-    /*
-       途中までの勉強時間を保存
-    */
     saveStudyTime(1);
-
 }
 
-
-/* =========================
-   タイマーリセット
-========================= */
 
 function resetTimer() {
 
@@ -880,10 +833,6 @@ function resetTimer() {
         "";
 }
 
-
-/* =========================
-   25分終了
-========================= */
 
 function finishTimer() {
 
@@ -908,10 +857,6 @@ function finishTimer() {
 }
 
 
-/* =========================
-   次の勉強
-========================= */
-
 function nextStudy() {
 
     document.getElementById("celebrationScreen").style.display =
@@ -925,10 +870,6 @@ function nextStudy() {
         "次の勉強を始められます。";
 }
 
-
-/* =========================
-   勉強時間保存
-========================= */
 
 function saveStudyTime(minutes) {
 
@@ -964,10 +905,6 @@ function saveStudyTime(minutes) {
 }
 
 
-/* =========================
-   今日の総勉強時間
-========================= */
-
 function updateTodayTotal() {
 
     const key =
@@ -997,10 +934,6 @@ function updateTodayTotal() {
         text;
 }
 
-
-/* =========================
-   今日の教科別グラフ
-========================= */
 
 function updateTodayChart() {
 
@@ -1067,10 +1000,6 @@ function updateTodayChart() {
 }
 
 
-/* =========================
-   記録画面
-========================= */
-
 function openRecords() {
 
     document.getElementById("recordsScreen").style.display =
@@ -1086,10 +1015,6 @@ function closeRecords() {
         "none";
 }
 
-
-/* =========================
-   カレンダー
-========================= */
 
 function createCalendar() {
 
@@ -1188,10 +1113,6 @@ function createCalendar() {
 }
 
 
-/* =========================
-   警告
-========================= */
-
 function showWarning(type) {
 
     const message =
@@ -1213,10 +1134,6 @@ function showWarning(type) {
 
 }
 
-
-/* =========================
-   今日の記録リセット
-========================= */
 
 function resetToday() {
 
@@ -1249,10 +1166,6 @@ function resetToday() {
 }
 
 
-/* =========================
-   フルスクリーン監視
-========================= */
-
 document.addEventListener(
     "fullscreenchange",
     () => {
@@ -1270,10 +1183,6 @@ document.addEventListener(
     }
 );
 
-
-/* =========================
-   勉強に戻る
-========================= */
 
 function returnToStudy() {
 
@@ -1294,11 +1203,6 @@ function returnToStudy() {
    間違えた問題
 ================================================== */
 
-
-/* =========================
-   問題データ取得
-========================= */
-
 function getQuestions(subject) {
 
     const key =
@@ -1317,10 +1221,6 @@ function getQuestions(subject) {
     }
 }
 
-
-/* =========================
-   問題登録
-========================= */
 
 function addQuestion() {
 
@@ -1369,10 +1269,6 @@ function addQuestion() {
     alert("問題を登録しました。");
 }
 
-
-/* =========================
-   問題一覧
-========================= */
 
 function updateQuestionList() {
 
@@ -1441,10 +1337,6 @@ function updateQuestionList() {
 }
 
 
-/* =========================
-   HTMLエスケープ
-========================= */
-
 function escapeHtml(text) {
 
     const div =
@@ -1455,10 +1347,6 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-
-/* =========================
-   問題削除
-========================= */
 
 function deleteQuestion(subject, index) {
 
@@ -1500,6 +1388,39 @@ let quizAnswered = 0;
 
 
 /* =========================
+   問題をランダムに並べ替える
+========================= */
+
+function shuffleQuestions(questions) {
+
+    /*
+       Fisher-Yatesシャッフル
+
+       登録されている問題そのものは変更せず、
+       コピーを作ってからランダムに並べ替える。
+    */
+
+    const shuffled = [...questions];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+
+        const randomIndex =
+            Math.floor(Math.random() * (i + 1));
+
+        [
+            shuffled[i],
+            shuffled[randomIndex]
+        ] = [
+            shuffled[randomIndex],
+            shuffled[i]
+        ];
+    }
+
+    return shuffled;
+}
+
+
+/* =========================
    一問一答開始
 ========================= */
 
@@ -1510,10 +1431,10 @@ function startQuiz() {
             "quizSubjectSelect"
         ).value;
 
-    quizQuestions =
+    const registeredQuestions =
         getQuestions(quizSubject);
 
-    if (quizQuestions.length === 0) {
+    if (registeredQuestions.length === 0) {
 
         alert(
             `${quizSubject}には登録された問題がありません。`
@@ -1521,6 +1442,13 @@ function startQuiz() {
 
         return;
     }
+
+    /*
+       登録データを直接変更せず、
+       ランダムに並べ替えたコピーを使用。
+    */
+    quizQuestions =
+        shuffleQuestions(registeredQuestions);
 
     quizIndex = 0;
 
@@ -1765,11 +1693,22 @@ function closeQuizResult() {
         "quizResultScreen"
     ).style.display = "none";
 
+    /*
+       もう一度やる場合も、
+       問題を再シャッフルする。
+    */
+    quizQuestions =
+        shuffleQuestions(
+            getQuestions(quizSubject)
+        );
+
     quizIndex = 0;
 
     quizCorrect = 0;
 
     quizAnswered = 0;
+
+    answerChecked = false;
 
     showQuizQuestion();
 
