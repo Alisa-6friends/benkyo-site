@@ -387,6 +387,59 @@ textarea {
     font-weight: bold;
 }
 
+/* =========================
+   誘惑偽アクセス
+========================= */
+
+.fake-loading {
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.fake-loading h2 {
+    font-size: clamp(28px, 7vw, 48px);
+}
+
+.fake-url {
+    background: #eeeeee;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 20px auto;
+    max-width: 700px;
+    color: #555;
+    word-break: break-all;
+}
+
+.fake-spinner {
+    font-size: 30px;
+    margin: 20px;
+}
+
+.roast-title {
+    color: #d00000;
+    font-size: clamp(35px, 9vw, 70px);
+    font-weight: bold;
+}
+
+.roast-message {
+    font-size: clamp(20px, 5vw, 32px);
+    font-weight: bold;
+    line-height: 1.7;
+}
+
+.roast-small {
+    color: #666;
+    font-size: 16px;
+}
+
+.roast-button {
+    background: #222;
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
 footer {
     text-align: center;
     padding: 30px;
@@ -394,6 +447,7 @@ footer {
 }
 
 @media (max-width: 600px) {
+
     .card {
         padding: 15px;
     }
@@ -432,15 +486,50 @@ footer {
 
 <div class="container">
 
+<section class="card">
+    <h2>誘惑に負けそうなとき</h2>
+
+    <p>
+        「ちょっとだけ」が一番危険です。
+    </p>
+
+    <button class="warning" onclick="fakeOpen('YouTube')">
+        YouTube
+    </button>
+
+    <button class="warning" onclick="fakeOpen('ゲーム')">
+        ゲーム
+    </button>
+
+    <button class="warning" onclick="fakeOpen('SNS')">
+        SNS
+    </button>
+
+    <button class="warning" onclick="fakeOpen('LINE')">
+        LINE
+    </button>
+
+    <div id="warningMessage" class="warning-message"></div>
+</section>
+
 <section class="card timer">
+
     <h2>25分勉強タイマー</h2>
 
     <div id="timer">25:00</div>
 
     <div>
-        <button class="start" onclick="startTimer()">スタート</button>
-        <button class="stop" onclick="stopTimer()">ストップ</button>
-        <button class="reset" onclick="resetTimer()">リセット</button>
+        <button class="start" onclick="startTimer()">
+            スタート
+        </button>
+
+        <button class="stop" onclick="stopTimer()">
+            ストップ
+        </button>
+
+        <button class="reset" onclick="resetTimer()">
+            リセット
+        </button>
     </div>
 
     <div id="selectedSubject">
@@ -448,34 +537,65 @@ footer {
     </div>
 
     <div class="subject-buttons">
-        <button onclick="selectSubject('国語')">国語</button>
-        <button onclick="selectSubject('数学')">数学</button>
-        <button onclick="selectSubject('英語')">英語</button>
-        <button onclick="selectSubject('理科')">理科</button>
-        <button onclick="selectSubject('社会')">社会</button>
-        <button onclick="selectSubject('実技')">実技</button>
+
+        <button onclick="selectSubject('国語')">
+            国語
+        </button>
+
+        <button onclick="selectSubject('数学')">
+            数学
+        </button>
+
+        <button onclick="selectSubject('英語')">
+            英語
+        </button>
+
+        <button onclick="selectSubject('理科')">
+            理科
+        </button>
+
+        <button onclick="selectSubject('社会')">
+            社会
+        </button>
+
+        <button onclick="selectSubject('実技')">
+            実技
+        </button>
+
     </div>
 
     <p id="timerStatus"></p>
+
 </section>
 
 <section class="card stats">
+
     <h2>今日の勉強時間</h2>
-    <div id="todayTotal">0時間0分0秒</div>
+
+    <div id="todayTotal">
+        0時間0分0秒
+    </div>
+
 </section>
 
 <section class="card">
+
     <h2>今日の教科別勉強時間</h2>
+
     <div id="todayChart" class="chart"></div>
+
 </section>
 
 <section class="card">
+
     <button class="record" onclick="openRecords()">
         勉強記録を見る
     </button>
+
 </section>
 
 <section class="card">
+
     <h2>間違えた問題</h2>
 
     <p>
@@ -484,35 +604,52 @@ footer {
     </p>
 
     <label>教科</label>
+
     <select id="questionSubject">
+
         <option value="国語">国語</option>
         <option value="数学">数学</option>
         <option value="英語">英語</option>
         <option value="理科">理科</option>
         <option value="社会">社会</option>
         <option value="実技">実技</option>
+
     </select>
 
     <label>問題の種類</label>
+
     <select id="questionDifficulty">
+
         <option value="基礎">基礎</option>
         <option value="応用">応用</option>
+
     </select>
 
     <label>問題</label>
-    <textarea id="questionText" placeholder="例：食塩の化学式は？"></textarea>
+
+    <textarea
+        id="questionText"
+        placeholder="例：食塩の化学式は？"
+    ></textarea>
 
     <label>答え</label>
-    <input id="questionAnswer" type="text" placeholder="例：NaCl">
+
+    <input
+        id="questionAnswer"
+        type="text"
+        placeholder="例：NaCl"
+    >
 
     <button class="record" onclick="addQuestion()">
         問題を登録
     </button>
 
     <div id="questionList"></div>
+
 </section>
 
 <section class="card">
+
     <h2>一問一答</h2>
 
     <p>
@@ -520,48 +657,54 @@ footer {
     </p>
 
     <label>教科</label>
+
     <select id="quizSubjectSelect">
+
         <option value="国語">国語</option>
         <option value="数学">数学</option>
         <option value="英語">英語</option>
         <option value="理科">理科</option>
         <option value="社会">社会</option>
         <option value="実技">実技</option>
+
     </select>
 
     <label>復習モード</label>
+
     <select id="quizModeSelect">
-        <option value="基礎">基礎だけ</option>
-        <option value="応用">応用だけ</option>
-        <option value="全部">基礎＋応用 ごちゃ混ぜ</option>
-        <option value="wrong">過去に間違えた問題</option>
+
+        <option value="基礎">
+            基礎だけ
+        </option>
+
+        <option value="応用">
+            応用だけ
+        </option>
+
+        <option value="全部">
+            基礎＋応用 ごちゃ混ぜ
+        </option>
+
+        <option value="wrong">
+            過去に間違えた問題
+        </option>
+
     </select>
 
     <button class="start" onclick="startQuiz()">
         一問一答を開始
     </button>
+
 </section>
 
 <section class="card">
-    <h2>誘惑に負けそうなとき</h2>
 
-    <button class="warning" onclick="showWarning('YouTube')">
-        YouTube
-    </button>
-
-    <button class="warning" onclick="showWarning('ゲーム')">
-        ゲーム
-    </button>
-
-    <div id="warningMessage" class="warning-message"></div>
-</section>
-
-<section class="card">
     <h2>データ管理</h2>
 
     <button class="reset" onclick="resetToday()">
         今日の勉強記録をリセット
     </button>
+
 </section>
 
 </div>
@@ -570,34 +713,63 @@ footer {
     勉強してください！
 </footer>
 
+
+<!-- 勉強記録 -->
+
 <div id="recordsScreen" class="overlay">
+
     <div class="overlay-content">
 
-        <button class="close-button" onclick="closeRecords()">
+        <button
+            class="close-button"
+            onclick="closeRecords()"
+        >
             ×
         </button>
 
         <h2>勉強記録</h2>
+
         <h3 id="calendarTitle"></h3>
-        <div id="calendar" class="calendar"></div>
+
+        <div
+            id="calendar"
+            class="calendar"
+        ></div>
 
     </div>
+
 </div>
 
+
+<!-- 一問一答 -->
+
 <div id="quizScreen" class="overlay">
+
     <div class="overlay-content">
 
-        <button class="close-button" onclick="closeQuiz()">
+        <button
+            class="close-button"
+            onclick="closeQuiz()"
+        >
             ×
         </button>
 
         <div class="quiz-box">
 
-            <div id="quizNumber" class="quiz-number"></div>
+            <div
+                id="quizNumber"
+                class="quiz-number"
+            ></div>
 
-            <div id="quizDifficulty" class="quiz-difficulty"></div>
+            <div
+                id="quizDifficulty"
+                class="quiz-difficulty"
+            ></div>
 
-            <div id="quizQuestion" class="quiz-question"></div>
+            <div
+                id="quizQuestion"
+                class="quiz-question"
+            ></div>
 
             <input
                 id="quizAnswer"
@@ -626,10 +798,16 @@ footer {
             </button>
 
         </div>
+
     </div>
+
 </div>
 
+
+<!-- 一問一答結果 -->
+
 <div id="quizResultScreen" class="overlay">
+
     <div class="overlay-content">
 
         <div class="quiz-box">
@@ -671,10 +849,16 @@ footer {
             </button>
 
         </div>
+
     </div>
+
 </div>
 
+
+<!-- 25分達成 -->
+
 <div id="celebrationScreen" class="overlay">
+
     <div
         class="overlay-content"
         style="text-align:center;"
@@ -700,14 +884,88 @@ footer {
         </button>
 
     </div>
+
 </div>
+
+
+<!-- 誘惑偽アクセス -->
+
+<div id="fakeOpenScreen" class="overlay">
+
+    <div class="overlay-content fake-loading">
+
+        <div id="fakeLoadingContent">
+
+            <h2>
+                接続しています……
+            </h2>
+
+            <div class="fake-spinner">
+                ⏳
+            </div>
+
+            <div
+                id="fakeUrl"
+                class="fake-url"
+            ></div>
+
+            <p>
+                しばらくお待ちください……
+            </p>
+
+        </div>
+
+
+        <div
+            id="roastContent"
+            style="display:none;"
+        >
+
+            <div class="roast-title">
+                ERROR
+            </div>
+
+            <p class="roast-message">
+                何を開こうとしてるんですか？
+                <br>
+                勉強してください。
+            </p>
+
+            <p class="roast-message">
+                受験生ですよね？
+            </p>
+
+            <p class="roast-small">
+                その5分、本当に必要ですか？
+                <br>
+                25分タイマー、待ってますよ。
+            </p>
+
+            <button
+                class="roast-button"
+                onclick="closeFakeOpen()"
+            >
+                ……勉強に戻ります
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- フルスクリーンエラー -->
 
 <div id="errorScreen">
 
-    <h1>ERROR</h1>
+    <h1>
+        ERROR
+    </h1>
 
     <p>
-        何やってるんですか？<br>
+        何やってるんですか？
+        <br>
         勉強してください！
     </p>
 
@@ -724,6 +982,7 @@ footer {
     </button>
 
 </div>
+
 
 <script>
 
@@ -780,8 +1039,10 @@ function updateTimerDisplay() {
         timerSeconds % 60
     ).toString().padStart(2, "0");
 
-    document.getElementById("timer")
-        .textContent = `${minutes}:${seconds}`;
+    document.getElementById(
+        "timer"
+    ).textContent =
+        `${minutes}:${seconds}`;
 }
 
 
@@ -789,12 +1050,15 @@ function selectSubject(subject) {
 
     selectedSubject = subject;
 
-    document.getElementById("selectedSubject")
-        .textContent = `現在の教科：${subject}`;
+    document.getElementById(
+        "selectedSubject"
+    ).textContent =
+        `現在の教科：${subject}`;
 
-    const buttons = document.querySelectorAll(
-        ".subject-buttons button"
-    );
+    const buttons =
+        document.querySelectorAll(
+            ".subject-buttons button"
+        );
 
     buttons.forEach(button => {
 
@@ -833,18 +1097,19 @@ function startTimer() {
 
     timerStartTime = Date.now();
 
-    document.getElementById("timerStatus")
-        .textContent = "勉強中……";
+    document.getElementById(
+        "timerStatus"
+    ).textContent =
+        "勉強中……";
 
-    if (!document.fullscreenElement) {
+    if (
+        !document.fullscreenElement &&
+        document.documentElement.requestFullscreen
+    ) {
 
-        if (document.documentElement.requestFullscreen) {
-
-            document.documentElement
-                .requestFullscreen()
-                .catch(() => {});
-
-        }
+        document.documentElement
+            .requestFullscreen()
+            .catch(() => {});
 
     }
 
@@ -876,19 +1141,22 @@ function stopTimer() {
 
     timerRunning = false;
 
-    const elapsedSeconds = Math.max(
-        0,
-        Math.floor(
-            (Date.now() - timerStartTime) / 1000
-        )
-    );
+    const elapsedSeconds =
+        Math.max(
+            0,
+            Math.floor(
+                (Date.now() - timerStartTime) / 1000
+            )
+        );
 
     timerStartTime = null;
 
     saveStudyTime(elapsedSeconds);
 
-    document.getElementById("timerStatus")
-        .textContent = "停止中";
+    document.getElementById(
+        "timerStatus"
+    ).textContent =
+        "停止中";
 }
 
 
@@ -906,8 +1174,9 @@ function resetTimer() {
 
     updateTimerDisplay();
 
-    document.getElementById("timerStatus")
-        .textContent = "";
+    document.getElementById(
+        "timerStatus"
+    ).textContent = "";
 }
 
 
@@ -927,12 +1196,15 @@ function finishTimer() {
 
     saveStudyTime(25 * 60);
 
-    document.getElementById("timerStatus")
-        .textContent = "25分達成！";
+    document.getElementById(
+        "timerStatus"
+    ).textContent =
+        "25分達成！";
 
     document.getElementById(
         "celebrationScreen"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
     updateAllDisplays();
 }
@@ -942,14 +1214,18 @@ function nextStudy() {
 
     document.getElementById(
         "celebrationScreen"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
     timerSeconds = 25 * 60;
 
+    timerStartTime = null;
+
     updateTimerDisplay();
 
-    document.getElementById("timerStatus")
-        .textContent =
+    document.getElementById(
+        "timerStatus"
+    ).textContent =
         "次の勉強を始められます。";
 }
 
@@ -960,11 +1236,15 @@ function nextStudy() {
 
 function saveStudyTime(seconds) {
 
-    if (!selectedSubject || seconds <= 0) {
+    if (
+        !selectedSubject ||
+        seconds <= 0
+    ) {
         return;
     }
 
-    const dateKey = getDateKey();
+    const dateKey =
+        getDateKey();
 
     const totalKey =
         `total_${dateKey}`;
@@ -972,13 +1252,19 @@ function saveStudyTime(seconds) {
     const subjectKey =
         `today_${dateKey}_${selectedSubject}`;
 
-    const oldTotal = Number(
-        localStorage.getItem(totalKey) || 0
-    );
+    const oldTotal =
+        Number(
+            localStorage.getItem(
+                totalKey
+            ) || 0
+        );
 
-    const oldSubject = Number(
-        localStorage.getItem(subjectKey) || 0
-    );
+    const oldSubject =
+        Number(
+            localStorage.getItem(
+                subjectKey
+            ) || 0
+        );
 
     localStorage.setItem(
         totalKey,
@@ -999,17 +1285,20 @@ function updateTodayTotal() {
     const key =
         `total_${getDateKey()}`;
 
-    const seconds = Number(
-        localStorage.getItem(key) || 0
-    );
+    const seconds =
+        Number(
+            localStorage.getItem(key) || 0
+        );
 
-    const hours = Math.floor(
-        seconds / 3600
-    );
+    const hours =
+        Math.floor(
+            seconds / 3600
+        );
 
-    const minutes = Math.floor(
-        (seconds % 3600) / 60
-    );
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
 
     const remainSeconds =
         seconds % 60;
@@ -1023,13 +1312,15 @@ function updateTodayTotal() {
 
 function formatStudyTime(seconds) {
 
-    const hours = Math.floor(
-        seconds / 3600
-    );
+    const hours =
+        Math.floor(
+            seconds / 3600
+        );
 
-    const minutes = Math.floor(
-        (seconds % 3600) / 60
-    );
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
 
     const remainSeconds =
         seconds % 60;
@@ -1052,33 +1343,39 @@ function formatStudyTime(seconds) {
 
 function updateTodayChart() {
 
-    const dateKey = getDateKey();
+    const dateKey =
+        getDateKey();
 
     const values = {};
 
     subjects.forEach(subject => {
 
-        values[subject] = Number(
-            localStorage.getItem(
-                `today_${dateKey}_${subject}`
-            ) || 0
-        );
+        values[subject] =
+            Number(
+                localStorage.getItem(
+                    `today_${dateKey}_${subject}`
+                ) || 0
+            );
 
     });
 
-    const maxValue = Math.max(
-        ...Object.values(values),
-        1
-    );
+    const maxValue =
+        Math.max(
+            ...Object.values(values),
+            1
+        );
 
     const chart =
-        document.getElementById("todayChart");
+        document.getElementById(
+            "todayChart"
+        );
 
     chart.innerHTML = "";
 
     subjects.forEach(subject => {
 
-        const seconds = values[subject];
+        const seconds =
+            values[subject];
 
         const height =
             seconds === 0
@@ -1091,7 +1388,8 @@ function updateTodayChart() {
         const wrapper =
             document.createElement("div");
 
-        wrapper.className = "bar-wrapper";
+        wrapper.className =
+            "bar-wrapper";
 
         wrapper.innerHTML = `
             <div class="bar-time">
@@ -1109,6 +1407,7 @@ function updateTodayChart() {
         `;
 
         chart.appendChild(wrapper);
+
     });
 }
 
@@ -1121,7 +1420,8 @@ function openRecords() {
 
     document.getElementById(
         "recordsScreen"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
     createCalendar();
 }
@@ -1131,17 +1431,21 @@ function closeRecords() {
 
     document.getElementById(
         "recordsScreen"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 }
 
 
 function createCalendar() {
 
-    const now = new Date();
+    const now =
+        new Date();
 
-    const year = now.getFullYear();
+    const year =
+        now.getFullYear();
 
-    const month = now.getMonth();
+    const month =
+        now.getMonth();
 
     document.getElementById(
         "calendarTitle"
@@ -1149,7 +1453,9 @@ function createCalendar() {
         `${year}年${month + 1}月`;
 
     const calendar =
-        document.getElementById("calendar");
+        document.getElementById(
+            "calendar"
+        );
 
     calendar.innerHTML = "";
 
@@ -1166,14 +1472,18 @@ function createCalendar() {
     weekNames.forEach(day => {
 
         const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         div.className =
             "calendar-header";
 
-        div.textContent = day;
+        div.textContent =
+            day;
 
         calendar.appendChild(div);
+
     });
 
     const firstDay =
@@ -1197,9 +1507,14 @@ function createCalendar() {
     ) {
 
         const empty =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        calendar.appendChild(empty);
+        calendar.appendChild(
+            empty
+        );
+
     }
 
     for (
@@ -1209,23 +1524,35 @@ function createCalendar() {
     ) {
 
         const dateKey =
-            `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+            `${year}-${String(
+                month + 1
+            ).padStart(2, "0")}-${String(
+                day
+            ).padStart(2, "0")}`;
 
-        const seconds = Number(
-            localStorage.getItem(
-                `total_${dateKey}`
-            ) || 0
-        );
+        const seconds =
+            Number(
+                localStorage.getItem(
+                    `total_${dateKey}`
+                ) || 0
+            );
 
         const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         div.className =
             "calendar-day";
 
-        if (dateKey === getDateKey()) {
+        if (
+            dateKey ===
+            getDateKey()
+        ) {
 
-            div.classList.add("today");
+            div.classList.add(
+                "today"
+            );
 
         }
 
@@ -1238,34 +1565,91 @@ function createCalendar() {
         `;
 
         calendar.appendChild(div);
+
     }
 }
 
 
 /* =========================
-   警告
+   誘惑偽アクセス
 ========================= */
 
-function showWarning(type) {
+function fakeOpen(type) {
 
-    const message =
+    const fakeOpenScreen =
         document.getElementById(
-            "warningMessage"
+            "fakeOpenScreen"
         );
 
-    message.style.display = "block";
+    const fakeLoadingContent =
+        document.getElementById(
+            "fakeLoadingContent"
+        );
+
+    const roastContent =
+        document.getElementById(
+            "roastContent"
+        );
+
+    const fakeUrl =
+        document.getElementById(
+            "fakeUrl"
+        );
+
+    let url = "";
 
     if (type === "YouTube") {
 
-        message.textContent =
-            "YouTubeを見ている場合ではありません。勉強してください。";
+        url =
+            "https://www.youtube.com/";
 
-    } else {
+    } else if (type === "ゲーム") {
 
-        message.textContent =
-            "ゲームをしている場合ではありません。勉強してください。";
+        url =
+            "game://誘惑の世界/";
+
+    } else if (type === "SNS") {
+
+        url =
+            "https://sns.example.com/";
+
+    } else if (type === "LINE") {
+
+        url =
+            "https://line.me/";
 
     }
+
+    fakeUrl.textContent =
+        url;
+
+    fakeLoadingContent.style.display =
+        "block";
+
+    roastContent.style.display =
+        "none";
+
+    fakeOpenScreen.style.display =
+        "block";
+
+    setTimeout(() => {
+
+        fakeLoadingContent.style.display =
+            "none";
+
+        roastContent.style.display =
+            "block";
+
+    }, 1800);
+}
+
+
+function closeFakeOpen() {
+
+    document.getElementById(
+        "fakeOpenScreen"
+    ).style.display =
+        "none";
 }
 
 
@@ -1275,15 +1659,17 @@ function showWarning(type) {
 
 function resetToday() {
 
-    const ok = confirm(
-        "今日の勉強記録をすべて削除しますか？"
-    );
+    const ok =
+        confirm(
+            "今日の勉強記録をすべて削除しますか？"
+        );
 
     if (!ok) {
         return;
     }
 
-    const dateKey = getDateKey();
+    const dateKey =
+        getDateKey();
 
     localStorage.removeItem(
         `total_${dateKey}`
@@ -1320,7 +1706,8 @@ document.addEventListener(
 
             document.getElementById(
                 "errorScreen"
-            ).style.display = "block";
+            ).style.display =
+                "block";
 
         }
 
@@ -1332,7 +1719,8 @@ function returnToStudy() {
 
     document.getElementById(
         "errorScreen"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
     if (
         !document.fullscreenElement &&
@@ -1358,45 +1746,66 @@ function getQuestions(subject) {
 
     try {
 
-        const data = JSON.parse(
-            localStorage.getItem(key) || "[]"
-        );
+        const data =
+            JSON.parse(
+                localStorage.getItem(
+                    key
+                ) || "[]"
+            );
 
         let changed = false;
 
-        const fixed = data.map(item => {
+        const fixed =
+            data.map(item => {
 
-            if (!item.difficulty) {
+                if (!item.difficulty) {
 
-                item.difficulty = "基礎";
-                changed = true;
+                    item.difficulty =
+                        "基礎";
 
-            }
+                    changed = true;
 
-            if (typeof item.wrong !== "boolean") {
+                }
 
-                item.wrong = false;
-                changed = true;
+                if (
+                    typeof item.wrong !==
+                    "boolean"
+                ) {
 
-            }
+                    item.wrong =
+                        false;
 
-            if (typeof item.attempts !== "number") {
+                    changed = true;
 
-                item.attempts = 0;
-                changed = true;
+                }
 
-            }
+                if (
+                    typeof item.attempts !==
+                    "number"
+                ) {
 
-            if (typeof item.correct !== "number") {
+                    item.attempts =
+                        0;
 
-                item.correct = 0;
-                changed = true;
+                    changed = true;
 
-            }
+                }
 
-            return item;
+                if (
+                    typeof item.correct !==
+                    "number"
+                ) {
 
-        });
+                    item.correct =
+                        0;
+
+                    changed = true;
+
+                }
+
+                return item;
+
+            });
 
         if (changed) {
 
@@ -1443,7 +1852,10 @@ function addQuestion() {
             "questionAnswer"
         ).value.trim();
 
-    if (!question || !answer) {
+    if (
+        !question ||
+        !answer
+    ) {
 
         alert(
             "問題と答えの両方を入力してください。"
@@ -1457,23 +1869,31 @@ function addQuestion() {
 
     questions.push({
 
-        question: question,
+        question:
+            question,
 
-        answer: answer,
+        answer:
+            answer,
 
-        difficulty: difficulty,
+        difficulty:
+            difficulty,
 
-        wrong: true,
+        wrong:
+            true,
 
-        attempts: 0,
+        attempts:
+            0,
 
-        correct: 0
+        correct:
+            0
 
     });
 
     localStorage.setItem(
         `questions_${subject}`,
-        JSON.stringify(questions)
+        JSON.stringify(
+            questions
+        )
     );
 
     document.getElementById(
@@ -1513,17 +1933,23 @@ function updateQuestionList() {
         const questions =
             getQuestions(subject);
 
-        if (questions.length === 0) {
+        if (
+            questions.length === 0
+        ) {
             return;
         }
 
         const heading =
-            document.createElement("h4");
+            document.createElement(
+                "h4"
+            );
 
         heading.textContent =
             `${subject}（${questions.length}問）`;
 
-        container.appendChild(heading);
+        container.appendChild(
+            heading
+        );
 
         questions.forEach(
             (item, index) => {
@@ -1531,7 +1957,9 @@ function updateQuestionList() {
                 count++;
 
                 const div =
-                    document.createElement("div");
+                    document.createElement(
+                        "div"
+                    );
 
                 div.className =
                     "question-item";
@@ -1560,20 +1988,28 @@ function updateQuestionList() {
 
                 div.innerHTML = `
                     <div>
+
                         <span class="difficulty-badge">
-                            ${escapeHtml(item.difficulty)}
+                            ${escapeHtml(
+                                item.difficulty
+                            )}
                         </span>
 
                         ${wrongBadge}
+
                     </div>
 
                     <strong>Q.</strong>
-                    ${escapeHtml(item.question)}
+                    ${escapeHtml(
+                        item.question
+                    )}
 
                     <br>
 
                     <strong>A.</strong>
-                    ${escapeHtml(item.answer)}
+                    ${escapeHtml(
+                        item.answer
+                    )}
 
                     <div class="question-stats">
                         回答 ${attempts}回 /
@@ -1582,15 +2018,22 @@ function updateQuestionList() {
                     </div>
 
                     <button
-                        onclick="deleteQuestion('${subject}', ${index})"
+                        onclick="deleteQuestion(
+                            '${subject}',
+                            ${index}
+                        )"
                     >
                         削除
                     </button>
                 `;
 
-                container.appendChild(div);
+                container.appendChild(
+                    div
+                );
+
             }
         );
+
     });
 
     if (count === 0) {
@@ -1605,19 +2048,26 @@ function updateQuestionList() {
 function escapeHtml(text) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    div.textContent = text;
+    div.textContent =
+        text;
 
     return div.innerHTML;
 }
 
 
-function deleteQuestion(subject, index) {
+function deleteQuestion(
+    subject,
+    index
+) {
 
-    const ok = confirm(
-        "この問題を削除しますか？"
-    );
+    const ok =
+        confirm(
+            "この問題を削除しますか？"
+        );
 
     if (!ok) {
         return;
@@ -1626,11 +2076,16 @@ function deleteQuestion(subject, index) {
     const questions =
         getQuestions(subject);
 
-    questions.splice(index, 1);
+    questions.splice(
+        index,
+        1
+    );
 
     localStorage.setItem(
         `questions_${subject}`,
-        JSON.stringify(questions)
+        JSON.stringify(
+            questions
+        )
     );
 
     updateQuestionList();
@@ -1664,19 +2119,24 @@ let sessionStats = {
 };
 
 
-function shuffleQuestions(questions) {
+function shuffleQuestions(
+    questions
+) {
 
-    const shuffled = [...questions];
+    const shuffled =
+        [...questions];
 
     for (
-        let i = shuffled.length - 1;
+        let i =
+            shuffled.length - 1;
         i > 0;
         i--
     ) {
 
         const randomIndex =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
         [
@@ -1686,6 +2146,7 @@ function shuffleQuestions(questions) {
             shuffled[randomIndex],
             shuffled[i]
         ];
+
     }
 
     return shuffled;
@@ -1705,41 +2166,60 @@ function startQuiz() {
         ).value;
 
     const registeredQuestions =
-        getQuestions(quizSubject);
+        getQuestions(
+            quizSubject
+        );
 
     let filteredQuestions = [];
 
-    if (quizMode === "基礎") {
+    if (
+        quizMode === "基礎"
+    ) {
 
         filteredQuestions =
             registeredQuestions.filter(
-                item => item.difficulty === "基礎"
+                item =>
+                    item.difficulty ===
+                    "基礎"
             );
 
-    } else if (quizMode === "応用") {
+    } else if (
+        quizMode === "応用"
+    ) {
 
         filteredQuestions =
             registeredQuestions.filter(
-                item => item.difficulty === "応用"
+                item =>
+                    item.difficulty ===
+                    "応用"
             );
 
-    } else if (quizMode === "全部") {
+    } else if (
+        quizMode === "全部"
+    ) {
 
         filteredQuestions =
             registeredQuestions;
 
-    } else if (quizMode === "wrong") {
+    } else if (
+        quizMode === "wrong"
+    ) {
 
         filteredQuestions =
             registeredQuestions.filter(
-                item => item.wrong === true
+                item =>
+                    item.wrong === true
             );
 
     }
 
-    if (filteredQuestions.length === 0) {
+    if (
+        filteredQuestions.length === 0
+    ) {
 
-        if (quizMode === "wrong") {
+        if (
+            quizMode === "wrong"
+        ) {
 
             alert(
                 `${quizSubject}には「過去に間違えた問題」がありません。`
@@ -1757,7 +2237,9 @@ function startQuiz() {
     }
 
     quizQuestions =
-        shuffleQuestions(filteredQuestions);
+        shuffleQuestions(
+            filteredQuestions
+        );
 
     quizIndex = 0;
     quizCorrect = 0;
@@ -1780,7 +2262,8 @@ function startQuiz() {
 
     document.getElementById(
         "quizScreen"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
     showQuizQuestion();
 }
@@ -1789,7 +2272,9 @@ function startQuiz() {
 function showQuizQuestion() {
 
     const current =
-        quizQuestions[quizIndex];
+        quizQuestions[
+            quizIndex
+        ];
 
     document.getElementById(
         "quizNumber"
@@ -1824,7 +2309,8 @@ function showQuizQuestion() {
     ).style.display =
         "none";
 
-    answerChecked = false;
+    answerChecked =
+        false;
 
     document.getElementById(
         "quizAnswer"
@@ -1832,13 +2318,24 @@ function showQuizQuestion() {
 }
 
 
-function normalizeAnswer(answer) {
+function normalizeAnswer(
+    answer
+) {
 
     return answer
         .toLowerCase()
-        .replace(/\s+/g, "")
-        .replace(/　/g, "")
-        .replace(/[。．.!！,，、]/g, "");
+        .replace(
+            /\s+/g,
+            ""
+        )
+        .replace(
+            /　/g,
+            ""
+        )
+        .replace(
+            /[。．.!！,，、]/g,
+            ""
+        );
 }
 
 
@@ -1863,18 +2360,26 @@ function checkAnswer() {
     }
 
     const current =
-        quizQuestions[quizIndex];
+        quizQuestions[
+            quizIndex
+        ];
 
     const userAnswer =
-        normalizeAnswer(input);
+        normalizeAnswer(
+            input
+        );
 
     const correctAnswer =
-        normalizeAnswer(current.answer);
+        normalizeAnswer(
+            current.answer
+        );
 
     const isCorrect =
-        userAnswer === correctAnswer;
+        userAnswer ===
+        correctAnswer;
 
-    answerChecked = true;
+    answerChecked =
+        true;
 
     quizAnswered++;
 
@@ -1886,11 +2391,13 @@ function checkAnswer() {
         current.correct =
             (current.correct || 0) + 1;
 
-        current.wrong = false;
+        current.wrong =
+            false;
 
     } else {
 
-        current.wrong = true;
+        current.wrong =
+            true;
 
     }
 
@@ -1899,7 +2406,10 @@ function checkAnswer() {
         current
     );
 
-    if (current.difficulty === "基礎") {
+    if (
+        current.difficulty ===
+        "基礎"
+    ) {
 
         sessionStats.基礎.total++;
 
@@ -1908,7 +2418,8 @@ function checkAnswer() {
         }
 
     } else if (
-        current.difficulty === "応用"
+        current.difficulty ===
+        "応用"
     ) {
 
         sessionStats.応用.total++;
@@ -1926,6 +2437,7 @@ function checkAnswer() {
         document.getElementById(
             "answerResult"
         ).innerHTML = `
+
             <p class="correct">
                 正解！
             </p>
@@ -1935,6 +2447,7 @@ function checkAnswer() {
                     ? "<p>この問題は復習対象から外れました。</p>"
                     : ""
             }
+
         `;
 
     } else {
@@ -1942,28 +2455,35 @@ function checkAnswer() {
         document.getElementById(
             "answerResult"
         ).innerHTML = `
+
             <p class="incorrect">
                 不正解
             </p>
 
             <p>
                 正解：
-                ${escapeHtml(current.answer)}
+                ${escapeHtml(
+                    current.answer
+                )}
             </p>
 
             <p>
                 この問題は「過去に間違えた問題」に追加されました。
             </p>
+
         `;
+
     }
 
     document.getElementById(
         "checkAnswerButton"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
     document.getElementById(
         "nextQuestionButton"
-    ).style.display = "inline-block";
+    ).style.display =
+        "inline-block";
 }
 
 
@@ -1980,22 +2500,28 @@ function updateQuestionInStorage(
             item =>
                 item.id &&
                 updatedQuestion.id &&
-                item.id === updatedQuestion.id
+                item.id ===
+                updatedQuestion.id
         );
 
-    if (targetIndex === -1) {
+    if (
+        targetIndex === -1
+    ) {
 
         targetIndex =
             questions.findIndex(
                 item =>
                     item.question ===
-                        updatedQuestion.question &&
+                    updatedQuestion.question &&
                     item.answer ===
-                        updatedQuestion.answer
+                    updatedQuestion.answer
             );
+
     }
 
-    if (targetIndex === -1) {
+    if (
+        targetIndex === -1
+    ) {
         return;
     }
 
@@ -2004,7 +2530,9 @@ function updateQuestionInStorage(
 
     localStorage.setItem(
         `questions_${subject}`,
-        JSON.stringify(questions)
+        JSON.stringify(
+            questions
+        )
     );
 
     updateQuestionList();
@@ -2025,7 +2553,8 @@ function nextQuestion() {
     quizIndex++;
 
     if (
-        quizIndex >= quizQuestions.length
+        quizIndex >=
+        quizQuestions.length
     ) {
 
         showQuizResult();
@@ -2037,7 +2566,10 @@ function nextQuestion() {
 }
 
 
-function calculateRate(total, correct) {
+function calculateRate(
+    total,
+    correct
+) {
 
     if (total === 0) {
         return 0;
@@ -2051,12 +2583,17 @@ function calculateRate(total, correct) {
 
 function showQuizResult() {
 
-    const total = quizAnswered;
+    const total =
+        quizAnswered;
 
-    const correct = quizCorrect;
+    const correct =
+        quizCorrect;
 
     const overallRate =
-        calculateRate(total, correct);
+        calculateRate(
+            total,
+            correct
+        );
 
     document.getElementById(
         "quizResultNumber"
@@ -2070,7 +2607,9 @@ function showQuizResult() {
 
     let breakdown = "";
 
-    if (sessionStats.基礎.total > 0) {
+    if (
+        sessionStats.基礎.total > 0
+    ) {
 
         const rate =
             calculateRate(
@@ -2079,16 +2618,31 @@ function showQuizResult() {
             );
 
         breakdown += `
+
             <div>
-                <strong>基礎</strong><br>
+
+                <strong>
+                    基礎
+                </strong>
+
+                <br>
+
                 ${sessionStats.基礎.total}問中
-                ${sessionStats.基礎.correct}問正解<br>
+                ${sessionStats.基礎.correct}問正解
+
+                <br>
+
                 正答率：${rate}%
+
             </div>
+
         `;
+
     }
 
-    if (sessionStats.応用.total > 0) {
+    if (
+        sessionStats.応用.total > 0
+    ) {
 
         const rate =
             calculateRate(
@@ -2097,13 +2651,26 @@ function showQuizResult() {
             );
 
         breakdown += `
+
             <div style="margin-top:15px;">
-                <strong>応用</strong><br>
+
+                <strong>
+                    応用
+                </strong>
+
+                <br>
+
                 ${sessionStats.応用.total}問中
-                ${sessionStats.応用.correct}問正解<br>
+                ${sessionStats.応用.correct}問正解
+
+                <br>
+
                 正答率：${rate}%
+
             </div>
+
         `;
+
     }
 
     if (!breakdown) {
@@ -2120,17 +2687,23 @@ function showQuizResult() {
 
     let message = "";
 
-    if (overallRate === 100) {
+    if (
+        overallRate === 100
+    ) {
 
         message =
             "全問正解！かなり仕上がっています。";
 
-    } else if (overallRate >= 80) {
+    } else if (
+        overallRate >= 80
+    ) {
 
         message =
             "かなりできています。間違えた問題を確認しておきましょう。";
 
-    } else if (overallRate >= 60) {
+    } else if (
+        overallRate >= 60
+    ) {
 
         message =
             "もう少し復習しましょう。";
@@ -2149,11 +2722,13 @@ function showQuizResult() {
 
     document.getElementById(
         "quizScreen"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
     document.getElementById(
         "quizResultScreen"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 }
 
 
@@ -2161,35 +2736,51 @@ function closeQuizResult() {
 
     document.getElementById(
         "quizResultScreen"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
     let questions =
-        getQuestions(quizSubject);
+        getQuestions(
+            quizSubject
+        );
 
-    if (quizMode === "基礎") {
+    if (
+        quizMode === "基礎"
+    ) {
 
         questions =
             questions.filter(
-                item => item.difficulty === "基礎"
+                item =>
+                    item.difficulty ===
+                    "基礎"
             );
 
-    } else if (quizMode === "応用") {
+    } else if (
+        quizMode === "応用"
+    ) {
 
         questions =
             questions.filter(
-                item => item.difficulty === "応用"
+                item =>
+                    item.difficulty ===
+                    "応用"
             );
 
-    } else if (quizMode === "wrong") {
+    } else if (
+        quizMode === "wrong"
+    ) {
 
         questions =
             questions.filter(
-                item => item.wrong === true
+                item =>
+                    item.wrong === true
             );
 
     }
 
-    if (questions.length === 0) {
+    if (
+        questions.length === 0
+    ) {
 
         alert(
             "このモードで復習する問題がなくなりました。"
@@ -2201,7 +2792,9 @@ function closeQuizResult() {
     }
 
     quizQuestions =
-        shuffleQuestions(questions);
+        shuffleQuestions(
+            questions
+        );
 
     quizIndex = 0;
     quizCorrect = 0;
@@ -2224,7 +2817,8 @@ function closeQuizResult() {
 
     document.getElementById(
         "quizScreen"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
     showQuizQuestion();
 }
@@ -2234,11 +2828,13 @@ function finishQuiz() {
 
     document.getElementById(
         "quizResultScreen"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
     document.getElementById(
         "quizScreen"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 }
 
 
@@ -2246,7 +2842,8 @@ function closeQuiz() {
 
     document.getElementById(
         "quizScreen"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 }
 
 
