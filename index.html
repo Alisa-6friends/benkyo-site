@@ -1098,6 +1098,111 @@ footer {
 </button>
     </div>
     <!-- =========================
+     模試成績
+========================= -->
+
+<div id="mockTestPage" class="page">
+
+    <section class="card">
+
+        <h2>模試成績</h2>
+
+        <p>
+            模試の成績を記録できます。
+        </p>
+
+        <label>
+            模試名
+        </label>
+
+        <input
+            id="mockTestName"
+            type="text"
+            placeholder="例：五ツ木模試"
+        >
+
+        <label>
+            日付
+        </label>
+
+        <input
+            id="mockTestDate"
+            type="date"
+        >
+
+        <label>
+            国語
+        </label>
+
+        <input
+            id="mockJapanese"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>
+            数学
+        </label>
+
+        <input
+            id="mockMath"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>
+            英語
+        </label>
+
+        <input
+            id="mockEnglish"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>
+            理科
+        </label>
+
+        <input
+            id="mockScience"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>
+            社会
+        </label>
+
+        <input
+            id="mockSocial"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <button
+            class="record"
+            onclick="saveMockTest()"
+        >
+            模試成績を記録
+        </button>
+
+        <div id="mockTestList"></div>
+
+    </section>
+
+</div>
+    <!-- =========================
      偏差値推移
 ========================= -->
 
@@ -1145,6 +1250,12 @@ footer {
     </section>
 
 </div>
+    <button
+    class="record"
+    onclick="showPage('mockTestPage')"
+>
+    模試成績を見る
+</button>
 <!-- =========================
      手帳
 ========================= -->
@@ -1386,7 +1497,7 @@ footer {
 
 </div>
 
-<div id="studyPage" class="page">
+
 <!-- =========================
      誘惑偽アクセス
 ========================= -->
