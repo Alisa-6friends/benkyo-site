@@ -1091,7 +1091,7 @@ function finishTimer() {
     updateTimerDisplay();
 
 
-    saveStudyTime(25);
+    saveStudyTime(25 * 60);
 
 
     document.getElementById("timerStatus")
@@ -1132,7 +1132,7 @@ function nextStudy() {
    勉強時間保存
 ================================================== */
 
-function saveStudyTime(minutes) {
+function saveStudyTime(seconds) {
 
     if (!selectedSubject) {
         return;
@@ -1165,13 +1165,13 @@ function saveStudyTime(minutes) {
 
     localStorage.setItem(
         totalKey,
-        oldTotal + minutes * 60
+        oldTotal + seconds
     );
 
 
     localStorage.setItem(
         subjectKey,
-        oldSubject + minutes * 60
+        oldSubject + seconds
     );
 
 
@@ -1191,31 +1191,20 @@ function updateTodayTotal() {
         );
 
 
-    const minutes =
-        Math.floor(seconds / 60);
-
-
     const hours =
-        Math.floor(minutes / 60);
+    Math.floor(seconds / 3600);
 
 
-    const remain =
-        minutes % 60;
+const minutes =
+    Math.floor((seconds % 3600) / 60);
 
 
-    let text = "";
+const remainSeconds =
+    seconds % 60;
 
 
-    if (hours > 0) {
-
-        text +=
-            `${hours}時間`;
-
-    }
-
-
-    text +=
-        `${remain}分`;
+    const text =
+    `${hours}時間${minutes}分${remainSeconds}秒`;
 
 
     document.getElementById(
