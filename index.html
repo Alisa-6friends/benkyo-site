@@ -882,6 +882,7 @@ let selectedSubject = null;
 let timerSeconds = 25 * 60;
 let timerInterval = null;
 let timerRunning = false;
+let timerStartTime = null;
 
 
 /* ==================================================
@@ -1030,36 +1031,20 @@ function stopTimer() {
     timerInterval = null;
 
     timerRunning = false;
-    let timerStartTime = null;
 
     document.getElementById("timerStatus")
         .textContent =
         "停止中";
-}
-
-
-    clearInterval(timerInterval);
-
-    timerInterval = null;
-
-    timerRunning = false;
-
-
-    document.getElementById("timerStatus")
-        .textContent =
-        "停止中";
-
 
     const elapsedSeconds =
-    Math.floor(
-        (Date.now() - timerStartTime) / 1000
-    );
+        Math.floor(
+            (Date.now() - timerStartTime) / 1000
+        );
 
-saveStudyTime(elapsedSeconds);
+    saveStudyTime(elapsedSeconds);
 
-timerStartTime = null;
+    timerStartTime = null;
 }
-
 
 function resetTimer() {
 
