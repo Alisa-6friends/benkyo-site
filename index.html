@@ -7,6 +7,7 @@
 <title>勉強してください！</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -14,9 +15,15 @@
 body {
     margin: 0;
     font-family: sans-serif;
+
     background:
-        linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)),
-        url("benkyo_sitekudasai_KounoGento.png") center / cover fixed;
+        linear-gradient(
+            rgba(255,255,255,0.88),
+            rgba(255,255,255,0.88)
+        ),
+        url("benkyo_sitekudasai_KounoGento.png")
+        center / cover fixed;
+
     color: #222;
 }
 
@@ -446,6 +453,39 @@ footer {
     color: #555;
 }
 
+/* =========================
+   志望校
+========================= */
+
+#schoolList {
+    margin-top: 20px;
+}
+
+.school-card {
+    margin-top: 15px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    background: #fafafa;
+}
+
+.school-card h3 {
+    margin-top: 0;
+}
+
+.school-card p {
+    margin: 8px 0;
+}
+
+.school-card button {
+    margin-top: 8px;
+}
+
+#schoolMemo {
+    min-height: 80px;
+    resize: vertical;
+}
+
 @media (max-width: 600px) {
 
     .card {
@@ -474,6 +514,7 @@ footer {
         height: 210px;
     }
 }
+
 </style>
 </head>
 
@@ -486,50 +527,89 @@ footer {
 
 <div class="container">
 
+<!-- =========================
+     誘惑
+========================= -->
+
 <section class="card">
+
     <h2>誘惑に負けそうなとき</h2>
 
     <p>
         「ちょっとだけ」が一番危険です。
     </p>
 
-    <button class="warning" onclick="fakeOpen('YouTube')">
+    <button
+        class="warning"
+        onclick="fakeOpen('YouTube')"
+    >
         YouTube
     </button>
 
-    <button class="warning" onclick="fakeOpen('ゲーム')">
+    <button
+        class="warning"
+        onclick="fakeOpen('ゲーム')"
+    >
         ゲーム
     </button>
 
-    <button class="warning" onclick="fakeOpen('SNS')">
+    <button
+        class="warning"
+        onclick="fakeOpen('SNS')"
+    >
         SNS
     </button>
 
-    <button class="warning" onclick="fakeOpen('LINE')">
+    <button
+        class="warning"
+        onclick="fakeOpen('LINE')"
+    >
         LINE
     </button>
 
-    <div id="warningMessage" class="warning-message"></div>
+    <div
+        id="warningMessage"
+        class="warning-message"
+    ></div>
+
 </section>
+
+
+<!-- =========================
+     タイマー
+========================= -->
 
 <section class="card timer">
 
     <h2>25分勉強タイマー</h2>
 
-    <div id="timer">25:00</div>
+    <div id="timer">
+        25:00
+    </div>
 
     <div>
-        <button class="start" onclick="startTimer()">
+
+        <button
+            class="start"
+            onclick="startTimer()"
+        >
             スタート
         </button>
 
-        <button class="stop" onclick="stopTimer()">
+        <button
+            class="stop"
+            onclick="stopTimer()"
+        >
             ストップ
         </button>
 
-        <button class="reset" onclick="resetTimer()">
+        <button
+            class="reset"
+            onclick="resetTimer()"
+        >
             リセット
         </button>
+
     </div>
 
     <div id="selectedSubject">
@@ -568,6 +648,11 @@ footer {
 
 </section>
 
+
+<!-- =========================
+     今日の勉強時間
+========================= -->
+
 <section class="card stats">
 
     <h2>今日の勉強時間</h2>
@@ -578,21 +663,42 @@ footer {
 
 </section>
 
+
+<!-- =========================
+     教科別グラフ
+========================= -->
+
 <section class="card">
 
     <h2>今日の教科別勉強時間</h2>
 
-    <div id="todayChart" class="chart"></div>
+    <div
+        id="todayChart"
+        class="chart"
+    ></div>
 
 </section>
 
+
+<!-- =========================
+     勉強記録
+========================= -->
+
 <section class="card">
 
-    <button class="record" onclick="openRecords()">
+    <button
+        class="record"
+        onclick="openRecords()"
+    >
         勉強記録を見る
     </button>
 
 </section>
+
+
+<!-- =========================
+     間違えた問題
+========================= -->
 
 <section class="card">
 
@@ -603,36 +709,69 @@ footer {
         間違えた問題を登録できます。
     </p>
 
-    <label>教科</label>
+    <label>
+        教科
+    </label>
 
     <select id="questionSubject">
 
-        <option value="国語">国語</option>
-        <option value="数学">数学</option>
-        <option value="英語">英語</option>
-        <option value="理科">理科</option>
-        <option value="社会">社会</option>
-        <option value="実技">実技</option>
+        <option value="国語">
+            国語
+        </option>
+
+        <option value="数学">
+            数学
+        </option>
+
+        <option value="英語">
+            英語
+        </option>
+
+        <option value="理科">
+            理科
+        </option>
+
+        <option value="社会">
+            社会
+        </option>
+
+        <option value="実技">
+            実技
+        </option>
 
     </select>
 
-    <label>問題の種類</label>
+
+    <label>
+        問題の種類
+    </label>
 
     <select id="questionDifficulty">
 
-        <option value="基礎">基礎</option>
-        <option value="応用">応用</option>
+        <option value="基礎">
+            基礎
+        </option>
+
+        <option value="応用">
+            応用
+        </option>
 
     </select>
 
-    <label>問題</label>
+
+    <label>
+        問題
+    </label>
 
     <textarea
         id="questionText"
         placeholder="例：食塩の化学式は？"
     ></textarea>
 
-    <label>答え</label>
+
+    <label>
+        答え
+    </label>
 
     <input
         id="questionAnswer"
@@ -640,13 +779,22 @@ footer {
         placeholder="例：NaCl"
     >
 
-    <button class="record" onclick="addQuestion()">
+
+    <button
+        class="record"
+        onclick="addQuestion()"
+    >
         問題を登録
     </button>
 
     <div id="questionList"></div>
 
 </section>
+
+
+<!-- =========================
+     一問一答
+========================= -->
 
 <section class="card">
 
@@ -656,20 +804,42 @@ footer {
         登録した問題をランダムな順番で復習します。
     </p>
 
-    <label>教科</label>
+    <label>
+        教科
+    </label>
 
     <select id="quizSubjectSelect">
 
-        <option value="国語">国語</option>
-        <option value="数学">数学</option>
-        <option value="英語">英語</option>
-        <option value="理科">理科</option>
-        <option value="社会">社会</option>
-        <option value="実技">実技</option>
+        <option value="国語">
+            国語
+        </option>
+
+        <option value="数学">
+            数学
+        </option>
+
+        <option value="英語">
+            英語
+        </option>
+
+        <option value="理科">
+            理科
+        </option>
+
+        <option value="社会">
+            社会
+        </option>
+
+        <option value="実技">
+            実技
+        </option>
 
     </select>
 
-    <label>復習モード</label>
+
+    <label>
+        復習モード
+    </label>
 
     <select id="quizModeSelect">
 
@@ -691,17 +861,123 @@ footer {
 
     </select>
 
-    <button class="start" onclick="startQuiz()">
+
+    <button
+        class="start"
+        onclick="startQuiz()"
+    >
         一問一答を開始
     </button>
 
 </section>
 
+
+<!-- =========================
+     志望校
+========================= -->
+
+<section class="card">
+
+    <h2>志望校</h2>
+
+    <p>
+        目指している高校を登録できます。
+    </p>
+
+
+    <label>
+        志望順位
+    </label>
+
+    <select id="schoolRank">
+
+        <option value="1">
+            第一志望
+        </option>
+
+        <option value="2">
+            第二志望
+        </option>
+
+        <option value="3">
+            第三志望
+        </option>
+
+    </select>
+
+
+    <label>
+        高校名
+    </label>
+
+    <input
+        id="schoolName"
+        type="text"
+        placeholder="例：高津高校"
+    >
+
+
+    <label>
+        目標偏差値
+    </label>
+
+    <input
+        id="schoolHensachi"
+        type="number"
+        placeholder="例：65"
+        min="0"
+        max="100"
+        step="0.1"
+    >
+
+
+    <label>
+        目標5科目点
+    </label>
+
+    <input
+        id="schoolTargetScore"
+        type="number"
+        placeholder="例：630"
+        min="0"
+    >
+
+
+    <label>
+        メモ
+    </label>
+
+    <textarea
+        id="schoolMemo"
+        placeholder="例：C問題対策を頑張る"
+    ></textarea>
+
+
+    <button
+        class="record"
+        onclick="saveSchool()"
+    >
+        志望校を登録・更新
+    </button>
+
+
+    <div id="schoolList"></div>
+
+</section>
+
+
+<!-- =========================
+     データ管理
+========================= -->
+
 <section class="card">
 
     <h2>データ管理</h2>
 
-    <button class="reset" onclick="resetToday()">
+    <button
+        class="reset"
+        onclick="resetToday()"
+    >
         今日の勉強記録をリセット
     </button>
 
@@ -709,14 +985,20 @@ footer {
 
 </div>
 
+
 <footer>
     勉強してください！
 </footer>
 
 
-<!-- 勉強記録 -->
+<!-- =========================
+     勉強記録
+========================= -->
 
-<div id="recordsScreen" class="overlay">
+<div
+    id="recordsScreen"
+    class="overlay"
+>
 
     <div class="overlay-content">
 
@@ -727,7 +1009,9 @@ footer {
             ×
         </button>
 
-        <h2>勉強記録</h2>
+        <h2>
+            勉強記録
+        </h2>
 
         <h3 id="calendarTitle"></h3>
 
@@ -741,9 +1025,14 @@ footer {
 </div>
 
 
-<!-- 一問一答 -->
+<!-- =========================
+     一問一答
+========================= -->
 
-<div id="quizScreen" class="overlay">
+<div
+    id="quizScreen"
+    class="overlay"
+>
 
     <div class="overlay-content">
 
@@ -804,15 +1093,22 @@ footer {
 </div>
 
 
-<!-- 一問一答結果 -->
+<!-- =========================
+     一問一答結果
+========================= -->
 
-<div id="quizResultScreen" class="overlay">
+<div
+    id="quizResultScreen"
+    class="overlay"
+>
 
     <div class="overlay-content">
 
         <div class="quiz-box">
 
-            <h2>一問一答 結果</h2>
+            <h2>
+                一問一答 結果
+            </h2>
 
             <div
                 id="quizResultNumber"
@@ -855,9 +1151,14 @@ footer {
 </div>
 
 
-<!-- 25分達成 -->
+<!-- =========================
+     25分達成
+========================= -->
 
-<div id="celebrationScreen" class="overlay">
+<div
+    id="celebrationScreen"
+    class="overlay"
+>
 
     <div
         class="overlay-content"
@@ -888,8 +1189,9 @@ footer {
 </div>
 
 
-<!-- 誘惑偽アクセス -->
-
+<!-- =========================
+     誘惑偽アクセス
+========================= -->
 <div id="fakeOpenScreen" class="overlay">
 
     <div class="overlay-content fake-loading">
@@ -955,7 +1257,9 @@ footer {
 </div>
 
 
-<!-- フルスクリーンエラー -->
+<!-- =========================
+     フルスクリーンエラー
+========================= -->
 
 <div id="errorScreen">
 
@@ -1692,6 +1996,372 @@ function resetToday() {
 
 
 /* =========================
+   志望校管理
+========================= */
+
+let targetSchools =
+    JSON.parse(
+        localStorage.getItem(
+            "targetSchools"
+        )
+    ) || [];
+
+
+/* 志望校を登録・更新 */
+
+function saveSchool() {
+
+    const rank =
+        Number(
+            document.getElementById(
+                "schoolRank"
+            ).value
+        );
+
+    const name =
+        document.getElementById(
+            "schoolName"
+        ).value.trim();
+
+    const hensachi =
+        document.getElementById(
+            "schoolHensachi"
+        ).value;
+
+    const targetScore =
+        document.getElementById(
+            "schoolTargetScore"
+        ).value;
+
+    const memo =
+        document.getElementById(
+            "schoolMemo"
+        ).value.trim();
+
+
+    if (!name) {
+
+        alert(
+            "高校名を入力してください。"
+        );
+
+        return;
+    }
+
+
+    const school = {
+
+        rank: rank,
+
+        name: name,
+
+        hensachi: hensachi,
+
+        targetScore: targetScore,
+
+        memo: memo
+
+    };
+
+
+    const existingIndex =
+        targetSchools.findIndex(
+            school =>
+                school.rank === rank
+        );
+
+
+    if (existingIndex !== -1) {
+
+        targetSchools[
+            existingIndex
+        ] = school;
+
+    } else {
+
+        targetSchools.push(
+            school
+        );
+
+    }
+
+
+    targetSchools.sort(
+        (a, b) =>
+            a.rank - b.rank
+    );
+
+
+    localStorage.setItem(
+        "targetSchools",
+        JSON.stringify(
+            targetSchools
+        )
+    );
+
+
+    clearSchoolForm();
+
+    updateSchoolList();
+}
+
+
+/* 志望校一覧 */
+
+function updateSchoolList() {
+
+    const list =
+        document.getElementById(
+            "schoolList"
+        );
+
+    if (!list) {
+        return;
+    }
+
+    if (
+        targetSchools.length === 0
+    ) {
+
+        list.innerHTML =
+            "<p>まだ志望校が登録されていません。</p>";
+
+        return;
+    }
+
+    let html = "";
+
+    targetSchools.forEach(
+        school => {
+
+            let rankText = "";
+
+            if (
+                school.rank === 1
+            ) {
+
+                rankText =
+                    "第一志望";
+
+            } else if (
+                school.rank === 2
+            ) {
+
+                rankText =
+                    "第二志望";
+
+            } else {
+
+                rankText =
+                    "第三志望";
+
+            }
+
+
+            html += `
+
+                <div class="school-card">
+
+                    <h3>
+                        ${escapeSchoolText(
+                            school.name
+                        )}
+                    </h3>
+
+                    <p>
+                        <strong>
+                            ${rankText}
+                        </strong>
+                    </p>
+
+                    <p>
+                        目標偏差値：
+                        ${
+                            school.hensachi ||
+                            "未設定"
+                        }
+                    </p>
+
+                    <p>
+                        目標5科目点：
+                        ${
+                            school.targetScore ||
+                            "未設定"
+                        }
+                    </p>
+
+                    ${
+                        school.memo
+                        ? `
+                            <p>
+                                メモ：
+                                ${escapeSchoolText(
+                                    school.memo
+                                )}
+                            </p>
+                          `
+                        : ""
+                    }
+
+                    <button
+                        class="record"
+                        onclick="editSchool(
+                            ${school.rank}
+                        )"
+                    >
+                        編集
+                    </button>
+
+                    <button
+                        class="reset"
+                        onclick="deleteSchool(
+                            ${school.rank}
+                        )"
+                    >
+                        削除
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+    list.innerHTML =
+        html;
+}
+
+
+/* =========================
+   志望校用補助関数
+========================= */
+
+function escapeSchoolText(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text ?? "";
+
+    return div.innerHTML;
+}
+
+
+function clearSchoolForm() {
+
+    document.getElementById(
+        "schoolName"
+    ).value = "";
+
+    document.getElementById(
+        "schoolHensachi"
+    ).value = "";
+
+    document.getElementById(
+        "schoolTargetScore"
+    ).value = "";
+
+    document.getElementById(
+        "schoolMemo"
+    ).value = "";
+}
+
+
+function editSchool(rank) {
+
+    const school =
+        targetSchools.find(
+            school =>
+                school.rank === rank
+        );
+
+    if (!school) {
+        return;
+    }
+
+    document.getElementById(
+        "schoolRank"
+    ).value =
+        String(
+            school.rank
+        );
+
+    document.getElementById(
+        "schoolName"
+    ).value =
+        school.name || "";
+
+    document.getElementById(
+        "schoolHensachi"
+    ).value =
+        school.hensachi || "";
+
+    document.getElementById(
+        "schoolTargetScore"
+    ).value =
+        school.targetScore || "";
+
+    document.getElementById(
+        "schoolMemo"
+    ).value =
+        school.memo || "";
+
+    document.getElementById(
+        "schoolName"
+    ).focus();
+}
+
+
+function deleteSchool(rank) {
+
+    const school =
+        targetSchools.find(
+            school =>
+                school.rank === rank
+        );
+
+    if (!school) {
+        return;
+    }
+
+    const rankText =
+        rank === 1
+            ? "第一"
+            : rank === 2
+                ? "第二"
+                : "第三";
+
+    const ok =
+        confirm(
+            `${school.name}（${rankText}志望）を削除しますか？`
+        );
+
+    if (!ok) {
+        return;
+    }
+
+    targetSchools =
+        targetSchools.filter(
+            school =>
+                school.rank !== rank
+        );
+
+    localStorage.setItem(
+        "targetSchools",
+        JSON.stringify(
+            targetSchools
+        )
+    );
+
+    updateSchoolList();
+}
+
+
+/* =========================
    フルスクリーン警告
 ========================= */
 
@@ -1764,7 +2434,6 @@ function getQuestions(subject) {
                         "基礎";
 
                     changed = true;
-
                 }
 
                 if (
@@ -1776,7 +2445,6 @@ function getQuestions(subject) {
                         false;
 
                     changed = true;
-
                 }
 
                 if (
@@ -1788,7 +2456,6 @@ function getQuestions(subject) {
                         0;
 
                     changed = true;
-
                 }
 
                 if (
@@ -1800,7 +2467,6 @@ function getQuestions(subject) {
                         0;
 
                     changed = true;
-
                 }
 
                 return item;
@@ -1811,7 +2477,9 @@ function getQuestions(subject) {
 
             localStorage.setItem(
                 key,
-                JSON.stringify(fixed)
+                JSON.stringify(
+                    fixed
+                )
             );
 
         }
@@ -1865,7 +2533,9 @@ function addQuestion() {
     }
 
     const questions =
-        getQuestions(subject);
+        getQuestions(
+            subject
+        );
 
     questions.push({
 
@@ -1923,6 +2593,10 @@ function updateQuestionList() {
             "questionList"
         );
 
+    if (!container) {
+        return;
+    }
+
     container.innerHTML =
         "<h3>登録済み問題</h3>";
 
@@ -1931,7 +2605,9 @@ function updateQuestionList() {
     subjects.forEach(subject => {
 
         const questions =
-            getQuestions(subject);
+            getQuestions(
+                subject
+            );
 
         if (
             questions.length === 0
@@ -1974,7 +2650,10 @@ function updateQuestionList() {
                     attempts === 0
                         ? 0
                         : Math.round(
-                            (correct / attempts) * 100
+                            (
+                                correct /
+                                attempts
+                            ) * 100
                         );
 
                 const wrongBadge =
@@ -1987,9 +2666,12 @@ function updateQuestionList() {
                         : "";
 
                 div.innerHTML = `
+
                     <div>
 
-                        <span class="difficulty-badge">
+                        <span
+                            class="difficulty-badge"
+                        >
                             ${escapeHtml(
                                 item.difficulty
                             )}
@@ -2074,7 +2756,9 @@ function deleteQuestion(
     }
 
     const questions =
-        getQuestions(subject);
+        getQuestions(
+            subject
+        );
 
     questions.splice(
         index,
@@ -2406,6 +3090,7 @@ function checkAnswer() {
         current
     );
 
+
     if (
         current.difficulty ===
         "基礎"
@@ -2429,6 +3114,7 @@ function checkAnswer() {
         }
 
     }
+
 
     if (isCorrect) {
 
@@ -2468,12 +3154,15 @@ function checkAnswer() {
             </p>
 
             <p>
-                この問題は「過去に間違えた問題」に追加されました。
+                この問題は
+                「過去に間違えた問題」
+                に追加されました。
             </p>
 
         `;
 
     }
+
 
     document.getElementById(
         "checkAnswerButton"
@@ -2493,7 +3182,9 @@ function updateQuestionInStorage(
 ) {
 
     const questions =
-        getQuestions(subject);
+        getQuestions(
+            subject
+        );
 
     let targetIndex =
         questions.findIndex(
@@ -2525,7 +3216,9 @@ function updateQuestionInStorage(
         return;
     }
 
-    questions[targetIndex] =
+    questions[
+        targetIndex
+    ] =
         updatedQuestion;
 
     localStorage.setItem(
@@ -2685,6 +3378,7 @@ function showQuizResult() {
     ).innerHTML =
         breakdown;
 
+
     let message = "";
 
     if (
@@ -2739,10 +3433,12 @@ function closeQuizResult() {
     ).style.display =
         "none";
 
+
     let questions =
         getQuestions(
             quizSubject
         );
+
 
     if (
         quizMode === "基礎"
@@ -2778,6 +3474,7 @@ function closeQuizResult() {
 
     }
 
+
     if (
         questions.length === 0
     ) {
@@ -2791,15 +3488,20 @@ function closeQuizResult() {
         return;
     }
 
+
     quizQuestions =
         shuffleQuestions(
             questions
         );
 
     quizIndex = 0;
+
     quizCorrect = 0;
+
     quizAnswered = 0;
+
     answerChecked = false;
+
 
     sessionStats = {
 
@@ -2814,6 +3516,7 @@ function closeQuizResult() {
         }
 
     };
+
 
     document.getElementById(
         "quizScreen"
@@ -2858,6 +3561,8 @@ function updateAllDisplays() {
     updateTodayChart();
 
     updateQuestionList();
+
+    updateSchoolList();
 }
 
 
