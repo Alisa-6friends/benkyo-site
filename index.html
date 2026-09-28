@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -273,12 +272,6 @@ button:active {
     font-weight: bold;
 }
 
-.quiz-question-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .question-item {
     background: #f5f5f5;
     border-radius: 12px;
@@ -401,7 +394,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-
     .card {
         padding: 15px;
     }
@@ -429,7 +421,6 @@ footer {
     }
 }
 </style>
-
 </head>
 
 <body>
@@ -442,212 +433,135 @@ footer {
 <div class="container">
 
 <section class="card timer">
+    <h2>25分勉強タイマー</h2>
 
-```
-<h2>25分勉強タイマー</h2>
+    <div id="timer">25:00</div>
 
-<div id="timer">25:00</div>
+    <div>
+        <button class="start" onclick="startTimer()">スタート</button>
+        <button class="stop" onclick="stopTimer()">ストップ</button>
+        <button class="reset" onclick="resetTimer()">リセット</button>
+    </div>
 
-<div>
-    <button class="start" onclick="startTimer()">スタート</button>
-    <button class="stop" onclick="stopTimer()">ストップ</button>
-    <button class="reset" onclick="resetTimer()">リセット</button>
-</div>
+    <div id="selectedSubject">
+        教科を選択してください
+    </div>
 
-<div id="selectedSubject">
-    教科を選択してください
-</div>
+    <div class="subject-buttons">
+        <button onclick="selectSubject('国語')">国語</button>
+        <button onclick="selectSubject('数学')">数学</button>
+        <button onclick="selectSubject('英語')">英語</button>
+        <button onclick="selectSubject('理科')">理科</button>
+        <button onclick="selectSubject('社会')">社会</button>
+        <button onclick="selectSubject('実技')">実技</button>
+    </div>
 
-<div class="subject-buttons">
-
-    <button onclick="selectSubject('国語')">国語</button>
-    <button onclick="selectSubject('数学')">数学</button>
-    <button onclick="selectSubject('英語')">英語</button>
-    <button onclick="selectSubject('理科')">理科</button>
-    <button onclick="selectSubject('社会')">社会</button>
-    <button onclick="selectSubject('実技')">実技</button>
-
-</div>
-
-<p id="timerStatus"></p>
-```
-
+    <p id="timerStatus"></p>
 </section>
 
 <section class="card stats">
-
-```
-<h2>今日の勉強時間</h2>
-
-<div id="todayTotal">0分</div>
-```
-
+    <h2>今日の勉強時間</h2>
+    <div id="todayTotal">0時間0分0秒</div>
 </section>
 
 <section class="card">
-
-```
-<h2>今日の教科別勉強時間</h2>
-
-<div id="todayChart" class="chart"></div>
-```
-
+    <h2>今日の教科別勉強時間</h2>
+    <div id="todayChart" class="chart"></div>
 </section>
 
 <section class="card">
-
-```
-<button class="record" onclick="openRecords()">
-    勉強記録を見る
-</button>
-```
-
+    <button class="record" onclick="openRecords()">
+        勉強記録を見る
+    </button>
 </section>
 
 <section class="card">
+    <h2>間違えた問題</h2>
 
-```
-<h2>間違えた問題</h2>
+    <p>
+        模試・学校のテスト・問題集・入試過去問などで
+        間違えた問題を登録できます。
+    </p>
 
-<p>
-    模試・学校のテスト・問題集・入試過去問などで
-    間違えた問題を登録できます。
-</p>
+    <label>教科</label>
+    <select id="questionSubject">
+        <option value="国語">国語</option>
+        <option value="数学">数学</option>
+        <option value="英語">英語</option>
+        <option value="理科">理科</option>
+        <option value="社会">社会</option>
+        <option value="実技">実技</option>
+    </select>
 
+    <label>問題の種類</label>
+    <select id="questionDifficulty">
+        <option value="基礎">基礎</option>
+        <option value="応用">応用</option>
+    </select>
 
-<label>教科</label>
+    <label>問題</label>
+    <textarea id="questionText" placeholder="例：食塩の化学式は？"></textarea>
 
-<select id="questionSubject">
+    <label>答え</label>
+    <input id="questionAnswer" type="text" placeholder="例：NaCl">
 
-    <option value="国語">国語</option>
-    <option value="数学">数学</option>
-    <option value="英語">英語</option>
-    <option value="理科">理科</option>
-    <option value="社会">社会</option>
-    <option value="実技">実技</option>
+    <button class="record" onclick="addQuestion()">
+        問題を登録
+    </button>
 
-</select>
-
-
-<label>問題の種類</label>
-
-<select id="questionDifficulty">
-
-    <option value="基礎">基礎</option>
-    <option value="応用">応用</option>
-
-</select>
-
-
-<label>問題</label>
-
-<textarea
-    id="questionText"
-    placeholder="例：食塩の化学式は？"
-></textarea>
-
-
-<label>答え</label>
-
-<input
-    id="questionAnswer"
-    type="text"
-    placeholder="例：NaCl"
->
-
-
-<button class="record" onclick="addQuestion()">
-    問題を登録
-</button>
-
-
-<div id="questionList"></div>
-```
-
+    <div id="questionList"></div>
 </section>
 
 <section class="card">
+    <h2>一問一答</h2>
 
-```
-<h2>一問一答</h2>
+    <p>
+        登録した問題をランダムな順番で復習します。
+    </p>
 
-<p>
-    登録した問題をランダムな順番で復習します。
-</p>
+    <label>教科</label>
+    <select id="quizSubjectSelect">
+        <option value="国語">国語</option>
+        <option value="数学">数学</option>
+        <option value="英語">英語</option>
+        <option value="理科">理科</option>
+        <option value="社会">社会</option>
+        <option value="実技">実技</option>
+    </select>
 
+    <label>復習モード</label>
+    <select id="quizModeSelect">
+        <option value="基礎">基礎だけ</option>
+        <option value="応用">応用だけ</option>
+        <option value="全部">基礎＋応用 ごちゃ混ぜ</option>
+        <option value="wrong">過去に間違えた問題</option>
+    </select>
 
-<label>教科</label>
-
-<select id="quizSubjectSelect">
-
-    <option value="国語">国語</option>
-    <option value="数学">数学</option>
-    <option value="英語">英語</option>
-    <option value="理科">理科</option>
-    <option value="社会">社会</option>
-    <option value="実技">実技</option>
-
-</select>
-
-
-<label>復習モード</label>
-
-<select id="quizModeSelect">
-
-    <option value="基礎">
-        基礎だけ
-    </option>
-
-    <option value="応用">
-        応用だけ
-    </option>
-
-    <option value="全部">
-        基礎＋応用 ごちゃ混ぜ
-    </option>
-
-    <option value="wrong">
-        過去に間違えた問題
-    </option>
-
-</select>
-
-
-<button class="start" onclick="startQuiz()">
-    一問一答を開始
-</button>
-```
-
+    <button class="start" onclick="startQuiz()">
+        一問一答を開始
+    </button>
 </section>
 
 <section class="card">
+    <h2>誘惑に負けそうなとき</h2>
 
-```
-<h2>誘惑に負けそうなとき</h2>
+    <button class="warning" onclick="showWarning('YouTube')">
+        YouTube
+    </button>
 
-<button class="warning" onclick="showWarning('YouTube')">
-    YouTube
-</button>
+    <button class="warning" onclick="showWarning('ゲーム')">
+        ゲーム
+    </button>
 
-<button class="warning" onclick="showWarning('ゲーム')">
-    ゲーム
-</button>
-
-<div id="warningMessage" class="warning-message"></div>
-```
-
+    <div id="warningMessage" class="warning-message"></div>
 </section>
 
 <section class="card">
+    <h2>データ管理</h2>
 
-```
-<h2>データ管理</h2>
-
-<button class="reset" onclick="resetToday()">
-    今日の勉強記録をリセット
-</button>
-```
-
+    <button class="reset" onclick="resetToday()">
+        今日の勉強記録をリセット
+    </button>
 </section>
 
 </div>
@@ -656,216 +570,162 @@ footer {
     勉強してください！
 </footer>
 
-<!-- 勉強記録 -->
-
 <div id="recordsScreen" class="overlay">
+    <div class="overlay-content">
 
-```
-<div class="overlay-content">
+        <button class="close-button" onclick="closeRecords()">
+            ×
+        </button>
 
-    <button class="close-button" onclick="closeRecords()">
-        ×
-    </button>
+        <h2>勉強記録</h2>
+        <h3 id="calendarTitle"></h3>
+        <div id="calendar" class="calendar"></div>
 
-    <h2>勉強記録</h2>
-
-    <h3 id="calendarTitle"></h3>
-
-    <div id="calendar" class="calendar"></div>
-
+    </div>
 </div>
-```
-
-</div>
-
-<!-- 一問一答 -->
 
 <div id="quizScreen" class="overlay">
+    <div class="overlay-content">
 
-```
-<div class="overlay-content">
-
-    <button class="close-button" onclick="closeQuiz()">
-        ×
-    </button>
-
-    <div class="quiz-box">
-
-        <div id="quizNumber" class="quiz-number"></div>
-
-        <div
-            id="quizDifficulty"
-            class="quiz-difficulty"
-        ></div>
-
-        <div
-            id="quizQuestion"
-            class="quiz-question"
-        ></div>
-
-
-        <input
-            id="quizAnswer"
-            type="text"
-            placeholder="答えを入力してください"
-            autocomplete="off"
-        >
-
-
-        <button
-            id="checkAnswerButton"
-            class="start"
-            onclick="checkAnswer()"
-        >
-            答え合わせ
+        <button class="close-button" onclick="closeQuiz()">
+            ×
         </button>
 
+        <div class="quiz-box">
 
-        <div id="answerResult"></div>
+            <div id="quizNumber" class="quiz-number"></div>
 
+            <div id="quizDifficulty" class="quiz-difficulty"></div>
 
-        <button
-            id="nextQuestionButton"
-            class="record"
-            onclick="nextQuestion()"
-            style="display:none;"
-        >
-            次の問題
-        </button>
+            <div id="quizQuestion" class="quiz-question"></div>
 
+            <input
+                id="quizAnswer"
+                type="text"
+                placeholder="答えを入力してください"
+                autocomplete="off"
+            >
+
+            <button
+                id="checkAnswerButton"
+                class="start"
+                onclick="checkAnswer()"
+            >
+                答え合わせ
+            </button>
+
+            <div id="answerResult"></div>
+
+            <button
+                id="nextQuestionButton"
+                class="record"
+                onclick="nextQuestion()"
+                style="display:none;"
+            >
+                次の問題
+            </button>
+
+        </div>
     </div>
-
 </div>
-```
-
-</div>
-
-<!-- 結果 -->
 
 <div id="quizResultScreen" class="overlay">
+    <div class="overlay-content">
 
-```
-<div class="overlay-content">
+        <div class="quiz-box">
 
-    <div class="quiz-box">
+            <h2>一問一答 結果</h2>
 
-        <h2>一問一答 結果</h2>
+            <div
+                id="quizResultNumber"
+                class="quiz-result-number"
+            ></div>
 
-        <div
-            id="quizResultNumber"
-            class="quiz-result-number"
-        ></div>
+            <div
+                id="quizResultRate"
+                class="quiz-result-rate"
+            ></div>
 
+            <div
+                id="quizResultBreakdown"
+                class="quiz-result-breakdown"
+            ></div>
 
-        <div
-            id="quizResultRate"
-            class="quiz-result-rate"
-        ></div>
+            <div
+                id="quizResultMessage"
+                class="quiz-result-message"
+            ></div>
 
+            <button
+                class="start"
+                onclick="closeQuizResult()"
+            >
+                もう一度やる
+            </button>
 
-        <div
-            id="quizResultBreakdown"
-            class="quiz-result-breakdown"
-        ></div>
+            <button
+                class="record"
+                onclick="finishQuiz()"
+            >
+                終了
+            </button>
 
+        </div>
+    </div>
+</div>
 
-        <div
-            id="quizResultMessage"
-            class="quiz-result-message"
-        ></div>
+<div id="celebrationScreen" class="overlay">
+    <div
+        class="overlay-content"
+        style="text-align:center;"
+    >
 
+        <h2 style="font-size:40px;">
+            25分達成！！
+        </h2>
+
+        <p style="font-size:22px;">
+            よく頑張りました。
+        </p>
+
+        <p>
+            次の勉強へ進みましょう。
+        </p>
 
         <button
             class="start"
-            onclick="closeQuizResult()"
+            onclick="nextStudy()"
         >
-            もう一度やる
-        </button>
-
-
-        <button
-            class="record"
-            onclick="finishQuiz()"
-        >
-            終了
+            次の勉強へ
         </button>
 
     </div>
-
 </div>
-```
-
-</div>
-
-<!-- 25分達成 -->
-
-<div id="celebrationScreen" class="overlay">
-
-```
-<div
-    class="overlay-content"
-    style="text-align:center;"
->
-
-    <h2 style="font-size:40px;">
-        25分達成！！
-    </h2>
-
-    <p style="font-size:22px;">
-        よく頑張りました。
-    </p>
-
-    <p>
-        次の勉強へ進みましょう。
-    </p>
-
-
-    <button
-        class="start"
-        onclick="nextStudy()"
-    >
-        次の勉強へ
-    </button>
-
-</div>
-```
-
-</div>
-
-<!-- フルスクリーン解除警告 -->
 
 <div id="errorScreen">
 
-```
-<h1>ERROR</h1>
+    <h1>ERROR</h1>
 
-<p>
-    何やってるんですか？<br>
-    勉強してください！
-</p>
+    <p>
+        何やってるんですか？<br>
+        勉強してください！
+    </p>
 
+    <img
+        src="benkyo_sitekudasai_KounoGento.png"
+        alt="勉強してください"
+    >
 
-<img
-    src="benkyo_sitekudasai_KounoGento.png"
-    alt="勉強してください"
->
-
-
-<button
-    class="return-button"
-    onclick="returnToStudy()"
->
-    勉強に戻る
-</button>
-```
+    <button
+        class="return-button"
+        onclick="returnToStudy()"
+    >
+        勉強に戻る
+    </button>
 
 </div>
 
 <script>
-
-/* ==================================================
-   基本設定
-================================================== */
 
 const subjects = [
     "国語",
@@ -876,7 +736,6 @@ const subjects = [
     "実技"
 ];
 
-
 let selectedSubject = null;
 
 let timerSeconds = 25 * 60;
@@ -885,9 +744,9 @@ let timerRunning = false;
 let timerStartTime = null;
 
 
-/* ==================================================
+/* =========================
    日付
-================================================== */
+========================= */
 
 function getDateKey() {
 
@@ -895,37 +754,34 @@ function getDateKey() {
 
     const y = date.getFullYear();
 
-    const m =
-        String(date.getMonth() + 1)
-        .padStart(2, "0");
+    const m = String(
+        date.getMonth() + 1
+    ).padStart(2, "0");
 
-    const d =
-        String(date.getDate())
-        .padStart(2, "0");
+    const d = String(
+        date.getDate()
+    ).padStart(2, "0");
 
     return `${y}-${m}-${d}`;
 }
 
 
-/* ==================================================
+/* =========================
    タイマー
-================================================== */
+========================= */
 
 function updateTimerDisplay() {
 
-    const minutes =
-        Math.floor(timerSeconds / 60)
-        .toString()
-        .padStart(2, "0");
+    const minutes = Math.floor(
+        timerSeconds / 60
+    ).toString().padStart(2, "0");
 
-    const seconds =
-        (timerSeconds % 60)
-        .toString()
-        .padStart(2, "0");
+    const seconds = (
+        timerSeconds % 60
+    ).toString().padStart(2, "0");
 
     document.getElementById("timer")
-        .textContent =
-        `${minutes}:${seconds}`;
+        .textContent = `${minutes}:${seconds}`;
 }
 
 
@@ -934,22 +790,17 @@ function selectSubject(subject) {
     selectedSubject = subject;
 
     document.getElementById("selectedSubject")
-        .textContent =
-        `現在の教科：${subject}`;
+        .textContent = `現在の教科：${subject}`;
 
-
-    const buttons =
-        document.querySelectorAll(
-            ".subject-buttons button"
-        );
-
+    const buttons = document.querySelectorAll(
+        ".subject-buttons button"
+    );
 
     buttons.forEach(button => {
 
         button.classList.remove(
             "subject-selected"
         );
-
 
         if (button.textContent === subject) {
 
@@ -974,49 +825,42 @@ function startTimer() {
         return;
     }
 
-
     if (timerRunning) {
         return;
     }
 
-
     timerRunning = true;
+
     timerStartTime = Date.now();
 
-
     document.getElementById("timerStatus")
-        .textContent =
-        "勉強中……";
-
+        .textContent = "勉強中……";
 
     if (!document.fullscreenElement) {
 
-        document.documentElement
-            .requestFullscreen()
-            .catch(() => {
-                console.log(
-                    "Fullscreen request failed."
-                );
-            });
+        if (document.documentElement.requestFullscreen) {
+
+            document.documentElement
+                .requestFullscreen()
+                .catch(() => {});
+
+        }
 
     }
 
+    timerInterval = setInterval(() => {
 
-    timerInterval =
-        setInterval(() => {
+        timerSeconds--;
 
-            timerSeconds--;
+        updateTimerDisplay();
 
-            updateTimerDisplay();
+        if (timerSeconds <= 0) {
 
+            finishTimer();
 
-            if (timerSeconds <= 0) {
+        }
 
-                finishTimer();
-
-            }
-
-        }, 1000);
+    }, 1000);
 }
 
 
@@ -1032,19 +876,21 @@ function stopTimer() {
 
     timerRunning = false;
 
-    document.getElementById("timerStatus")
-        .textContent =
-        "停止中";
-
-    const elapsedSeconds =
+    const elapsedSeconds = Math.max(
+        0,
         Math.floor(
             (Date.now() - timerStartTime) / 1000
-        );
+        )
+    );
+
+    timerStartTime = null;
 
     saveStudyTime(elapsedSeconds);
 
-    timerStartTime = null;
+    document.getElementById("timerStatus")
+        .textContent = "停止中";
 }
+
 
 function resetTimer() {
 
@@ -1053,6 +899,8 @@ function resetTimer() {
     timerInterval = null;
 
     timerRunning = false;
+
+    timerStartTime = null;
 
     timerSeconds = 25 * 60;
 
@@ -1071,24 +919,20 @@ function finishTimer() {
 
     timerRunning = false;
 
+    timerStartTime = null;
+
     timerSeconds = 0;
 
     updateTimerDisplay();
 
-
     saveStudyTime(25 * 60);
 
-
     document.getElementById("timerStatus")
-        .textContent =
-        "25分達成！";
-
+        .textContent = "25分達成！";
 
     document.getElementById(
         "celebrationScreen"
-    ).style.display =
-        "block";
-
+    ).style.display = "block";
 
     updateAllDisplays();
 }
@@ -1098,14 +942,11 @@ function nextStudy() {
 
     document.getElementById(
         "celebrationScreen"
-    ).style.display =
-        "none";
-
+    ).style.display = "none";
 
     timerSeconds = 25 * 60;
 
     updateTimerDisplay();
-
 
     document.getElementById("timerStatus")
         .textContent =
@@ -1113,52 +954,41 @@ function nextStudy() {
 }
 
 
-/* ==================================================
+/* =========================
    勉強時間保存
-================================================== */
+========================= */
 
 function saveStudyTime(seconds) {
 
-    if (!selectedSubject) {
+    if (!selectedSubject || seconds <= 0) {
         return;
     }
 
-
-    const dateKey =
-        getDateKey();
-
+    const dateKey = getDateKey();
 
     const totalKey =
         `total_${dateKey}`;
 
-
     const subjectKey =
         `today_${dateKey}_${selectedSubject}`;
 
+    const oldTotal = Number(
+        localStorage.getItem(totalKey) || 0
+    );
 
-    const oldTotal =
-        Number(
-            localStorage.getItem(totalKey) || 0
-        );
-
-
-    const oldSubject =
-        Number(
-            localStorage.getItem(subjectKey) || 0
-        );
-
+    const oldSubject = Number(
+        localStorage.getItem(subjectKey) || 0
+    );
 
     localStorage.setItem(
         totalKey,
         oldTotal + seconds
     );
 
-
     localStorage.setItem(
         subjectKey,
         oldSubject + seconds
     );
-
 
     updateAllDisplays();
 }
@@ -1169,84 +999,86 @@ function updateTodayTotal() {
     const key =
         `total_${getDateKey()}`;
 
+    const seconds = Number(
+        localStorage.getItem(key) || 0
+    );
 
-    const seconds =
-        Number(
-            localStorage.getItem(key) || 0
-        );
+    const hours = Math.floor(
+        seconds / 3600
+    );
 
+    const minutes = Math.floor(
+        (seconds % 3600) / 60
+    );
 
-    const hours =
-    Math.floor(seconds / 3600);
-
-
-const minutes =
-    Math.floor((seconds % 3600) / 60);
-
-
-const remainSeconds =
-    seconds % 60;
-
-
-    const text =
-    `${hours}時間${minutes}分${remainSeconds}秒`;
-
+    const remainSeconds =
+        seconds % 60;
 
     document.getElementById(
         "todayTotal"
     ).textContent =
-        text;
+        `${hours}時間${minutes}分${remainSeconds}秒`;
+}
+
+
+function formatStudyTime(seconds) {
+
+    const hours = Math.floor(
+        seconds / 3600
+    );
+
+    const minutes = Math.floor(
+        (seconds % 3600) / 60
+    );
+
+    const remainSeconds =
+        seconds % 60;
+
+    if (hours > 0) {
+
+        return `${hours}時間${minutes}分${remainSeconds}秒`;
+
+    }
+
+    if (minutes > 0) {
+
+        return `${minutes}分${remainSeconds}秒`;
+
+    }
+
+    return `${remainSeconds}秒`;
 }
 
 
 function updateTodayChart() {
 
-    const dateKey =
-        getDateKey();
-
+    const dateKey = getDateKey();
 
     const values = {};
 
-
     subjects.forEach(subject => {
 
-        const key =
-            `today_${dateKey}_${subject}`;
-
-
-        values[subject] =
-            Number(
-                localStorage.getItem(key) || 0
-            );
+        values[subject] = Number(
+            localStorage.getItem(
+                `today_${dateKey}_${subject}`
+            ) || 0
+        );
 
     });
 
-
-    const maxValue =
-        Math.max(
-            ...Object.values(values),
-            1
-        );
-
+    const maxValue = Math.max(
+        ...Object.values(values),
+        1
+    );
 
     const chart =
-        document.getElementById(
-            "todayChart"
-        );
-
+        document.getElementById("todayChart");
 
     chart.innerHTML = "";
 
-
     subjects.forEach(subject => {
 
-        const seconds =
-            values[subject];
-
-
-        const minutes =
-            Math.floor(seconds / 60);
-
+        const seconds = values[subject];
 
         const height =
             seconds === 0
@@ -1256,19 +1088,14 @@ function updateTodayChart() {
                     (seconds / maxValue) * 190
                 );
 
-
         const wrapper =
             document.createElement("div");
 
-
-        wrapper.className =
-            "bar-wrapper";
-
+        wrapper.className = "bar-wrapper";
 
         wrapper.innerHTML = `
-
             <div class="bar-time">
-                ${minutes}分
+                ${formatStudyTime(seconds)}
             </div>
 
             <div
@@ -1279,27 +1106,22 @@ function updateTodayChart() {
             <div class="bar-label">
                 ${subject}
             </div>
-
         `;
 
-
         chart.appendChild(wrapper);
-
     });
 }
 
 
-/* ==================================================
+/* =========================
    カレンダー
-================================================== */
+========================= */
 
 function openRecords() {
 
     document.getElementById(
         "recordsScreen"
-    ).style.display =
-        "block";
-
+    ).style.display = "block";
 
     createCalendar();
 }
@@ -1309,39 +1131,27 @@ function closeRecords() {
 
     document.getElementById(
         "recordsScreen"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 }
 
 
 function createCalendar() {
 
-    const now =
-        new Date();
+    const now = new Date();
 
+    const year = now.getFullYear();
 
-    const year =
-        now.getFullYear();
-
-
-    const month =
-        now.getMonth();
-
+    const month = now.getMonth();
 
     document.getElementById(
         "calendarTitle"
     ).textContent =
         `${year}年${month + 1}月`;
 
-
     const calendar =
-        document.getElementById(
-            "calendar"
-        );
-
+        document.getElementById("calendar");
 
     calendar.innerHTML = "";
-
 
     const weekNames = [
         "日",
@@ -1353,25 +1163,18 @@ function createCalendar() {
         "土"
     ];
 
-
     weekNames.forEach(day => {
 
         const div =
             document.createElement("div");
 
-
         div.className =
             "calendar-header";
 
-
-        div.textContent =
-            day;
-
+        div.textContent = day;
 
         calendar.appendChild(div);
-
     });
-
 
     const firstDay =
         new Date(
@@ -1380,14 +1183,12 @@ function createCalendar() {
             1
         ).getDay();
 
-
     const lastDate =
         new Date(
             year,
             month + 1,
             0
         ).getDate();
-
 
     for (
         let i = 0;
@@ -1398,11 +1199,8 @@ function createCalendar() {
         const empty =
             document.createElement("div");
 
-
         calendar.appendChild(empty);
-
     }
-
 
     for (
         let day = 1;
@@ -1413,56 +1211,40 @@ function createCalendar() {
         const dateKey =
             `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
-
-        const seconds =
-            Number(
-                localStorage.getItem(
-                    `total_${dateKey}`
-                ) || 0
-            );
-
-
-        const minutes =
-            Math.floor(seconds / 60);
-
+        const seconds = Number(
+            localStorage.getItem(
+                `total_${dateKey}`
+            ) || 0
+        );
 
         const div =
             document.createElement("div");
 
-
         div.className =
             "calendar-day";
 
-
-        if (
-            dateKey === getDateKey()
-        ) {
+        if (dateKey === getDateKey()) {
 
             div.classList.add("today");
 
         }
 
-
         div.innerHTML = `
-
             <strong>${day}</strong>
 
             <div class="calendar-time">
-                ${minutes}分
+                ${formatStudyTime(seconds)}
             </div>
-
         `;
 
-
         calendar.appendChild(div);
-
     }
 }
 
 
-/* ==================================================
+/* =========================
    警告
-================================================== */
+========================= */
 
 function showWarning(type) {
 
@@ -1471,10 +1253,7 @@ function showWarning(type) {
             "warningMessage"
         );
 
-
-    message.style.display =
-        "block";
-
+    message.style.display = "block";
 
     if (type === "YouTube") {
 
@@ -1490,31 +1269,25 @@ function showWarning(type) {
 }
 
 
-/* ==================================================
+/* =========================
    今日の記録リセット
-================================================== */
+========================= */
 
 function resetToday() {
 
-    const ok =
-        confirm(
-            "今日の勉強記録をすべて削除しますか？"
-        );
-
+    const ok = confirm(
+        "今日の勉強記録をすべて削除しますか？"
+    );
 
     if (!ok) {
         return;
     }
 
-
-    const dateKey =
-        getDateKey();
-
+    const dateKey = getDateKey();
 
     localStorage.removeItem(
         `total_${dateKey}`
     );
-
 
     subjects.forEach(subject => {
 
@@ -1524,9 +1297,7 @@ function resetToday() {
 
     });
 
-
     updateAllDisplays();
-
 
     alert(
         "今日の記録をリセットしました。"
@@ -1534,9 +1305,9 @@ function resetToday() {
 }
 
 
-/* ==================================================
+/* =========================
    フルスクリーン警告
-================================================== */
+========================= */
 
 document.addEventListener(
     "fullscreenchange",
@@ -1549,8 +1320,7 @@ document.addEventListener(
 
             document.getElementById(
                 "errorScreen"
-            ).style.display =
-                "block";
+            ).style.display = "block";
 
         }
 
@@ -1562,11 +1332,12 @@ function returnToStudy() {
 
     document.getElementById(
         "errorScreen"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
-
-    if (!document.fullscreenElement) {
+    if (
+        !document.fullscreenElement &&
+        document.documentElement.requestFullscreen
+    ) {
 
         document.documentElement
             .requestFullscreen()
@@ -1576,81 +1347,56 @@ function returnToStudy() {
 }
 
 
-/* ==================================================
+/* =========================
    問題データ
-================================================== */
+========================= */
 
 function getQuestions(subject) {
 
     const key =
         `questions_${subject}`;
 
-
     try {
 
-        const data =
-            JSON.parse(
-                localStorage.getItem(key) || "[]"
-            );
-
-
-        /*
-           昔のバージョンで登録した問題には
-           difficulty / wrong / attempts / correct
-           が存在しない場合がある。
-
-           その場合は自動的に初期値を入れる。
-        */
+        const data = JSON.parse(
+            localStorage.getItem(key) || "[]"
+        );
 
         let changed = false;
 
+        const fixed = data.map(item => {
 
-        const fixed =
-            data.map(item => {
+            if (!item.difficulty) {
 
-                if (!item.difficulty) {
+                item.difficulty = "基礎";
+                changed = true;
 
-                    item.difficulty =
-                        "基礎";
+            }
 
-                    changed = true;
-                }
+            if (typeof item.wrong !== "boolean") {
 
+                item.wrong = false;
+                changed = true;
 
-                if (
-                    typeof item.wrong !== "boolean"
-                ) {
+            }
 
-                    item.wrong = false;
+            if (typeof item.attempts !== "number") {
 
-                    changed = true;
-                }
+                item.attempts = 0;
+                changed = true;
 
+            }
 
-                if (
-                    typeof item.attempts !== "number"
-                ) {
+            if (typeof item.correct !== "number") {
 
-                    item.attempts = 0;
+                item.correct = 0;
+                changed = true;
 
-                    changed = true;
-                }
+            }
 
+            return item;
 
-                if (
-                    typeof item.correct !== "number"
-                ) {
-
-                    item.correct = 0;
-
-                    changed = true;
-                }
-
-
-                return item;
-
-            });
-
+        });
 
         if (changed) {
 
@@ -1660,7 +1406,6 @@ function getQuestions(subject) {
             );
 
         }
-
 
         return fixed;
 
@@ -1672,9 +1417,9 @@ function getQuestions(subject) {
 }
 
 
-/* ==================================================
+/* =========================
    問題登録
-================================================== */
+========================= */
 
 function addQuestion() {
 
@@ -1683,29 +1428,22 @@ function addQuestion() {
             "questionSubject"
         ).value;
 
-
     const difficulty =
         document.getElementById(
             "questionDifficulty"
         ).value;
-
 
     const question =
         document.getElementById(
             "questionText"
         ).value.trim();
 
-
     const answer =
         document.getElementById(
             "questionAnswer"
         ).value.trim();
 
-
-    if (
-        !question ||
-        !answer
-    ) {
+    if (!question || !answer) {
 
         alert(
             "問題と答えの両方を入力してください。"
@@ -1714,10 +1452,8 @@ function addQuestion() {
         return;
     }
 
-
     const questions =
         getQuestions(subject);
-
 
     questions.push({
 
@@ -1727,7 +1463,7 @@ function addQuestion() {
 
         difficulty: difficulty,
 
-        wrong: false,
+        wrong: true,
 
         attempts: 0,
 
@@ -1735,25 +1471,20 @@ function addQuestion() {
 
     });
 
-
     localStorage.setItem(
         `questions_${subject}`,
         JSON.stringify(questions)
     );
 
-
     document.getElementById(
         "questionText"
     ).value = "";
-
 
     document.getElementById(
         "questionAnswer"
     ).value = "";
 
-
     updateQuestionList();
-
 
     alert(
         `${difficulty}問題として登録しました。`
@@ -1761,9 +1492,9 @@ function addQuestion() {
 }
 
 
-/* ==================================================
+/* =========================
    問題一覧
-================================================== */
+========================= */
 
 function updateQuestionList() {
 
@@ -1772,63 +1503,44 @@ function updateQuestionList() {
             "questionList"
         );
 
-
     container.innerHTML =
         "<h3>登録済み問題</h3>";
 
-
     let count = 0;
-
 
     subjects.forEach(subject => {
 
         const questions =
             getQuestions(subject);
 
-
-        if (
-            questions.length === 0
-        ) {
+        if (questions.length === 0) {
             return;
         }
-
 
         const heading =
             document.createElement("h4");
 
-
         heading.textContent =
             `${subject}（${questions.length}問）`;
 
-
-        container.appendChild(
-            heading
-        );
-
+        container.appendChild(heading);
 
         questions.forEach(
             (item, index) => {
 
                 count++;
 
-
                 const div =
-                    document.createElement(
-                        "div"
-                    );
-
+                    document.createElement("div");
 
                 div.className =
                     "question-item";
 
-
                 const attempts =
                     item.attempts || 0;
 
-
                 const correct =
                     item.correct || 0;
-
 
                 const rate =
                     attempts === 0
@@ -1836,7 +1548,6 @@ function updateQuestionList() {
                         : Math.round(
                             (correct / attempts) * 100
                         );
-
 
                 const wrongBadge =
                     item.wrong
@@ -1847,19 +1558,13 @@ function updateQuestionList() {
                           `
                         : "";
 
-
                 div.innerHTML = `
-
                     <div>
-
                         <span class="difficulty-badge">
-                            ${escapeHtml(
-                                item.difficulty
-                            )}
+                            ${escapeHtml(item.difficulty)}
                         </span>
 
                         ${wrongBadge}
-
                     </div>
 
                     <strong>Q.</strong>
@@ -1877,24 +1582,16 @@ function updateQuestionList() {
                     </div>
 
                     <button
-                        onclick="deleteQuestion(
-                            '${subject}',
-                            ${index}
-                        )"
+                        onclick="deleteQuestion('${subject}', ${index})"
                     >
                         削除
                     </button>
-
                 `;
 
-
                 container.appendChild(div);
-
             }
         );
-
     });
-
 
     if (count === 0) {
 
@@ -1905,87 +1602,52 @@ function updateQuestionList() {
 }
 
 
-/* ==================================================
-   HTMLエスケープ
-================================================== */
-
 function escapeHtml(text) {
 
     const div =
         document.createElement("div");
 
-
-    div.textContent =
-        text;
-
+    div.textContent = text;
 
     return div.innerHTML;
 }
 
 
-/* ==================================================
-   問題削除
-================================================== */
+function deleteQuestion(subject, index) {
 
-function deleteQuestion(
-    subject,
-    index
-) {
-
-    const ok =
-        confirm(
-            "この問題を削除しますか？"
-        );
-
+    const ok = confirm(
+        "この問題を削除しますか？"
+    );
 
     if (!ok) {
         return;
     }
 
-
     const questions =
         getQuestions(subject);
 
-
-    questions.splice(
-        index,
-        1
-    );
-
+    questions.splice(index, 1);
 
     localStorage.setItem(
         `questions_${subject}`,
         JSON.stringify(questions)
     );
 
-
     updateQuestionList();
 }
 
 
-/* ==================================================
+/* =========================
    一問一答
-================================================== */
+========================= */
 
 let quizSubject = null;
-
 let quizMode = null;
-
 let quizQuestions = [];
-
 let quizIndex = 0;
-
 let answerChecked = false;
-
 let quizCorrect = 0;
-
 let quizAnswered = 0;
-
-
-/*
-   今回のクイズで、
-   基礎・応用それぞれ何問正解したかを保存する。
-*/
 
 let sessionStats = {
 
@@ -2002,15 +1664,9 @@ let sessionStats = {
 };
 
 
-/* ==================================================
-   ランダム
-================================================== */
-
 function shuffleQuestions(questions) {
 
-    const shuffled =
-        [...questions];
-
+    const shuffled = [...questions];
 
     for (
         let i = shuffled.length - 1;
@@ -2023,7 +1679,6 @@ function shuffleQuestions(questions) {
                 Math.random() * (i + 1)
             );
 
-
         [
             shuffled[i],
             shuffled[randomIndex]
@@ -2031,17 +1686,11 @@ function shuffleQuestions(questions) {
             shuffled[randomIndex],
             shuffled[i]
         ];
-
     }
-
 
     return shuffled;
 }
 
-
-/* ==================================================
-   クイズ開始
-================================================== */
 
 function startQuiz() {
 
@@ -2050,78 +1699,47 @@ function startQuiz() {
             "quizSubjectSelect"
         ).value;
 
-
     quizMode =
         document.getElementById(
             "quizModeSelect"
         ).value;
 
-
     const registeredQuestions =
-        getQuestions(
-            quizSubject
-        );
-
+        getQuestions(quizSubject);
 
     let filteredQuestions = [];
 
-
-    if (
-        quizMode === "基礎"
-    ) {
+    if (quizMode === "基礎") {
 
         filteredQuestions =
             registeredQuestions.filter(
-                item =>
-                    item.difficulty === "基礎"
+                item => item.difficulty === "基礎"
             );
 
-    }
-
-
-    else if (
-        quizMode === "応用"
-    ) {
+    } else if (quizMode === "応用") {
 
         filteredQuestions =
             registeredQuestions.filter(
-                item =>
-                    item.difficulty === "応用"
+                item => item.difficulty === "応用"
             );
 
-    }
-
-
-    else if (
-        quizMode === "全部"
-    ) {
+    } else if (quizMode === "全部") {
 
         filteredQuestions =
             registeredQuestions;
 
-    }
-
-
-    else if (
-        quizMode === "wrong"
-    ) {
+    } else if (quizMode === "wrong") {
 
         filteredQuestions =
             registeredQuestions.filter(
-                item =>
-                    item.wrong === true
+                item => item.wrong === true
             );
 
     }
 
+    if (filteredQuestions.length === 0) {
 
-    if (
-        filteredQuestions.length === 0
-    ) {
-
-        if (
-            quizMode === "wrong"
-        ) {
+        if (quizMode === "wrong") {
 
             alert(
                 `${quizSubject}には「過去に間違えた問題」がありません。`
@@ -2138,21 +1756,13 @@ function startQuiz() {
         return;
     }
 
-
     quizQuestions =
-        shuffleQuestions(
-            filteredQuestions
-        );
-
+        shuffleQuestions(filteredQuestions);
 
     quizIndex = 0;
-
     quizCorrect = 0;
-
     quizAnswered = 0;
-
     answerChecked = false;
-
 
     sessionStats = {
 
@@ -2168,71 +1778,53 @@ function startQuiz() {
 
     };
 
-
     document.getElementById(
         "quizScreen"
-    ).style.display =
-        "block";
-
+    ).style.display = "block";
 
     showQuizQuestion();
 }
 
 
-/* ==================================================
-   問題表示
-================================================== */
-
 function showQuizQuestion() {
 
     const current =
-        quizQuestions[
-            quizIndex
-        ];
-
+        quizQuestions[quizIndex];
 
     document.getElementById(
         "quizNumber"
     ).textContent =
         `${quizIndex + 1} / ${quizQuestions.length}問`;
 
-
     document.getElementById(
         "quizDifficulty"
     ).textContent =
         current.difficulty;
-
 
     document.getElementById(
         "quizQuestion"
     ).textContent =
         current.question;
 
-
     document.getElementById(
         "quizAnswer"
     ).value = "";
 
-
     document.getElementById(
         "answerResult"
     ).innerHTML = "";
-
 
     document.getElementById(
         "checkAnswerButton"
     ).style.display =
         "inline-block";
 
-
     document.getElementById(
         "nextQuestionButton"
     ).style.display =
         "none";
 
-
     answerChecked = false;
-
 
     document.getElementById(
         "quizAnswer"
@@ -2240,26 +1832,15 @@ function showQuizQuestion() {
 }
 
 
-/* ==================================================
-   答えの正規化
-================================================== */
-
 function normalizeAnswer(answer) {
 
     return answer
         .toLowerCase()
         .replace(/\s+/g, "")
         .replace(/　/g, "")
-        .replace(
-            /[。．.!！,，、]/g,
-            ""
-        );
+        .replace(/[。．.!！,，、]/g, "");
 }
 
-
-/* ==================================================
-   答え合わせ
-================================================== */
 
 function checkAnswer() {
 
@@ -2267,12 +1848,10 @@ function checkAnswer() {
         return;
     }
 
-
     const input =
         document.getElementById(
             "quizAnswer"
         ).value;
-
 
     if (!input.trim()) {
 
@@ -2283,129 +1862,70 @@ function checkAnswer() {
         return;
     }
 
-
     const current =
-        quizQuestions[
-            quizIndex
-        ];
-
+        quizQuestions[quizIndex];
 
     const userAnswer =
-        normalizeAnswer(
-            input
-        );
-
+        normalizeAnswer(input);
 
     const correctAnswer =
-        normalizeAnswer(
-            current.answer
-        );
-
+        normalizeAnswer(current.answer);
 
     const isCorrect =
         userAnswer === correctAnswer;
-
 
     answerChecked = true;
 
     quizAnswered++;
 
-
-    /*
-       問題そのものの回答履歴
-    */
-
     current.attempts =
         (current.attempts || 0) + 1;
-
 
     if (isCorrect) {
 
         current.correct =
             (current.correct || 0) + 1;
 
-    }
-
-
-    /*
-       正解したら、
-       過去の間違い状態を解除。
-    */
-
-    if (isCorrect) {
-
         current.wrong = false;
 
-    }
-
-
-    /*
-       不正解なら、
-       復習対象にする。
-    */
-
-    else {
+    } else {
 
         current.wrong = true;
 
     }
-
-
-    /*
-       localStorageへ保存
-    */
 
     updateQuestionInStorage(
         quizSubject,
         current
     );
 
-
-    /*
-       今回の結果
-    */
-
-    if (
-        current.difficulty === "基礎"
-    ) {
+    if (current.difficulty === "基礎") {
 
         sessionStats.基礎.total++;
 
-
         if (isCorrect) {
-
             sessionStats.基礎.correct++;
-
         }
 
-    }
-
-
-    if (
+    } else if (
         current.difficulty === "応用"
     ) {
 
         sessionStats.応用.total++;
 
-
         if (isCorrect) {
-
             sessionStats.応用.correct++;
-
         }
 
     }
-
 
     if (isCorrect) {
 
         quizCorrect++;
 
-
         document.getElementById(
             "answerResult"
         ).innerHTML = `
-
             <p class="correct">
                 正解！
             </p>
@@ -2415,54 +1935,37 @@ function checkAnswer() {
                     ? "<p>この問題は復習対象から外れました。</p>"
                     : ""
             }
-
         `;
 
-    }
-
-
-    else {
+    } else {
 
         document.getElementById(
             "answerResult"
         ).innerHTML = `
-
             <p class="incorrect">
                 不正解
             </p>
 
             <p>
                 正解：
-                ${escapeHtml(
-                    current.answer
-                )}
+                ${escapeHtml(current.answer)}
             </p>
 
             <p>
                 この問題は「過去に間違えた問題」に追加されました。
             </p>
-
         `;
-
     }
-
 
     document.getElementById(
         "checkAnswerButton"
-    ).style.display =
-        "none";
-
+    ).style.display = "none";
 
     document.getElementById(
         "nextQuestionButton"
-    ).style.display =
-        "inline-block";
+    ).style.display = "inline-block";
 }
 
-
-/* ==================================================
-   問題を保存
-================================================== */
 
 function updateQuestionInStorage(
     subject,
@@ -2472,22 +1975,13 @@ function updateQuestionInStorage(
     const questions =
         getQuestions(subject);
 
-
-    const index =
+    let targetIndex =
         questions.findIndex(
             item =>
+                item.id &&
+                updatedQuestion.id &&
                 item.id === updatedQuestion.id
         );
-
-
-    /*
-       古い問題にはIDがない場合があるので、
-       問題文＋答えでも探す。
-    */
-
-    let targetIndex =
-        index;
-
 
     if (targetIndex === -1) {
 
@@ -2495,39 +1989,27 @@ function updateQuestionInStorage(
             questions.findIndex(
                 item =>
                     item.question ===
-                        updatedQuestion.question
-                    &&
+                        updatedQuestion.question &&
                     item.answer ===
                         updatedQuestion.answer
             );
-
     }
-
 
     if (targetIndex === -1) {
         return;
     }
 
-
     questions[targetIndex] =
         updatedQuestion;
 
-
     localStorage.setItem(
         `questions_${subject}`,
-        JSON.stringify(
-            questions
-        )
+        JSON.stringify(questions)
     );
-
 
     updateQuestionList();
 }
 
-
-/* ==================================================
-   次の問題
-================================================== */
 
 function nextQuestion() {
 
@@ -2540,13 +2022,10 @@ function nextQuestion() {
         return;
     }
 
-
     quizIndex++;
 
-
     if (
-        quizIndex >=
-        quizQuestions.length
+        quizIndex >= quizQuestions.length
     ) {
 
         showQuizResult();
@@ -2554,24 +2033,15 @@ function nextQuestion() {
         return;
     }
 
-
     showQuizQuestion();
 }
 
 
-/* ==================================================
-   正答率
-================================================== */
-
-function calculateRate(
-    total,
-    correct
-) {
+function calculateRate(total, correct) {
 
     if (total === 0) {
         return 0;
     }
-
 
     return Math.round(
         (correct / total) * 1000
@@ -2579,49 +2049,28 @@ function calculateRate(
 }
 
 
-/* ==================================================
-   クイズ結果
-================================================== */
-
 function showQuizResult() {
 
-    const total =
-        quizAnswered;
+    const total = quizAnswered;
 
-
-    const correct =
-        quizCorrect;
-
+    const correct = quizCorrect;
 
     const overallRate =
-        calculateRate(
-            total,
-            correct
-        );
-
+        calculateRate(total, correct);
 
     document.getElementById(
         "quizResultNumber"
     ).textContent =
         `${total}問中 ${correct}問正解`;
 
-
     document.getElementById(
         "quizResultRate"
     ).textContent =
         `今回の正答率：${overallRate}%`;
 
-
     let breakdown = "";
 
-
-    /*
-       基礎の結果
-    */
-
-    if (
-        sessionStats.基礎.total > 0
-    ) {
+    if (sessionStats.基礎.total > 0) {
 
         const rate =
             calculateRate(
@@ -2629,28 +2078,17 @@ function showQuizResult() {
                 sessionStats.基礎.correct
             );
 
-
         breakdown += `
-
             <div>
                 <strong>基礎</strong><br>
                 ${sessionStats.基礎.total}問中
                 ${sessionStats.基礎.correct}問正解<br>
                 正答率：${rate}%
             </div>
-
         `;
-
     }
 
-
-    /*
-       応用の結果
-    */
-
-    if (
-        sessionStats.応用.total > 0
-    ) {
+    if (sessionStats.応用.total > 0) {
 
         const rate =
             calculateRate(
@@ -2658,20 +2096,15 @@ function showQuizResult() {
                 sessionStats.応用.correct
             );
 
-
         breakdown += `
-
             <div style="margin-top:15px;">
                 <strong>応用</strong><br>
                 ${sessionStats.応用.total}問中
                 ${sessionStats.応用.correct}問正解<br>
                 正答率：${rate}%
             </div>
-
         `;
-
     }
-
 
     if (!breakdown) {
 
@@ -2680,162 +2113,100 @@ function showQuizResult() {
 
     }
 
-
     document.getElementById(
         "quizResultBreakdown"
     ).innerHTML =
         breakdown;
 
-
     let message = "";
 
-
-    if (
-        overallRate === 100
-    ) {
+    if (overallRate === 100) {
 
         message =
             "全問正解！かなり仕上がっています。";
 
-    }
-
-    else if (
-        overallRate >= 80
-    ) {
+    } else if (overallRate >= 80) {
 
         message =
             "かなりできています。間違えた問題を確認しておきましょう。";
 
-    }
-
-    else if (
-        overallRate >= 60
-    ) {
+    } else if (overallRate >= 60) {
 
         message =
             "もう少し復習しましょう。";
 
-    }
-
-    else {
+    } else {
 
         message =
             "間違えた問題をもう一度確認しましょう。";
 
     }
 
-
     document.getElementById(
         "quizResultMessage"
     ).textContent =
         message;
 
-
     document.getElementById(
         "quizScreen"
-    ).style.display =
-        "none";
-
+    ).style.display = "none";
 
     document.getElementById(
         "quizResultScreen"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 }
 
-
-/* ==================================================
-   もう一度
-================================================== */
 
 function closeQuizResult() {
 
     document.getElementById(
         "quizResultScreen"
-    ).style.display =
-        "none";
-
+    ).style.display = "none";
 
     let questions =
-        getQuestions(
-            quizSubject
-        );
+        getQuestions(quizSubject);
 
-
-    if (
-        quizMode === "基礎"
-    ) {
+    if (quizMode === "基礎") {
 
         questions =
             questions.filter(
-                item =>
-                    item.difficulty === "基礎"
+                item => item.difficulty === "基礎"
+            );
+
+    } else if (quizMode === "応用") {
+
+        questions =
+            questions.filter(
+                item => item.difficulty === "応用"
+            );
+
+    } else if (quizMode === "wrong") {
+
+        questions =
+            questions.filter(
+                item => item.wrong === true
             );
 
     }
 
-
-    else if (
-        quizMode === "応用"
-    ) {
-
-        questions =
-            questions.filter(
-                item =>
-                    item.difficulty === "応用"
-            );
-
-    }
-
-
-    else if (
-        quizMode === "wrong"
-    ) {
-
-        questions =
-            questions.filter(
-                item =>
-                    item.wrong === true
-            );
-
-    }
-
-
-    /*
-       ごちゃ混ぜの場合は
-       そのまま全部。
-    */
-
-
-    if (
-        questions.length === 0
-    ) {
+    if (questions.length === 0) {
 
         alert(
             "このモードで復習する問題がなくなりました。"
         );
-
 
         finishQuiz();
 
         return;
     }
 
-
     quizQuestions =
-        shuffleQuestions(
-            questions
-        );
-
+        shuffleQuestions(questions);
 
     quizIndex = 0;
-
     quizCorrect = 0;
-
     quizAnswered = 0;
-
     answerChecked = false;
-
 
     sessionStats = {
 
@@ -2851,33 +2222,23 @@ function closeQuizResult() {
 
     };
 
-
-    showQuizQuestion();
-
-
     document.getElementById(
         "quizScreen"
-    ).style.display =
-        "block";
+    ).style.display = "block";
+
+    showQuizQuestion();
 }
 
-
-/* ==================================================
-   クイズ終了
-================================================== */
 
 function finishQuiz() {
 
     document.getElementById(
         "quizResultScreen"
-    ).style.display =
-        "none";
-
+    ).style.display = "none";
 
     document.getElementById(
         "quizScreen"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 }
 
 
@@ -2885,14 +2246,13 @@ function closeQuiz() {
 
     document.getElementById(
         "quizScreen"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 }
 
 
-/* ==================================================
+/* =========================
    全体更新
-================================================== */
+========================= */
 
 function updateAllDisplays() {
 
@@ -2904,9 +2264,9 @@ function updateAllDisplays() {
 }
 
 
-/* ==================================================
+/* =========================
    初期化
-================================================== */
+========================= */
 
 updateTimerDisplay();
 
