@@ -2403,7 +2403,7 @@ function nextStudy() {
    勉強時間保存
 ========================= */
 
-function saveStudyTime(seconds) {
+async function saveStudyTime(seconds) {
 
     if (
         !selectedSubject ||
@@ -2445,9 +2445,60 @@ function saveStudyTime(seconds) {
         oldSubject + seconds
     );
 
+    /* =========================
+       Supabaseにも保存
+    ========================= */
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient.auth.getSession();
+
+    if (session) {
+
+        const minutes =
+            Math.floor(
+                seconds / 60
+            );
+
+        if (minutes > 0) {
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from("study_records")
+                    .insert({
+                        user_id:
+                            session.user.id,
+
+                        study_date:
+                            dateKey,
+
+                        minutes:
+                            minutes,
+
+                        time_period:
+                            null
+                    });
+
+            if (error) {
+
+                console.error(
+                    "Supabase保存エラー:",
+                    error
+                );
+
+            }
+
+        }
+
+    }
+
     updateAllDisplays();
 }
-
 
 function formatStudyTime(seconds) {
 
