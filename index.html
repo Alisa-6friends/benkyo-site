@@ -5150,7 +5150,29 @@ function changeNotebookMonth(
 ========================= */
 
 function updateAllDisplays() {
-    async function loadSupabaseStudyTime() {
+
+    updateTodayTotal();
+
+    updateTodayChart();
+
+    updateQuestionList();
+
+    updateSchoolList();
+
+    updateHensachiList();
+
+    updateMockTestList();
+
+    updateRegularTestList();
+
+}
+
+
+/* =========================
+   Supabase勉強時間読み込み
+========================= */
+
+async function loadSupabaseStudyTime() {
 
     const {
         data: {
@@ -5189,32 +5211,13 @@ function updateAllDisplays() {
     let totalMinutes = 0;
 
     data.forEach(record => {
+
         totalMinutes +=
             Number(record.minutes || 0);
+
     });
 
-alert(
-    "Supabase今日の勉強時間: " +
-    totalMinutes +
-    "分"
-);
-    updateTodayTotal();
-    loadSupabaseStudyTime();
-
-    updateTodayChart();
-
-    updateQuestionList();
-
-    updateSchoolList();
-
-    updateHensachiList();
-
-    updateMockTestList();
-
-    updateRegularTestList();
-
 }
-
 
 /* =========================
    初期化
