@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -54,17 +56,6 @@ header p {
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
-.timer {
-    text-align: center;
-}
-
-#timer {
-    font-size: clamp(60px, 15vw, 110px);
-    font-weight: bold;
-    margin: 10px 0 20px;
-    letter-spacing: 3px;
-}
-
 button {
     border: none;
     border-radius: 12px;
@@ -109,6 +100,77 @@ button:active {
     color: white;
 }
 
+.back-button {
+    background: #333;
+    color: white;
+    font-size: 17px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   ホームメニュー
+========================= */
+
+.main-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.menu-button {
+    min-height: 110px;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.menu-study {
+    border-left: 8px solid #4caf50;
+}
+
+.menu-quiz {
+    border-left: 8px solid #3498db;
+}
+
+.menu-school {
+    border-left: 8px solid #9b59b6;
+}
+
+.menu-notebook {
+    border-left: 8px solid #f39c12;
+}
+
+/* =========================
+   タイマー
+========================= */
+
+.timer {
+    text-align: center;
+}
+
+#timer {
+    font-size: clamp(60px, 15vw, 110px);
+    font-weight: bold;
+    margin: 10px 0 20px;
+    letter-spacing: 3px;
+}
+
 .subject-buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -135,6 +197,10 @@ button:active {
     text-align: center;
     font-size: 20px;
 }
+
+/* =========================
+   グラフ
+========================= */
 
 .chart {
     display: flex;
@@ -174,6 +240,10 @@ button:active {
     margin-top: 7px;
 }
 
+/* =========================
+   勉強記録カレンダー
+========================= */
+
 .calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -203,81 +273,49 @@ button:active {
     margin-top: 5px;
 }
 
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 1000;
-    display: none;
-    overflow-y: auto;
-    padding: 25px 10px;
+/* =========================
+   入力
+========================= */
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 12px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
 }
 
-.overlay-content {
-    width: min(1000px, 96%);
-    margin: auto;
-    background: white;
-    border-radius: 18px;
-    padding: 25px;
-    position: relative;
+textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
-.close-button {
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    font-size: 30px;
-    background: transparent;
-}
+/* =========================
+   志望校
+========================= */
 
-#errorScreen {
-    position: fixed;
-    inset: 0;
-    background: #050505;
-    color: red;
-    z-index: 9999;
-    display: none;
-    text-align: center;
-    padding: 20px;
-}
-
-#errorScreen h1 {
-    font-size: clamp(40px, 10vw, 90px);
-    margin: 10px;
-}
-
-#errorScreen p {
-    font-size: clamp(20px, 5vw, 35px);
-}
-
-#errorScreen img {
-    width: 85vw;
-    height: 55vh;
-    object-fit: contain;
-    filter: invert(1);
-}
-
-.return-button {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: red;
-    color: white;
-    font-size: 20px;
-    z-index: 10001;
-}
-
-.warning-message {
-    display: none;
-    background: #ffe5e5;
-    border: 2px solid red;
-    color: red;
-    padding: 15px;
-    border-radius: 12px;
+.school-card {
     margin-top: 15px;
-    font-weight: bold;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    background: #fafafa;
 }
+
+.school-card h3 {
+    margin-top: 0;
+}
+
+.school-card p {
+    margin: 8px 0;
+}
+
+/* =========================
+   問題
+========================= */
 
 .question-item {
     background: #f5f5f5;
@@ -318,21 +356,9 @@ button:active {
     margin-top: 6px;
 }
 
-input,
-textarea,
-select {
-    width: 100%;
-    padding: 12px;
-    margin: 6px 0 12px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
-}
-
-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
+/* =========================
+   一問一答
+========================= */
 
 .quiz-box {
     text-align: center;
@@ -395,7 +421,46 @@ textarea {
 }
 
 /* =========================
-   誘惑偽アクセス
+   オーバーレイ
+========================= */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    display: none;
+    overflow-y: auto;
+    padding: 25px 10px;
+}
+
+.overlay-content {
+    width: min(1000px, 96%);
+    margin: auto;
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 30px;
+    background: transparent;
+}
+
+/* =========================
+   25分達成
+========================= */
+
+#celebrationScreen {
+    text-align: center;
+}
+
+/* =========================
+   誘惑
 ========================= */
 
 .fake-loading {
@@ -447,6 +512,112 @@ textarea {
     margin-top: 20px;
 }
 
+/* =========================
+   フルスクリーンエラー
+========================= */
+
+#errorScreen {
+    position: fixed;
+    inset: 0;
+    background: #050505;
+    color: red;
+    z-index: 9999;
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+#errorScreen h1 {
+    font-size: clamp(40px, 10vw, 90px);
+}
+
+#errorScreen p {
+    font-size: clamp(20px, 5vw, 35px);
+}
+
+#errorScreen img {
+    width: 85vw;
+    height: 55vh;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.return-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: red;
+    color: white;
+    font-size: 20px;
+    z-index: 10001;
+}
+
+/* =========================
+   手帳
+========================= */
+
+.notebook-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+
+.notebook-week {
+    font-weight: bold;
+    padding: 8px;
+}
+
+.notebook-day {
+    min-height: 45px;
+    padding: 10px 4px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+
+.notebook-day.today {
+    border: 3px solid #f39c12;
+}
+
+.notebook-day.has-event {
+    background: #fff4d6;
+    font-weight: bold;
+}
+
+.event-box {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.event-item {
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 8px;
+    background: white;
+    border: 1px solid #ddd;
+}
+
+/* =========================
+   警告
+========================= */
+
+.warning-message {
+    display: none;
+    background: #ffe5e5;
+    border: 2px solid red;
+    color: red;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
 footer {
     text-align: center;
     padding: 30px;
@@ -454,42 +625,22 @@ footer {
 }
 
 /* =========================
-   志望校
+   スマホ
 ========================= */
-
-#schoolList {
-    margin-top: 20px;
-}
-
-.school-card {
-    margin-top: 15px;
-    padding: 15px;
-    border: 2px solid #ddd;
-    border-radius: 12px;
-    background: #fafafa;
-}
-
-.school-card h3 {
-    margin-top: 0;
-}
-
-.school-card p {
-    margin: 8px 0;
-}
-
-.school-card button {
-    margin-top: 8px;
-}
-
-#schoolMemo {
-    min-height: 80px;
-    resize: vertical;
-}
 
 @media (max-width: 600px) {
 
     .card {
         padding: 15px;
+    }
+
+    .main-menu {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-button {
+        min-height: 90px;
+        font-size: 20px;
     }
 
     .subject-buttons {
@@ -514,703 +665,590 @@ footer {
         height: 210px;
     }
 }
-/* =========================
-   メニュー・画面切り替え
-========================= */
 
-.page {
-    display: none;
-}
-
-.page.active {
-    display: block;
-}
-
-.main-menu {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin: 25px 0;
-}
-
-.menu-button {
-    min-height: 110px;
-    font-size: 22px;
-    font-weight: bold;
-    border-radius: 18px;
-    background: white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
-
-.menu-button:hover {
-    transform: translateY(-3px);
-}
-
-.menu-study {
-    border-left: 8px solid #4caf50;
-}
-
-.menu-quiz {
-    border-left: 8px solid #3498db;
-}
-
-.menu-school {
-    border-left: 8px solid #9b59b6;
-}
-
-.menu-notebook {
-    border-left: 8px solid #f39c12;
-}
-
-.back-button {
-    background: #333;
-    color: white;
-    font-size: 17px;
-    margin-bottom: 15px;
-}
-
-.page-title {
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-
-@media (max-width: 600px) {
-
-    .main-menu {
-        grid-template-columns: 1fr;
-    }
-
-    .menu-button {
-        min-height: 90px;
-        font-size: 20px;
-    }
-}
 </style>
+
 </head>
 
 <body>
 
 <header>
+
     <h1>勉強してください！</h1>
-    <p>受験生用 勉強管理サイト</p>
+
+    <p>
+        受験生用 勉強管理サイト
+    </p>
+
 </header>
 
 <div class="container">
-
-    <!-- =========================
-         ホーム
-    ========================= -->
-
-    <div id="homePage" class="page active">
-
-        <section class="card">
-            <h2 class="page-title">勉強してください！</h2>
-
-            <p style="text-align:center;">
-                何をしますか？
-            </p>
-
-            <div class="main-menu">
-
-                <button
-                    class="menu-button menu-study"
-                    onclick="showPage('studyPage')"
-                >
-                    📚<br>
-                    勉強する
-                </button>
-
-                <button
-                    class="menu-button menu-quiz"
-                    onclick="showPage('quizPage')"
-                >
-                    🧠<br>
-                    一問一答
-                </button>
-
-                <button
-                    class="menu-button menu-school"
-                    onclick="showPage('schoolPage')"
-                >
-                    🏫<br>
-                    進路
-                </button>
-
-                <button
-                    class="menu-button menu-notebook"
-                    onclick="showPage('notebookPage')"
-                >
-                    📔<br>
-                    手帳
-                </button>
-
-            </div>
-        </section>
-
-    </div>
-    <div id="studyPage" class="page">
 <!-- =========================
-     誘惑
+     ホーム
 ========================= -->
 
-<section class="card">
-
-    <h2>誘惑に負けそうなとき</h2>
-
-    <p>
-        「ちょっとだけ」が一番危険です。
-    </p>
-
-    <button
-        class="warning"
-        onclick="fakeOpen('YouTube')"
-    >
-        YouTube
-    </button>
-
-    <button
-        class="warning"
-        onclick="fakeOpen('ゲーム')"
-    >
-        ゲーム
-    </button>
-
-    <button
-        class="warning"
-        onclick="fakeOpen('SNS')"
-    >
-        SNS
-    </button>
-
-    <button
-        class="warning"
-        onclick="fakeOpen('LINE')"
-    >
-        LINE
-    </button>
-
-    <div
-        id="warningMessage"
-        class="warning-message"
-    ></div>
-
-</section>
-
-
-<!-- =========================
-     タイマー
-========================= -->
-
-<section class="card timer">
-
-    <h2>25分勉強タイマー</h2>
-
-    <div id="timer">
-        25:00
-    </div>
-
-    <div>
-
-        <button
-            class="start"
-            onclick="startTimer()"
-        >
-            スタート
-        </button>
-
-        <button
-            class="stop"
-            onclick="stopTimer()"
-        >
-            ストップ
-        </button>
-
-        <button
-            class="reset"
-            onclick="resetTimer()"
-        >
-            リセット
-        </button>
-
-    </div>
-
-    <div id="selectedSubject">
-        教科を選択してください
-    </div>
-
-    <div class="subject-buttons">
-
-        <button onclick="selectSubject('国語')">
-            国語
-        </button>
-
-        <button onclick="selectSubject('数学')">
-            数学
-        </button>
-
-        <button onclick="selectSubject('英語')">
-            英語
-        </button>
-
-        <button onclick="selectSubject('理科')">
-            理科
-        </button>
-
-        <button onclick="selectSubject('社会')">
-            社会
-        </button>
-
-        <button onclick="selectSubject('実技')">
-            実技
-        </button>
-
-    </div>
-
-    <p id="timerStatus"></p>
-
-</section>
-
-<!-- =========================
-     今日の勉強時間
-========================= -->
-
-<section class="card stats">
-
-    <h2>今日の勉強時間</h2>
-
-    <div id="todayTotal">
-        0時間0分0秒
-    </div>
-
-</section>
-
-
-<!-- =========================
-     教科別グラフ
-========================= -->
-
-<section class="card">
-
-    <h2>今日の教科別勉強時間</h2>
-
-    <div
-        id="todayChart"
-        class="chart"
-    ></div>
-
-</section>
-
-
-<!-- =========================
-     勉強記録
-========================= -->
-
-<section class="card">
-
-    <button
-        class="record"
-        onclick="openRecords()"
-    >
-        勉強記録を見る
-    </button>
-
-</section>
-    
-<!-- =========================
-     間違えた問題
-========================= -->
-
-<section class="card">
-
-    <h2>間違えた問題</h2>
-
-    <p>
-        模試・学校のテスト・問題集・入試過去問などで
-        間違えた問題を登録できます。
-    </p>
-
-    <label>
-        教科
-    </label>
-
-    <select id="questionSubject">
-
-        <option value="国語">
-            国語
-        </option>
-
-        <option value="数学">
-            数学
-        </option>
-
-        <option value="英語">
-            英語
-        </option>
-
-        <option value="理科">
-            理科
-        </option>
-
-        <option value="社会">
-            社会
-        </option>
-
-        <option value="実技">
-            実技
-        </option>
-
-    </select>
-
-
-    <label>
-        問題の種類
-    </label>
-
-    <select id="questionDifficulty">
-
-        <option value="基礎">
-            基礎
-        </option>
-
-        <option value="応用">
-            応用
-        </option>
-
-    </select>
-
-
-    <label>
-        問題
-    </label>
-
-    <textarea
-        id="questionText"
-        placeholder="例：食塩の化学式は？"
-    ></textarea>
-
-
-    <label>
-        答え
-    </label>
-
-    <input
-        id="questionAnswer"
-        type="text"
-        placeholder="例：NaCl"
-    >
-
-
-    <button
-        class="record"
-        onclick="addQuestion()"
-    >
-        問題を登録
-    </button>
-
-    <div id="questionList"></div>
-
-</section>
-    
-</div>
-
-<!-- =========================
-     一問一答
-========================= -->
-    <div id="quizPage" class="page">
-
-<section class="card">
-
-    <h2>一問一答</h2>
-
-    <p>
-        登録した問題をランダムな順番で復習します。
-    </p>
-
-    <label>
-        教科
-    </label>
-
-    <select id="quizSubjectSelect">
-
-        <option value="国語">
-            国語
-        </option>
-
-        <option value="数学">
-            数学
-        </option>
-
-        <option value="英語">
-            英語
-        </option>
-
-        <option value="理科">
-            理科
-        </option>
-
-        <option value="社会">
-            社会
-        </option>
-
-        <option value="実技">
-            実技
-        </option>
-
-    </select>
-
-
-    <label>
-        復習モード
-    </label>
-
-    <select id="quizModeSelect">
-
-        <option value="基礎">
-            基礎だけ
-        </option>
-
-        <option value="応用">
-            応用だけ
-        </option>
-
-        <option value="全部">
-            基礎＋応用 ごちゃ混ぜ
-        </option>
-
-        <option value="wrong">
-            過去に間違えた問題
-        </option>
-
-    </select>
-
-
-    <button
-        class="start"
-        onclick="startQuiz()"
-    >
-        一問一答を開始
-    </button>
-
-</section>
-
-    </div>
-
-<!-- =========================
-     志望校
-========================= -->
-    
-<div id="schoolPage" class="page">    
-    
-<section class="card">
-
-    <h2>志望校</h2>
-
-    <p>
-        目指している学校を登録できます。
-    </p>
-
-
-    <label>
-        志望順位
-    </label>
-
-    <select id="schoolRank">
-
-        <option value="1">
-            第一志望
-        </option>
-
-        <option value="2">
-            第二志望
-        </option>
-
-        <option value="3">
-            第三志望
-        </option>
-
-    </select>
-
-
-    <label>
-        高校名
-    </label>
-
-    <input
-        id="schoolName"
-        type="text"
-        placeholder="例：帝京平成大学"
-    >
-
-
-    <label>
-        目標偏差値
-    </label>
-
-    <input
-        id="schoolHensachi"
-        type="number"
-        placeholder="例：65"
-        min="0"
-        max="100"
-        step="0.1"
-    >
-
-
-    <label>
-        目標5科目点
-    </label>
-
-    <input
-        id="schoolTargetScore"
-        type="number"
-        placeholder="例：630"
-        min="0"
-    >
-
-
-    <label>
-        メモ
-    </label>
-
-    <textarea
-        id="schoolMemo"
-        placeholder="例：C問題対策を頑張る"
-    ></textarea>
-
-
-    <button
-        class="record"
-        onclick="saveSchool()"
-    >
-        志望校を登録・更新
-    </button>
-
-
-    <div id="schoolList"></div>
-
-</section>
-<button
-    class="record"
-    onclick="showPage('hensachiPage')"
->
-    偏差値推移を見る
-</button>
-    </div>
-    <!-- =========================
-     模試成績
-========================= -->
-
-<div id="mockTestPage" class="page">
+<div id="homePage" class="page active">
 
     <section class="card">
 
-        <h2>模試成績</h2>
+        <h2 class="page-title">
+            勉強してください！
+        </h2>
 
-        <p>
-            模試の成績を記録できます。
+        <p style="text-align:center;">
+            何をしますか？
         </p>
 
-        <label>
-            模試名
-        </label>
+        <div class="main-menu">
 
-        <input
-            id="mockTestName"
-            type="text"
-            placeholder="例：五ツ木模試"
-        >
+            <button
+                type="button"
+                class="menu-button menu-study"
+                onclick="showPage('studyPage')"
+            >
+                📚<br>
+                勉強する
+            </button>
 
-        <label>
-            日付
-        </label>
+            <button
+                type="button"
+                class="menu-button menu-quiz"
+                onclick="showPage('quizPage')"
+            >
+                🧠<br>
+                一問一答
+            </button>
 
-        <input
-            id="mockTestDate"
-            type="date"
-        >
+            <button
+                type="button"
+                class="menu-button menu-school"
+                onclick="showPage('schoolPage')"
+            >
+                🏫<br>
+                進路
+            </button>
 
-        <label>
-            国語
-        </label>
+            <button
+                type="button"
+                class="menu-button menu-notebook"
+                onclick="showPage('notebookPage')"
+            >
+                📔<br>
+                手帳
+            </button>
 
-        <input
-            id="mockJapanese"
-            type="number"
-            min="0"
-            max="100"
-            placeholder="点数"
-        >
-
-        <label>
-            数学
-        </label>
-
-        <input
-            id="mockMath"
-            type="number"
-            min="0"
-            max="100"
-            placeholder="点数"
-        >
-
-        <label>
-            英語
-        </label>
-
-        <input
-            id="mockEnglish"
-            type="number"
-            min="0"
-            max="100"
-            placeholder="点数"
-        >
-
-        <label>
-            理科
-        </label>
-
-        <input
-            id="mockScience"
-            type="number"
-            min="0"
-            max="100"
-            placeholder="点数"
-        >
-
-        <label>
-            社会
-        </label>
-
-        <input
-            id="mockSocial"
-            type="number"
-            min="0"
-            max="100"
-            placeholder="点数"
-        >
-
-        <button
-            class="record"
-            onclick="saveMockTest()"
-        >
-            模試成績を記録
-        </button>
-
-        <div id="mockTestList"></div>
+        </div>
 
     </section>
 
 </div>
-    <!-- =========================
+
+
+<!-- =========================
+     勉強
+========================= -->
+
+<div id="studyPage" class="page">
+
+    <button
+        type="button"
+        class="back-button"
+        onclick="showPage('homePage')"
+    >
+        ← ホームへ戻る
+    </button>
+
+
+    <!-- 誘惑 -->
+
+    <section class="card">
+
+        <h2>
+            誘惑に負けそうなとき
+        </h2>
+
+        <p>
+            「ちょっとだけ」が一番危険です。
+        </p>
+
+        <button
+            type="button"
+            class="warning"
+            onclick="fakeOpen('YouTube')"
+        >
+            YouTube
+        </button>
+
+        <button
+            type="button"
+            class="warning"
+            onclick="fakeOpen('ゲーム')"
+        >
+            ゲーム
+        </button>
+
+        <button
+            type="button"
+            class="warning"
+            onclick="fakeOpen('SNS')"
+        >
+            SNS
+        </button>
+
+        <button
+            type="button"
+            class="warning"
+            onclick="fakeOpen('LINE')"
+        >
+            LINE
+        </button>
+
+    </section>
+
+
+    <!-- タイマー -->
+
+    <section class="card timer">
+
+        <h2>
+            25分勉強タイマー
+        </h2>
+
+        <div id="timer">
+            25:00
+        </div>
+
+        <div>
+
+            <button
+                type="button"
+                class="start"
+                onclick="startTimer()"
+            >
+                スタート
+            </button>
+
+            <button
+                type="button"
+                class="stop"
+                onclick="stopTimer()"
+            >
+                ストップ
+            </button>
+
+            <button
+                type="button"
+                class="reset"
+                onclick="resetTimer()"
+            >
+                リセット
+            </button>
+
+        </div>
+
+        <div id="selectedSubject">
+            教科を選択してください
+        </div>
+
+        <div class="subject-buttons">
+
+            <button type="button" onclick="selectSubject('国語')">
+                国語
+            </button>
+
+            <button type="button" onclick="selectSubject('数学')">
+                数学
+            </button>
+
+            <button type="button" onclick="selectSubject('英語')">
+                英語
+            </button>
+
+            <button type="button" onclick="selectSubject('理科')">
+                理科
+            </button>
+
+            <button type="button" onclick="selectSubject('社会')">
+                社会
+            </button>
+
+            <button type="button" onclick="selectSubject('実技')">
+                実技
+            </button>
+
+        </div>
+
+        <p id="timerStatus"></p>
+
+    </section>
+
+
+    <!-- 今日の勉強時間 -->
+
+    <section class="card stats">
+
+        <h2>
+            今日の勉強時間
+        </h2>
+
+        <div id="todayTotal">
+            0時間0分0秒
+        </div>
+
+    </section>
+
+
+    <!-- 教科別 -->
+
+    <section class="card">
+
+        <h2>
+            今日の教科別勉強時間
+        </h2>
+
+        <div
+            id="todayChart"
+            class="chart"
+        ></div>
+
+    </section>
+
+
+    <!-- 勉強記録 -->
+
+    <section class="card">
+
+        <button
+            type="button"
+            class="record"
+            onclick="openRecords()"
+        >
+            勉強記録を見る
+        </button>
+
+    </section>
+
+
+    <!-- 間違えた問題 -->
+
+    <section class="card">
+
+        <h2>
+            間違えた問題
+        </h2>
+
+        <p>
+            模試・学校のテスト・問題集・入試過去問などで
+            間違えた問題を登録できます。
+        </p>
+
+        <label>
+            教科
+        </label>
+
+        <select id="questionSubject">
+
+            <option value="国語">国語</option>
+            <option value="数学">数学</option>
+            <option value="英語">英語</option>
+            <option value="理科">理科</option>
+            <option value="社会">社会</option>
+            <option value="実技">実技</option>
+
+        </select>
+
+
+        <label>
+            問題の種類
+        </label>
+
+        <select id="questionDifficulty">
+
+            <option value="基礎">基礎</option>
+            <option value="応用">応用</option>
+
+        </select>
+
+
+        <label>
+            問題
+        </label>
+
+        <textarea
+            id="questionText"
+            placeholder="例：食塩の化学式は？"
+        ></textarea>
+
+
+        <label>
+            答え
+        </label>
+
+        <input
+            id="questionAnswer"
+            type="text"
+            placeholder="例：NaCl"
+        >
+
+
+        <button
+            type="button"
+            class="record"
+            onclick="addQuestion()"
+        >
+            問題を登録
+        </button>
+
+        <div id="questionList"></div>
+
+    </section>
+
+</div>
+
+
+<!-- =========================
+     一問一答
+========================= -->
+
+<div id="quizPage" class="page">
+
+    <button
+        type="button"
+        class="back-button"
+        onclick="showPage('homePage')"
+    >
+        ← ホームへ戻る
+    </button>
+
+    <section class="card">
+
+        <h2>
+            一問一答
+        </h2>
+
+        <p>
+            登録した問題をランダムな順番で復習します。
+        </p>
+
+
+        <label>
+            教科
+        </label>
+
+        <select id="quizSubjectSelect">
+
+            <option value="国語">国語</option>
+            <option value="数学">数学</option>
+            <option value="英語">英語</option>
+            <option value="理科">理科</option>
+            <option value="社会">社会</option>
+            <option value="実技">実技</option>
+
+        </select>
+
+
+        <label>
+            復習モード
+        </label>
+
+        <select id="quizModeSelect">
+
+            <option value="基礎">
+                基礎だけ
+            </option>
+
+            <option value="応用">
+                応用だけ
+            </option>
+
+            <option value="全部">
+                基礎＋応用 ごちゃ混ぜ
+            </option>
+
+            <option value="wrong">
+                過去に間違えた問題
+            </option>
+
+        </select>
+
+
+        <button
+            type="button"
+            class="start"
+            onclick="startQuiz()"
+        >
+            一問一答を開始
+        </button>
+
+    </section>
+
+</div>
+
+
+<!-- =========================
+     進路
+========================= -->
+
+<div id="schoolPage" class="page">
+
+    <button
+        type="button"
+        class="back-button"
+        onclick="showPage('homePage')"
+    >
+        ← ホームへ戻る
+    </button>
+
+
+    <!-- 志望校 -->
+
+    <section class="card">
+
+        <h2>
+            志望校
+        </h2>
+
+        <p>
+            目指している学校を登録できます。
+        </p>
+
+
+        <label>
+            志望順位
+        </label>
+
+        <select id="schoolRank">
+
+            <option value="1">
+                第一志望
+            </option>
+
+            <option value="2">
+                第二志望
+            </option>
+
+            <option value="3">
+                第三志望
+            </option>
+
+        </select>
+
+
+        <label>
+            高校名
+        </label>
+
+        <input
+            id="schoolName"
+            type="text"
+            placeholder="例：高津高校"
+        >
+
+
+        <label>
+            目標偏差値
+        </label>
+
+        <input
+            id="schoolHensachi"
+            type="number"
+            placeholder="例：65"
+            min="0"
+            max="100"
+            step="0.1"
+        >
+
+
+        <label>
+            目標5科目点
+        </label>
+
+        <input
+            id="schoolTargetScore"
+            type="number"
+            placeholder="例：630"
+            min="0"
+        >
+
+
+        <label>
+            メモ
+        </label>
+
+        <textarea
+            id="schoolMemo"
+            placeholder="例：C問題対策を頑張る"
+        ></textarea>
+
+
+        <button
+            type="button"
+            class="record"
+            onclick="saveSchool()"
+        >
+            志望校を登録・更新
+        </button>
+
+
+        <div id="schoolList"></div>
+
+    </section>
+
+
+    <section class="card">
+
+        <h2>
+            📈 成績データ
+        </h2>
+
+        <button
+            type="button"
+            class="record"
+            onclick="showPage('hensachiPage')"
+        >
+            偏差値推移を見る
+        </button>
+
+        <button
+            type="button"
+            class="record"
+            onclick="showPage('mockTestPage')"
+        >
+            模試成績を見る
+        </button>
+
+        <button
+            type="button"
+            class="record"
+            onclick="showPage('regularTestPage')"
+        >
+            定期テスト成績を見る
+        </button>
+
+    </section>
+
+</div>
+
+
+<!-- =========================
      偏差値推移
 ========================= -->
 
 <div id="hensachiPage" class="page">
 
+    <button
+        type="button"
+        class="back-button"
+        onclick="showPage('schoolPage')"
+    >
+        ← 進路へ戻る
+    </button>
+
     <section class="card">
 
-        <h2>偏差値推移</h2>
+        <h2>
+            偏差値推移
+        </h2>
 
         <p>
             模試などの偏差値の推移を記録できます。
@@ -1239,6 +1277,7 @@ footer {
         >
 
         <button
+            type="button"
             class="record"
             onclick="saveHensachi()"
         >
@@ -1250,47 +1289,304 @@ footer {
     </section>
 
 </div>
+
+
+<!-- =========================
+     模試成績
+========================= -->
+
+<div id="mockTestPage" class="page">
+
     <button
-    class="record"
-    onclick="showPage('mockTestPage')"
->
-    模試成績を見る
-</button>
+        type="button"
+        class="back-button"
+        onclick="showPage('schoolPage')"
+    >
+        ← 進路へ戻る
+    </button>
+
+    <section class="card">
+
+        <h2>
+            模試成績
+        </h2>
+
+        <p>
+            模試の成績を記録できます。
+        </p>
+
+        <label>
+            模試名
+        </label>
+
+        <input
+            id="mockTestName"
+            type="text"
+            placeholder="例：五ツ木模試"
+        >
+
+        <label>
+            日付
+        </label>
+
+        <input
+            id="mockTestDate"
+            type="date"
+        >
+
+        <label>国語</label>
+        <input
+            id="mockJapanese"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>数学</label>
+        <input
+            id="mockMath"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>英語</label>
+        <input
+            id="mockEnglish"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>理科</label>
+        <input
+            id="mockScience"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>社会</label>
+        <input
+            id="mockSocial"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <button
+            type="button"
+            class="record"
+            onclick="saveMockTest()"
+        >
+            模試成績を記録
+        </button>
+
+        <div id="mockTestList"></div>
+
+    </section>
+
+</div>
+
+
+<!-- =========================
+     定期テスト
+========================= -->
+
+<div id="regularTestPage" class="page">
+
+    <button
+        type="button"
+        class="back-button"
+        onclick="showPage('schoolPage')"
+    >
+        ← 進路へ戻る
+    </button>
+
+    <section class="card">
+
+        <h2>
+            定期テスト成績
+        </h2>
+
+        <p>
+            定期テストの成績を記録できます。
+        </p>
+
+        <label>
+            テスト名
+        </label>
+
+        <input
+            id="regularTestName"
+            type="text"
+            placeholder="例：2学期期末テスト"
+        >
+
+        <label>
+            日付
+        </label>
+
+        <input
+            id="regularTestDate"
+            type="date"
+        >
+
+        <label>国語</label>
+        <input
+            id="regularJapanese"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>数学</label>
+        <input
+            id="regularMath"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>英語</label>
+        <input
+            id="regularEnglish"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>理科</label>
+        <input
+            id="regularScience"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <label>社会</label>
+        <input
+            id="regularSocial"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="点数"
+        >
+
+        <button
+            type="button"
+            class="record"
+            onclick="saveRegularTest()"
+        >
+            定期テストを記録
+        </button>
+
+        <div id="regularTestList"></div>
+
+    </section>
+
+</div>
+
+
 <!-- =========================
      手帳
 ========================= -->
 
 <div id="notebookPage" class="page">
-<!-- =========================
-     データ管理
-========================= -->
-<section class="card">
-    <h2>📔 手帳</h2>
-    <p>今日の予定や勉強の予定をここで管理しよう！</p>
-</section>
-    <section class="card">
-    <h2>📅 カレンダー</h2>
-
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-        <button onclick="changeNotebookMonth(-1)">◀</button>
-        <h3 id="notebookMonthTitle" style="margin:0;"></h3>
-        <button onclick="changeNotebookMonth(1)">▶</button>
-    </div>
-
-    <div id="notebookCalendar"></div>
-</section>
-<section class="card">
-
-    <h2>データ管理</h2>
 
     <button
-        class="reset"
-        onclick="resetToday()"
+        type="button"
+        class="back-button"
+        onclick="showPage('homePage')"
     >
-        今日の勉強記録をリセット
+        ← ホームへ戻る
     </button>
 
-</section>
+
+    <section class="card">
+
+        <h2>
+            📔 手帳
+        </h2>
+
+        <p>
+            今日の予定や勉強の予定をここで管理しよう！
+        </p>
+
+    </section>
+
+
+    <!-- カレンダー -->
+
+    <section class="card">
+
+        <h2>
+            📅 カレンダー
+        </h2>
+
+        <div
+            style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                margin-bottom:15px;
+            "
+        >
+
+            <button
+                type="button"
+                onclick="changeNotebookMonth(-1)"
+            >
+                ◀
+            </button>
+
+            <h3
+                id="notebookMonthTitle"
+                style="margin:0;"
+            ></h3>
+
+            <button
+                type="button"
+                onclick="changeNotebookMonth(1)"
+            >
+                ▶
+            </button>
+
+        </div>
+
+        <div id="notebookCalendar"></div>
+
+        <div id="notebookEventArea"></div>
+
+    </section>
+
+
+    <!-- データ管理 -->
+
+    <section class="card">
+
+        <h2>
+            データ管理
+        </h2>
+
+        <button
+            type="button"
+            class="reset"
+            onclick="resetToday()"
+        >
+            今日の勉強記録をリセット
+        </button>
+
+    </section>
 
 </div>
 
@@ -1298,8 +1594,6 @@ footer {
 <footer>
     勉強してください！
 </footer>
-
-
 <!-- =========================
      勉強記録
 ========================= -->
@@ -1312,6 +1606,7 @@ footer {
     <div class="overlay-content">
 
         <button
+            type="button"
             class="close-button"
             onclick="closeRecords()"
         >
@@ -1346,6 +1641,7 @@ footer {
     <div class="overlay-content">
 
         <button
+            type="button"
             class="close-button"
             onclick="closeQuiz()"
         >
@@ -1377,6 +1673,7 @@ footer {
             >
 
             <button
+                type="button"
                 id="checkAnswerButton"
                 class="start"
                 onclick="checkAnswer()"
@@ -1387,6 +1684,7 @@ footer {
             <div id="answerResult"></div>
 
             <button
+                type="button"
                 id="nextQuestionButton"
                 class="record"
                 onclick="nextQuestion()"
@@ -1440,6 +1738,7 @@ footer {
             ></div>
 
             <button
+                type="button"
                 class="start"
                 onclick="closeQuizResult()"
             >
@@ -1447,6 +1746,7 @@ footer {
             </button>
 
             <button
+                type="button"
                 class="record"
                 onclick="finishQuiz()"
             >
@@ -1487,6 +1787,7 @@ footer {
         </p>
 
         <button
+            type="button"
             class="start"
             onclick="nextStudy()"
         >
@@ -1501,9 +1802,15 @@ footer {
 <!-- =========================
      誘惑偽アクセス
 ========================= -->
-<div id="fakeOpenScreen" class="overlay">
 
-    <div class="overlay-content fake-loading">
+<div
+    id="fakeOpenScreen"
+    class="overlay"
+>
+
+    <div
+        class="overlay-content fake-loading"
+    >
 
         <div id="fakeLoadingContent">
 
@@ -1553,6 +1860,7 @@ footer {
             </p>
 
             <button
+                type="button"
                 class="roast-button"
                 onclick="closeFakeOpen()"
             >
@@ -1588,6 +1896,7 @@ footer {
     >
 
     <button
+        type="button"
         class="return-button"
         onclick="returnToStudy()"
     >
@@ -1598,6 +1907,10 @@ footer {
 
 
 <script>
+
+/* =========================
+   基本設定
+========================= */
 
 const subjects = [
     "国語",
@@ -1617,6 +1930,39 @@ let timerStartTime = null;
 
 
 /* =========================
+   画面切り替え
+========================= */
+
+function showPage(pageId) {
+
+    const pages =
+        document.querySelectorAll(".page");
+
+    pages.forEach(page => {
+        page.classList.remove("active");
+    });
+
+    const target =
+        document.getElementById(pageId);
+
+    if (!target) {
+        console.error(
+            "ページが見つかりません:",
+            pageId
+        );
+        return;
+    }
+
+    target.classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================
    日付
 ========================= */
 
@@ -1624,15 +1970,18 @@ function getDateKey() {
 
     const date = new Date();
 
-    const y = date.getFullYear();
+    const y =
+        date.getFullYear();
 
-    const m = String(
-        date.getMonth() + 1
-    ).padStart(2, "0");
+    const m =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
 
-    const d = String(
-        date.getDate()
-    ).padStart(2, "0");
+    const d =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
 
     return `${y}-${m}-${d}`;
 }
@@ -1644,24 +1993,36 @@ function getDateKey() {
 
 function updateTimerDisplay() {
 
-    const minutes = Math.floor(
-        timerSeconds / 60
-    ).toString().padStart(2, "0");
+    const minutes =
+        Math.floor(
+            timerSeconds / 60
+        )
+        .toString()
+        .padStart(2, "0");
 
-    const seconds = (
-        timerSeconds % 60
-    ).toString().padStart(2, "0");
+    const seconds =
+        (
+            timerSeconds % 60
+        )
+        .toString()
+        .padStart(2, "0");
 
-    document.getElementById(
-        "timer"
-    ).textContent =
-        `${minutes}:${seconds}`;
+    const timer =
+        document.getElementById("timer");
+
+    if (timer) {
+
+        timer.textContent =
+            `${minutes}:${seconds}`;
+
+    }
 }
 
 
 function selectSubject(subject) {
 
-    selectedSubject = subject;
+    selectedSubject =
+        subject;
 
     document.getElementById(
         "selectedSubject"
@@ -1679,7 +2040,10 @@ function selectSubject(subject) {
             "subject-selected"
         );
 
-        if (button.textContent === subject) {
+        if (
+            button.textContent.trim() ===
+            subject
+        ) {
 
             button.classList.add(
                 "subject-selected"
@@ -1708,7 +2072,8 @@ function startTimer() {
 
     timerRunning = true;
 
-    timerStartTime = Date.now();
+    timerStartTime =
+        Date.now();
 
     document.getElementById(
         "timerStatus"
@@ -1726,19 +2091,22 @@ function startTimer() {
 
     }
 
-    timerInterval = setInterval(() => {
+    timerInterval =
+        setInterval(() => {
 
-        timerSeconds--;
+            timerSeconds--;
 
-        updateTimerDisplay();
+            updateTimerDisplay();
 
-        if (timerSeconds <= 0) {
+            if (
+                timerSeconds <= 0
+            ) {
 
-            finishTimer();
+                finishTimer();
 
-        }
+            }
 
-    }, 1000);
+        }, 1000);
 }
 
 
@@ -1748,7 +2116,9 @@ function stopTimer() {
         return;
     }
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
     timerInterval = null;
 
@@ -1758,13 +2128,18 @@ function stopTimer() {
         Math.max(
             0,
             Math.floor(
-                (Date.now() - timerStartTime) / 1000
+                (
+                    Date.now() -
+                    timerStartTime
+                ) / 1000
             )
         );
 
     timerStartTime = null;
 
-    saveStudyTime(elapsedSeconds);
+    saveStudyTime(
+        elapsedSeconds
+    );
 
     document.getElementById(
         "timerStatus"
@@ -1775,7 +2150,9 @@ function stopTimer() {
 
 function resetTimer() {
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
     timerInterval = null;
 
@@ -1783,7 +2160,8 @@ function resetTimer() {
 
     timerStartTime = null;
 
-    timerSeconds = 25 * 60;
+    timerSeconds =
+        25 * 60;
 
     updateTimerDisplay();
 
@@ -1795,7 +2173,9 @@ function resetTimer() {
 
 function finishTimer() {
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
     timerInterval = null;
 
@@ -1807,7 +2187,9 @@ function finishTimer() {
 
     updateTimerDisplay();
 
-    saveStudyTime(25 * 60);
+    saveStudyTime(
+        25 * 60
+    );
 
     document.getElementById(
         "timerStatus"
@@ -1818,8 +2200,6 @@ function finishTimer() {
         "celebrationScreen"
     ).style.display =
         "block";
-
-    updateAllDisplays();
 }
 
 
@@ -1830,9 +2210,11 @@ function nextStudy() {
     ).style.display =
         "none";
 
-    timerSeconds = 25 * 60;
+    timerSeconds =
+        25 * 60;
 
-    timerStartTime = null;
+    timerStartTime =
+        null;
 
     updateTimerDisplay();
 
@@ -1893,36 +2275,6 @@ function saveStudyTime(seconds) {
 }
 
 
-function updateTodayTotal() {
-
-    const key =
-        `total_${getDateKey()}`;
-
-    const seconds =
-        Number(
-            localStorage.getItem(key) || 0
-        );
-
-    const hours =
-        Math.floor(
-            seconds / 3600
-        );
-
-    const minutes =
-        Math.floor(
-            (seconds % 3600) / 60
-        );
-
-    const remainSeconds =
-        seconds % 60;
-
-    document.getElementById(
-        "todayTotal"
-    ).textContent =
-        `${hours}時間${minutes}分${remainSeconds}秒`;
-}
-
-
 function formatStudyTime(seconds) {
 
     const hours =
@@ -1954,7 +2306,40 @@ function formatStudyTime(seconds) {
 }
 
 
+function updateTodayTotal() {
+
+    const key =
+        `total_${getDateKey()}`;
+
+    const seconds =
+        Number(
+            localStorage.getItem(key) || 0
+        );
+
+    const element =
+        document.getElementById(
+            "todayTotal"
+        );
+
+    if (!element) {
+        return;
+    }
+
+    element.textContent =
+        formatStudyTime(seconds);
+}
+
+
 function updateTodayChart() {
+
+    const chart =
+        document.getElementById(
+            "todayChart"
+        );
+
+    if (!chart) {
+        return;
+    }
 
     const dateKey =
         getDateKey();
@@ -1978,11 +2363,6 @@ function updateTodayChart() {
             1
         );
 
-    const chart =
-        document.getElementById(
-            "todayChart"
-        );
-
     chart.innerHTML = "";
 
     subjects.forEach(subject => {
@@ -1995,16 +2375,22 @@ function updateTodayChart() {
                 ? 2
                 : Math.max(
                     5,
-                    (seconds / maxValue) * 190
+                    (
+                        seconds /
+                        maxValue
+                    ) * 190
                 );
 
         const wrapper =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         wrapper.className =
             "bar-wrapper";
 
         wrapper.innerHTML = `
+
             <div class="bar-time">
                 ${formatStudyTime(seconds)}
             </div>
@@ -2017,16 +2403,19 @@ function updateTodayChart() {
             <div class="bar-label">
                 ${subject}
             </div>
+
         `;
 
-        chart.appendChild(wrapper);
+        chart.appendChild(
+            wrapper
+        );
 
     });
 }
 
 
 /* =========================
-   カレンダー
+   勉強記録カレンダー
 ========================= */
 
 function openRecords() {
@@ -2095,7 +2484,9 @@ function createCalendar() {
         div.textContent =
             day;
 
-        calendar.appendChild(div);
+        calendar.appendChild(
+            div
+        );
 
     });
 
@@ -2119,13 +2510,10 @@ function createCalendar() {
         i++
     ) {
 
-        const empty =
+        calendar.appendChild(
             document.createElement(
                 "div"
-            );
-
-        calendar.appendChild(
-            empty
+            )
         );
 
     }
@@ -2170,14 +2558,20 @@ function createCalendar() {
         }
 
         div.innerHTML = `
-            <strong>${day}</strong>
+
+            <strong>
+                ${day}
+            </strong>
 
             <div class="calendar-time">
                 ${formatStudyTime(seconds)}
             </div>
+
         `;
 
-        calendar.appendChild(div);
+        calendar.appendChild(
+            div
+        );
 
     }
 }
@@ -2189,17 +2583,17 @@ function createCalendar() {
 
 function fakeOpen(type) {
 
-    const fakeOpenScreen =
+    const screen =
         document.getElementById(
             "fakeOpenScreen"
         );
 
-    const fakeLoadingContent =
+    const loading =
         document.getElementById(
             "fakeLoadingContent"
         );
 
-    const roastContent =
+    const roast =
         document.getElementById(
             "roastContent"
         );
@@ -2212,45 +2606,43 @@ function fakeOpen(type) {
     let url = "";
 
     if (type === "YouTube") {
-
         url =
             "https://www.youtube.com/";
+    }
 
-    } else if (type === "ゲーム") {
-
+    if (type === "ゲーム") {
         url =
             "game://誘惑の世界/";
+    }
 
-    } else if (type === "SNS") {
-
+    if (type === "SNS") {
         url =
             "https://sns.example.com/";
+    }
 
-    } else if (type === "LINE") {
-
+    if (type === "LINE") {
         url =
             "https://line.me/";
-
     }
 
     fakeUrl.textContent =
         url;
 
-    fakeLoadingContent.style.display =
+    loading.style.display =
         "block";
 
-    roastContent.style.display =
+    roast.style.display =
         "none";
 
-    fakeOpenScreen.style.display =
+    screen.style.display =
         "block";
 
     setTimeout(() => {
 
-        fakeLoadingContent.style.display =
+        loading.style.display =
             "none";
 
-        roastContent.style.display =
+        roast.style.display =
             "block";
 
     }, 1800);
@@ -2305,18 +2697,30 @@ function resetToday() {
 
 
 /* =========================
-   志望校管理
+   志望校
 ========================= */
 
 let targetSchools =
     JSON.parse(
         localStorage.getItem(
             "targetSchools"
-        )
-    ) || [];
+        ) || "[]"
+    );
 
 
-/* 志望校を登録・更新 */
+function escapeHtml(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text ?? "";
+
+    return div.innerHTML;
+}
+
 
 function saveSchool() {
 
@@ -2347,7 +2751,6 @@ function saveSchool() {
             "schoolMemo"
         ).value.trim();
 
-
     if (!name) {
 
         alert(
@@ -2357,34 +2760,26 @@ function saveSchool() {
         return;
     }
 
-
     const school = {
 
-        rank: rank,
-
-        name: name,
-
-        hensachi: hensachi,
-
-        targetScore: targetScore,
-
-        memo: memo
+        rank,
+        name,
+        hensachi,
+        targetScore,
+        memo
 
     };
 
-
-    const existingIndex =
+    const index =
         targetSchools.findIndex(
-            school =>
-                school.rank === rank
+            item =>
+                item.rank === rank
         );
 
+    if (index >= 0) {
 
-    if (existingIndex !== -1) {
-
-        targetSchools[
-            existingIndex
-        ] = school;
+        targetSchools[index] =
+            school;
 
     } else {
 
@@ -2394,12 +2789,10 @@ function saveSchool() {
 
     }
 
-
     targetSchools.sort(
-        (a, b) =>
+        (a,b) =>
             a.rank - b.rank
     );
-
 
     localStorage.setItem(
         "targetSchools",
@@ -2408,14 +2801,11 @@ function saveSchool() {
         )
     );
 
-
     clearSchoolForm();
 
     updateSchoolList();
 }
 
-
-/* 志望校一覧 */
 
 function updateSchoolList() {
 
@@ -2443,36 +2833,19 @@ function updateSchoolList() {
     targetSchools.forEach(
         school => {
 
-            let rankText = "";
-
-            if (
+            const rankText =
                 school.rank === 1
-            ) {
-
-                rankText =
-                    "第一志望";
-
-            } else if (
-                school.rank === 2
-            ) {
-
-                rankText =
-                    "第二志望";
-
-            } else {
-
-                rankText =
-                    "第三志望";
-
-            }
-
+                    ? "第一志望"
+                    : school.rank === 2
+                        ? "第二志望"
+                        : "第三志望";
 
             html += `
 
                 <div class="school-card">
 
                     <h3>
-                        ${escapeSchoolText(
+                        ${escapeHtml(
                             school.name
                         )}
                     </h3>
@@ -2501,31 +2874,29 @@ function updateSchoolList() {
 
                     ${
                         school.memo
-                        ? `
-                            <p>
-                                メモ：
-                                ${escapeSchoolText(
-                                    school.memo
-                                )}
-                            </p>
-                          `
-                        : ""
+                            ? `
+                                <p>
+                                    メモ：
+                                    ${escapeHtml(
+                                        school.memo
+                                    )}
+                                </p>
+                              `
+                            : ""
                     }
 
                     <button
+                        type="button"
                         class="record"
-                        onclick="editSchool(
-                            ${school.rank}
-                        )"
+                        onclick="editSchool(${school.rank})"
                     >
                         編集
                     </button>
 
                     <button
+                        type="button"
                         class="reset"
-                        onclick="deleteSchool(
-                            ${school.rank}
-                        )"
+                        onclick="deleteSchool(${school.rank})"
                     >
                         削除
                     </button>
@@ -2539,24 +2910,6 @@ function updateSchoolList() {
 
     list.innerHTML =
         html;
-}
-
-
-/* =========================
-   志望校用補助関数
-========================= */
-
-function escapeSchoolText(text) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-    div.textContent =
-        text ?? "";
-
-    return div.innerHTML;
 }
 
 
@@ -2584,8 +2937,8 @@ function editSchool(rank) {
 
     const school =
         targetSchools.find(
-            school =>
-                school.rank === rank
+            item =>
+                item.rank === rank
         );
 
     if (!school) {
@@ -2595,9 +2948,7 @@ function editSchool(rank) {
     document.getElementById(
         "schoolRank"
     ).value =
-        String(
-            school.rank
-        );
+        String(school.rank);
 
     document.getElementById(
         "schoolName"
@@ -2629,24 +2980,17 @@ function deleteSchool(rank) {
 
     const school =
         targetSchools.find(
-            school =>
-                school.rank === rank
+            item =>
+                item.rank === rank
         );
 
     if (!school) {
         return;
     }
 
-    const rankText =
-        rank === 1
-            ? "第一"
-            : rank === 2
-                ? "第二"
-                : "第三";
-
     const ok =
         confirm(
-            `${school.name}（${rankText}志望）を削除しますか？`
+            `${school.name}を削除しますか？`
         );
 
     if (!ok) {
@@ -2655,8 +2999,8 @@ function deleteSchool(rank) {
 
     targetSchools =
         targetSchools.filter(
-            school =>
-                school.rank !== rank
+            item =>
+                item.rank !== rank
         );
 
     localStorage.setItem(
@@ -2667,6 +3011,520 @@ function deleteSchool(rank) {
     );
 
     updateSchoolList();
+}
+
+
+/* =========================
+   偏差値
+========================= */
+
+let hensachiRecords =
+    JSON.parse(
+        localStorage.getItem(
+            "hensachiRecords"
+        ) || "[]"
+    );
+
+
+function saveHensachi() {
+
+    const date =
+        document.getElementById(
+            "hensachiDate"
+        ).value;
+
+    const value =
+        Number(
+            document.getElementById(
+                "hensachiValue"
+            ).value
+        );
+
+    if (!date || !Number.isFinite(value)) {
+
+        alert(
+            "日付と偏差値を入力してください。"
+        );
+
+        return;
+    }
+
+    hensachiRecords.push({
+        date,
+        value
+    });
+
+    hensachiRecords.sort(
+        (a,b) =>
+            a.date.localeCompare(
+                b.date
+            )
+    );
+
+    localStorage.setItem(
+        "hensachiRecords",
+        JSON.stringify(
+            hensachiRecords
+        )
+    );
+
+    document.getElementById(
+        "hensachiDate"
+    ).value = "";
+
+    document.getElementById(
+        "hensachiValue"
+    ).value = "";
+
+    updateHensachiList();
+}
+
+
+function updateHensachiList() {
+
+    const list =
+        document.getElementById(
+            "hensachiList"
+        );
+
+    if (!list) {
+        return;
+    }
+
+    if (
+        hensachiRecords.length === 0
+    ) {
+
+        list.innerHTML =
+            "<p>まだ偏差値が記録されていません。</p>";
+
+        return;
+    }
+
+    list.innerHTML =
+        hensachiRecords
+            .map(
+                (item,index) => `
+
+                    <div class="school-card">
+
+                        <strong>
+                            ${escapeHtml(item.date)}
+                        </strong>
+
+                        <p>
+                            偏差値：
+                            ${item.value}
+                        </p>
+
+                        <button
+                            type="button"
+                            class="reset"
+                            onclick="deleteHensachi(${index})"
+                        >
+                            削除
+                        </button>
+
+                    </div>
+
+                `
+            )
+            .join("");
+}
+
+
+function deleteHensachi(index) {
+
+    hensachiRecords.splice(
+        index,
+        1
+    );
+
+    localStorage.setItem(
+        "hensachiRecords",
+        JSON.stringify(
+            hensachiRecords
+        )
+    );
+
+    updateHensachiList();
+}
+
+
+/* =========================
+   模試
+========================= */
+
+let mockTests =
+    JSON.parse(
+        localStorage.getItem(
+            "mockTests"
+        ) || "[]"
+    );
+
+
+function saveMockTest() {
+
+    const name =
+        document.getElementById(
+            "mockTestName"
+        ).value.trim();
+
+    const date =
+        document.getElementById(
+            "mockTestDate"
+        ).value;
+
+    if (!name || !date) {
+
+        alert(
+            "模試名と日付を入力してください。"
+        );
+
+        return;
+    }
+
+    const test = {
+
+        name,
+        date,
+
+        japanese:
+            document.getElementById(
+                "mockJapanese"
+            ).value,
+
+        math:
+            document.getElementById(
+                "mockMath"
+            ).value,
+
+        english:
+            document.getElementById(
+                "mockEnglish"
+            ).value,
+
+        science:
+            document.getElementById(
+                "mockScience"
+            ).value,
+
+        social:
+            document.getElementById(
+                "mockSocial"
+            ).value
+
+    };
+
+    mockTests.push(test);
+
+    mockTests.sort(
+        (a,b) =>
+            a.date.localeCompare(
+                b.date
+            )
+    );
+
+    localStorage.setItem(
+        "mockTests",
+        JSON.stringify(
+            mockTests
+        )
+    );
+
+    document.getElementById(
+        "mockTestName"
+    ).value = "";
+
+    document.getElementById(
+        "mockTestDate"
+    ).value = "";
+
+    [
+        "mockJapanese",
+        "mockMath",
+        "mockEnglish",
+        "mockScience",
+        "mockSocial"
+    ].forEach(id => {
+
+        document.getElementById(
+            id
+        ).value = "";
+
+    });
+
+    updateMockTestList();
+}
+
+
+function updateMockTestList() {
+
+    const list =
+        document.getElementById(
+            "mockTestList"
+        );
+
+    if (!list) {
+        return;
+    }
+
+    if (
+        mockTests.length === 0
+    ) {
+
+        list.innerHTML =
+            "<p>まだ模試成績がありません。</p>";
+
+        return;
+    }
+
+    list.innerHTML =
+        mockTests
+            .map(
+                (test,index) => `
+
+                    <div class="school-card">
+
+                        <h3>
+                            ${escapeHtml(
+                                test.name
+                            )}
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(
+                                test.date
+                            )}
+                        </p>
+
+                        <p>
+                            国語：${test.japanese || "-"}
+                            ／
+                            数学：${test.math || "-"}
+                            ／
+                            英語：${test.english || "-"}
+                            ／
+                            理科：${test.science || "-"}
+                            ／
+                            社会：${test.social || "-"}
+                        </p>
+
+                        <button
+                            type="button"
+                            class="reset"
+                            onclick="deleteMockTest(${index})"
+                        >
+                            削除
+                        </button>
+
+                    </div>
+
+                `
+            )
+            .join("");
+}
+
+
+function deleteMockTest(index) {
+
+    mockTests.splice(
+        index,
+        1
+    );
+
+    localStorage.setItem(
+        "mockTests",
+        JSON.stringify(
+            mockTests
+        )
+    );
+
+    updateMockTestList();
+}
+
+
+/* =========================
+   定期テスト
+========================= */
+
+let regularTests =
+    JSON.parse(
+        localStorage.getItem(
+            "regularTests"
+        ) || "[]"
+    );
+
+
+function saveRegularTest() {
+
+    const name =
+        document.getElementById(
+            "regularTestName"
+        ).value.trim();
+
+    const date =
+        document.getElementById(
+            "regularTestDate"
+        ).value;
+
+    if (!name || !date) {
+
+        alert(
+            "テスト名と日付を入力してください。"
+        );
+
+        return;
+    }
+
+    regularTests.push({
+
+        name,
+        date,
+
+        japanese:
+            document.getElementById(
+                "regularJapanese"
+            ).value,
+
+        math:
+            document.getElementById(
+                "regularMath"
+            ).value,
+
+        english:
+            document.getElementById(
+                "regularEnglish"
+            ).value,
+
+        science:
+            document.getElementById(
+                "regularScience"
+            ).value,
+
+        social:
+            document.getElementById(
+                "regularSocial"
+            ).value
+
+    });
+
+    localStorage.setItem(
+        "regularTests",
+        JSON.stringify(
+            regularTests
+        )
+    );
+
+    document.getElementById(
+        "regularTestName"
+    ).value = "";
+
+    document.getElementById(
+        "regularTestDate"
+    ).value = "";
+
+    [
+        "regularJapanese",
+        "regularMath",
+        "regularEnglish",
+        "regularScience",
+        "regularSocial"
+    ].forEach(id => {
+
+        document.getElementById(
+            id
+        ).value = "";
+
+    });
+
+    updateRegularTestList();
+}
+
+
+function updateRegularTestList() {
+
+    const list =
+        document.getElementById(
+            "regularTestList"
+        );
+
+    if (!list) {
+        return;
+    }
+
+    if (
+        regularTests.length === 0
+    ) {
+
+        list.innerHTML =
+            "<p>まだ定期テスト成績がありません。</p>";
+
+        return;
+    }
+
+    list.innerHTML =
+        regularTests
+            .map(
+                (test,index) => `
+
+                    <div class="school-card">
+
+                        <h3>
+                            ${escapeHtml(
+                                test.name
+                            )}
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(
+                                test.date
+                            )}
+                        </p>
+
+                        <p>
+                            国語：${test.japanese || "-"}
+                            ／
+                            数学：${test.math || "-"}
+                            ／
+                            英語：${test.english || "-"}
+                            ／
+                            理科：${test.science || "-"}
+                            ／
+                            社会：${test.social || "-"}
+                        </p>
+
+                        <button
+                            type="button"
+                            class="reset"
+                            onclick="deleteRegularTest(${index})"
+                        >
+                            削除
+                        </button>
+
+                    </div>
+
+                `
+            )
+            .join("");
+}
+
+
+function deleteRegularTest(index) {
+
+    regularTests.splice(
+        index,
+        1
+    );
+
+    localStorage.setItem(
+        "regularTests",
+        JSON.stringify(
+            regularTests
+        )
+    );
+
+    updateRegularTestList();
 }
 
 
@@ -2700,6 +3558,8 @@ function returnToStudy() {
         "errorScreen"
     ).style.display =
         "none";
+
+    showPage("studyPage");
 
     if (
         !document.fullscreenElement &&
@@ -2848,14 +3708,12 @@ function addQuestion() {
 
     questions.push({
 
-        question:
-            question,
+        id:
+            Date.now(),
 
-        answer:
-            answer,
-
-        difficulty:
-            difficulty,
+        question,
+        answer,
+        difficulty,
 
         wrong:
             true,
@@ -2937,17 +3795,9 @@ function updateQuestionList() {
         );
 
         questions.forEach(
-            (item, index) => {
+            (item,index) => {
 
                 count++;
-
-                const div =
-                    document.createElement(
-                        "div"
-                    );
-
-                div.className =
-                    "question-item";
 
                 const attempts =
                     item.attempts || 0;
@@ -2965,28 +3815,33 @@ function updateQuestionList() {
                             ) * 100
                         );
 
-                const wrongBadge =
-                    item.wrong
-                        ? `
-                            <span class="wrong-badge">
-                                復習対象
-                            </span>
-                          `
-                        : "";
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+                div.className =
+                    "question-item";
 
                 div.innerHTML = `
 
                     <div>
 
-                        <span
-                            class="difficulty-badge"
-                        >
+                        <span class="difficulty-badge">
                             ${escapeHtml(
                                 item.difficulty
                             )}
                         </span>
 
-                        ${wrongBadge}
+                        ${
+                            item.wrong
+                                ? `
+                                    <span class="wrong-badge">
+                                        復習対象
+                                    </span>
+                                  `
+                                : ""
+                        }
 
                     </div>
 
@@ -3009,13 +3864,12 @@ function updateQuestionList() {
                     </div>
 
                     <button
-                        onclick="deleteQuestion(
-                            '${subject}',
-                            ${index}
-                        )"
+                        type="button"
+                        onclick="deleteQuestion('${subject}',${index})"
                     >
                         削除
                     </button>
+
                 `;
 
                 container.appendChild(
@@ -3033,20 +3887,6 @@ function updateQuestionList() {
             "<p>まだ問題が登録されていません。</p>";
 
     }
-}
-
-
-function escapeHtml(text) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-    div.textContent =
-        text;
-
-    return div.innerHTML;
 }
 
 
@@ -3158,19 +3998,19 @@ function startQuiz() {
             "quizModeSelect"
         ).value;
 
-    const registeredQuestions =
+    const registered =
         getQuestions(
             quizSubject
         );
 
-    let filteredQuestions = [];
+    let filtered = [];
 
     if (
         quizMode === "基礎"
     ) {
 
-        filteredQuestions =
-            registeredQuestions.filter(
+        filtered =
+            registered.filter(
                 item =>
                     item.difficulty ===
                     "基礎"
@@ -3180,8 +4020,8 @@ function startQuiz() {
         quizMode === "応用"
     ) {
 
-        filteredQuestions =
-            registeredQuestions.filter(
+        filtered =
+            registered.filter(
                 item =>
                     item.difficulty ===
                     "応用"
@@ -3191,15 +4031,15 @@ function startQuiz() {
         quizMode === "全部"
     ) {
 
-        filteredQuestions =
-            registeredQuestions;
+        filtered =
+            registered;
 
     } else if (
         quizMode === "wrong"
     ) {
 
-        filteredQuestions =
-            registeredQuestions.filter(
+        filtered =
+            registered.filter(
                 item =>
                     item.wrong === true
             );
@@ -3207,31 +4047,21 @@ function startQuiz() {
     }
 
     if (
-        filteredQuestions.length === 0
+        filtered.length === 0
     ) {
 
-        if (
+        alert(
             quizMode === "wrong"
-        ) {
-
-            alert(
-                `${quizSubject}には「過去に間違えた問題」がありません。`
-            );
-
-        } else {
-
-            alert(
-                `${quizSubject}の「${quizMode}」には問題がありません。`
-            );
-
-        }
+                ? `${quizSubject}には「過去に間違えた問題」がありません。`
+                : `${quizSubject}の「${quizMode}」には問題がありません。`
+        );
 
         return;
     }
 
     quizQuestions =
         shuffleQuestions(
-            filteredQuestions
+            filtered
         );
 
     quizIndex = 0;
@@ -3357,23 +4187,13 @@ function checkAnswer() {
             quizIndex
         ];
 
-    const userAnswer =
-        normalizeAnswer(
-            input
-        );
-
-    const correctAnswer =
+    const isCorrect =
+        normalizeAnswer(input) ===
         normalizeAnswer(
             current.answer
         );
 
-    const isCorrect =
-        userAnswer ===
-        correctAnswer;
-
-    answerChecked =
-        true;
-
+    answerChecked = true;
     quizAnswered++;
 
     current.attempts =
@@ -3387,6 +4207,8 @@ function checkAnswer() {
         current.wrong =
             false;
 
+        quizCorrect++;
+
     } else {
 
         current.wrong =
@@ -3399,7 +4221,6 @@ function checkAnswer() {
         current
     );
 
-
     if (
         current.difficulty ===
         "基礎"
@@ -3411,10 +4232,7 @@ function checkAnswer() {
             sessionStats.基礎.correct++;
         }
 
-    } else if (
-        current.difficulty ===
-        "応用"
-    ) {
+    } else {
 
         sessionStats.応用.total++;
 
@@ -3424,33 +4242,17 @@ function checkAnswer() {
 
     }
 
+    document.getElementById(
+        "answerResult"
+    ).innerHTML = isCorrect
 
-    if (isCorrect) {
-
-        quizCorrect++;
-
-        document.getElementById(
-            "answerResult"
-        ).innerHTML = `
-
+        ? `
             <p class="correct">
                 正解！
             </p>
+          `
 
-            ${
-                quizMode === "wrong"
-                    ? "<p>この問題は復習対象から外れました。</p>"
-                    : ""
-            }
-
-        `;
-
-    } else {
-
-        document.getElementById(
-            "answerResult"
-        ).innerHTML = `
-
+        : `
             <p class="incorrect">
                 不正解
             </p>
@@ -3467,11 +4269,7 @@ function checkAnswer() {
                 「過去に間違えた問題」
                 に追加されました。
             </p>
-
-        `;
-
-    }
-
+          `;
 
     document.getElementById(
         "checkAnswerButton"
@@ -3495,39 +4293,18 @@ function updateQuestionInStorage(
             subject
         );
 
-    let targetIndex =
+    const index =
         questions.findIndex(
             item =>
-                item.id &&
-                updatedQuestion.id &&
                 item.id ===
                 updatedQuestion.id
         );
 
-    if (
-        targetIndex === -1
-    ) {
-
-        targetIndex =
-            questions.findIndex(
-                item =>
-                    item.question ===
-                    updatedQuestion.question &&
-                    item.answer ===
-                    updatedQuestion.answer
-            );
-
-    }
-
-    if (
-        targetIndex === -1
-    ) {
+    if (index === -1) {
         return;
     }
 
-    questions[
-        targetIndex
-    ] =
+    questions[index] =
         updatedQuestion;
 
     localStorage.setItem(
@@ -3578,34 +4355,31 @@ function calculateRate(
     }
 
     return Math.round(
-        (correct / total) * 1000
+        (
+            correct /
+            total
+        ) * 1000
     ) / 10;
 }
 
 
 function showQuizResult() {
 
-    const total =
-        quizAnswered;
-
-    const correct =
-        quizCorrect;
-
-    const overallRate =
+    const rate =
         calculateRate(
-            total,
-            correct
+            quizAnswered,
+            quizCorrect
         );
 
     document.getElementById(
         "quizResultNumber"
     ).textContent =
-        `${total}問中 ${correct}問正解`;
+        `${quizAnswered}問中 ${quizCorrect}問正解`;
 
     document.getElementById(
         "quizResultRate"
     ).textContent =
-        `今回の正答率：${overallRate}%`;
+        `今回の正答率：${rate}%`;
 
     let breakdown = "";
 
@@ -3613,31 +4387,17 @@ function showQuizResult() {
         sessionStats.基礎.total > 0
     ) {
 
-        const rate =
-            calculateRate(
-                sessionStats.基礎.total,
-                sessionStats.基礎.correct
-            );
-
         breakdown += `
-
             <div>
-
-                <strong>
-                    基礎
-                </strong>
-
-                <br>
-
+                <strong>基礎</strong><br>
                 ${sessionStats.基礎.total}問中
-                ${sessionStats.基礎.correct}問正解
-
-                <br>
-
-                正答率：${rate}%
-
+                ${sessionStats.基礎.correct}問正解<br>
+                正答率：
+                ${calculateRate(
+                    sessionStats.基礎.total,
+                    sessionStats.基礎.correct
+                )}%
             </div>
-
         `;
 
     }
@@ -3646,39 +4406,18 @@ function showQuizResult() {
         sessionStats.応用.total > 0
     ) {
 
-        const rate =
-            calculateRate(
-                sessionStats.応用.total,
-                sessionStats.応用.correct
-            );
-
         breakdown += `
-
             <div style="margin-top:15px;">
-
-                <strong>
-                    応用
-                </strong>
-
-                <br>
-
+                <strong>応用</strong><br>
                 ${sessionStats.応用.total}問中
-                ${sessionStats.応用.correct}問正解
-
-                <br>
-
-                正答率：${rate}%
-
+                ${sessionStats.応用.correct}問正解<br>
+                正答率：
+                ${calculateRate(
+                    sessionStats.応用.total,
+                    sessionStats.応用.correct
+                )}%
             </div>
-
         `;
-
-    }
-
-    if (!breakdown) {
-
-        breakdown =
-            "今回の問題データがありません。";
 
     }
 
@@ -3687,26 +4426,19 @@ function showQuizResult() {
     ).innerHTML =
         breakdown;
 
+    let message;
 
-    let message = "";
-
-    if (
-        overallRate === 100
-    ) {
+    if (rate === 100) {
 
         message =
             "全問正解！かなり仕上がっています。";
 
-    } else if (
-        overallRate >= 80
-    ) {
+    } else if (rate >= 80) {
 
         message =
             "かなりできています。間違えた問題を確認しておきましょう。";
 
-    } else if (
-        overallRate >= 60
-    ) {
+    } else if (rate >= 60) {
 
         message =
             "もう少し復習しましょう。";
@@ -3742,97 +4474,7 @@ function closeQuizResult() {
     ).style.display =
         "none";
 
-
-    let questions =
-        getQuestions(
-            quizSubject
-        );
-
-
-    if (
-        quizMode === "基礎"
-    ) {
-
-        questions =
-            questions.filter(
-                item =>
-                    item.difficulty ===
-                    "基礎"
-            );
-
-    } else if (
-        quizMode === "応用"
-    ) {
-
-        questions =
-            questions.filter(
-                item =>
-                    item.difficulty ===
-                    "応用"
-            );
-
-    } else if (
-        quizMode === "wrong"
-    ) {
-
-        questions =
-            questions.filter(
-                item =>
-                    item.wrong === true
-            );
-
-    }
-
-
-    if (
-        questions.length === 0
-    ) {
-
-        alert(
-            "このモードで復習する問題がなくなりました。"
-        );
-
-        finishQuiz();
-
-        return;
-    }
-
-
-    quizQuestions =
-        shuffleQuestions(
-            questions
-        );
-
-    quizIndex = 0;
-
-    quizCorrect = 0;
-
-    quizAnswered = 0;
-
-    answerChecked = false;
-
-
-    sessionStats = {
-
-        基礎: {
-            total: 0,
-            correct: 0
-        },
-
-        応用: {
-            total: 0,
-            correct: 0
-        }
-
-    };
-
-
-    document.getElementById(
-        "quizScreen"
-    ).style.display =
-        "block";
-
-    showQuizQuestion();
+    startQuiz();
 }
 
 
@@ -3860,6 +4502,424 @@ function closeQuiz() {
 
 
 /* =========================
+   手帳
+========================= */
+
+let notebookDate =
+    new Date();
+
+
+function getNotebookDateKey(
+    year,
+    month,
+    day
+) {
+
+    return `${year}-${String(
+        month + 1
+    ).padStart(2,"0")}-${String(
+        day
+    ).padStart(2,"0")}`;
+}
+
+
+function getNotebookEvents() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "notebookEvents"
+            ) || "{}"
+        );
+
+    } catch {
+
+        return {};
+
+    }
+}
+
+
+function renderNotebookCalendar() {
+
+    const title =
+        document.getElementById(
+            "notebookMonthTitle"
+        );
+
+    const calendar =
+        document.getElementById(
+            "notebookCalendar"
+        );
+
+    if (
+        !title ||
+        !calendar
+    ) {
+        return;
+    }
+
+    const year =
+        notebookDate.getFullYear();
+
+    const month =
+        notebookDate.getMonth();
+
+    title.textContent =
+        `${year}年${month + 1}月`;
+
+    const firstDay =
+        new Date(
+            year,
+            month,
+            1
+        ).getDay();
+
+    const lastDate =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+    const events =
+        getNotebookEvents();
+
+    let html = `
+        <div class="notebook-calendar">
+    `;
+
+    [
+        "日",
+        "月",
+        "火",
+        "水",
+        "木",
+        "金",
+        "土"
+    ].forEach(day => {
+
+        html += `
+            <div class="notebook-week">
+                ${day}
+            </div>
+        `;
+
+    });
+
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
+
+        html += `
+            <div></div>
+        `;
+
+    }
+
+    for (
+        let day = 1;
+        day <= lastDate;
+        day++
+    ) {
+
+        const key =
+            getNotebookDateKey(
+                year,
+                month,
+                day
+            );
+
+        const hasEvent =
+            events[key] &&
+            events[key].length > 0;
+
+        const today =
+            key === getDateKey();
+
+        html += `
+
+            <button
+                type="button"
+                class="
+                    notebook-day
+                    ${today ? "today" : ""}
+                    ${hasEvent ? "has-event" : ""}
+                "
+                onclick="
+                    selectNotebookDate(
+                        ${year},
+                        ${month},
+                        ${day}
+                    )
+                "
+            >
+                ${day}
+
+                ${
+                    hasEvent
+                        ? "<br>📌"
+                        : ""
+                }
+
+            </button>
+
+        `;
+
+    }
+
+    html += `
+        </div>
+    `;
+
+    calendar.innerHTML =
+        html;
+}
+
+
+function selectNotebookDate(
+    year,
+    month,
+    day
+) {
+
+    const area =
+        document.getElementById(
+            "notebookEventArea"
+        );
+
+    const key =
+        getNotebookDateKey(
+            year,
+            month,
+            day
+        );
+
+    const events =
+        getNotebookEvents();
+
+    const existing =
+        events[key] || [];
+
+    let existingHtml = "";
+
+    if (
+        existing.length > 0
+    ) {
+
+        existingHtml =
+            existing
+                .map(
+                    (event,index) => `
+
+                        <div class="event-item">
+
+                            ${escapeHtml(
+                                event
+                            )}
+
+                            <br>
+
+                            <button
+                                type="button"
+                                class="reset"
+                                onclick="
+                                    deleteNotebookEvent(
+                                        '${key}',
+                                        ${index}
+                                    )
+                                "
+                            >
+                                削除
+                            </button>
+
+                        </div>
+
+                    `
+                )
+                .join("");
+
+    } else {
+
+        existingHtml =
+            "<p>この日の予定はまだありません。</p>";
+
+    }
+
+    area.innerHTML = `
+
+        <div class="event-box">
+
+            <h3>
+                ${year}年${month + 1}月${day}日の予定
+            </h3>
+
+            <input
+                id="notebookEventInput"
+                type="text"
+                placeholder="予定を入力"
+            >
+
+            <button
+                type="button"
+                class="record"
+                onclick="
+                    saveNotebookEvent(
+                        ${year},
+                        ${month},
+                        ${day}
+                    )
+                "
+            >
+                予定を保存
+            </button>
+
+            <hr>
+
+            <h4>
+                登録済みの予定
+            </h4>
+
+            ${existingHtml}
+
+        </div>
+
+    `;
+}
+
+
+function saveNotebookEvent(
+    year,
+    month,
+    day
+) {
+
+    const input =
+        document.getElementById(
+            "notebookEventInput"
+        );
+
+    if (!input) {
+        return;
+    }
+
+    const text =
+        input.value.trim();
+
+    if (!text) {
+
+        alert(
+            "予定を入力してください。"
+        );
+
+        return;
+    }
+
+    const key =
+        getNotebookDateKey(
+            year,
+            month,
+            day
+        );
+
+    const events =
+        getNotebookEvents();
+
+    if (!events[key]) {
+
+        events[key] = [];
+
+    }
+
+    events[key].push(
+        text
+    );
+
+    localStorage.setItem(
+        "notebookEvents",
+        JSON.stringify(
+            events
+        )
+    );
+
+    renderNotebookCalendar();
+
+    selectNotebookDate(
+        year,
+        month,
+        day
+    );
+}
+
+
+function deleteNotebookEvent(
+    key,
+    index
+) {
+
+    const events =
+        getNotebookEvents();
+
+    if (
+        !events[key]
+    ) {
+        return;
+    }
+
+    events[key].splice(
+        index,
+        1
+    );
+
+    if (
+        events[key].length === 0
+    ) {
+
+        delete events[key];
+
+    }
+
+    localStorage.setItem(
+        "notebookEvents",
+        JSON.stringify(
+            events
+        )
+    );
+
+    renderNotebookCalendar();
+
+    const parts =
+        key.split("-");
+
+    selectNotebookDate(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+    );
+}
+
+
+function changeNotebookMonth(
+    amount
+) {
+
+    notebookDate.setMonth(
+        notebookDate.getMonth() +
+        amount
+    );
+
+    renderNotebookCalendar();
+
+    document.getElementById(
+        "notebookEventArea"
+    ).innerHTML = "";
+}
+
+
+/* =========================
    全体更新
 ========================= */
 
@@ -3872,6 +4932,13 @@ function updateAllDisplays() {
     updateQuestionList();
 
     updateSchoolList();
+
+    updateHensachiList();
+
+    updateMockTestList();
+
+    updateRegularTestList();
+
 }
 
 
@@ -3882,79 +4949,11 @@ function updateAllDisplays() {
 updateTimerDisplay();
 
 updateAllDisplays();
-function showPage(pageId) {
-
-    const pages = document.querySelectorAll(".page");
-
-    pages.forEach(function(page) {
-        page.classList.remove("active");
-    });
-
-    const target = document.getElementById(pageId);
-
-    if (target) {
-        target.classList.add("active");
-        window.scrollTo(0, 0);
-    }
-}
-    let notebookDate = new Date();
-
-function renderNotebookCalendar() {
-    const year = notebookDate.getFullYear();
-    const month = notebookDate.getMonth();
-
-    document.getElementById("notebookMonthTitle").textContent =
-        year + "年 " + (month + 1) + "月";
-
-    const calendar = document.getElementById("notebookCalendar");
-
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDate = new Date(year, month + 1, 0).getDate();
-
-    let html = `
-        <div style="
-            display:grid;
-            grid-template-columns:repeat(7,1fr);
-            gap:5px;
-            text-align:center;
-        ">
-    `;
-
-    const week = ["日","月","火","水","木","金","土"];
-
-    week.forEach(day => {
-        html += `<div style="font-weight:bold;padding:8px;">${day}</div>`;
-    });
-
-    for (let i = 0; i < firstDay; i++) {
-        html += `<div></div>`;
-    }
-
-    for (let day = 1; day <= lastDate; day++) {
-        html += `
-            <div style="
-                padding:10px 4px;
-                border:1px solid #ddd;
-                border-radius:8px;
-                min-height:40px;
-            ">
-                ${day}
-            </div>
-        `;
-    }
-
-    html += `</div>`;
-
-    calendar.innerHTML = html;
-}
-
-function changeNotebookMonth(amount) {
-    notebookDate.setMonth(notebookDate.getMonth() + amount);
-    renderNotebookCalendar();
-}
 
 renderNotebookCalendar();
+
 </script>
 
 </body>
+
 </html>
