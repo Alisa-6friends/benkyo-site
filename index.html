@@ -2484,14 +2484,14 @@ async function saveStudyTime(seconds) {
                             null
                     });
 
-            if (error) {
+           if (error) {
 
-                console.error(
-                    "Supabase保存エラー:",
-                    error
-                );
+    alert(
+        "Supabase保存エラー:\n" +
+        error.message
+    );
 
-            }
+}
 
         }
 
