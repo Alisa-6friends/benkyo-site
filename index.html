@@ -18,6 +18,33 @@ const supabaseClient = supabase.createClient(
 );
 </script>
 
+    <script>
+async function signUp() {
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+
+    if (!email || !password) {
+        document.getElementById('authStatus').textContent =
+            'メールアドレスとパスワードを入力してください。';
+        return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password
+    });
+
+    if (error) {
+        document.getElementById('authStatus').textContent =
+            '登録エラー：' + error.message;
+        return;
+    }
+
+    document.getElementById('authStatus').textContent =
+        '登録しました！';
+}
+        </script>
+
 <style>
 
 * {
