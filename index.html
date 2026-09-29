@@ -67,6 +67,18 @@ async function signUp() {
     document.getElementById('authStatus').textContent =
         'ログインしました！';
 }
+        async function signOut() {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        document.getElementById('authStatus').textContent =
+            'ログアウトエラー：' + error.message;
+        return;
+    }
+
+    document.getElementById('authStatus').textContent =
+        'ログアウトしました！';
+}
         document.addEventListener('DOMContentLoaded', async () => {
     const { data } = await supabaseClient.auth.getSession();
 
