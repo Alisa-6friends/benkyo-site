@@ -750,7 +750,100 @@ footer {
         </div>
 
     </section>
+<!-- =========================
+     アカウント β版
+========================= -->
 
+<section class="card">
+
+    <h2>
+        👤 アカウント
+        <span
+            style="
+                font-size:0.65em;
+                color:#777;
+                font-weight:normal;
+            "
+        >
+            β版
+        </span>
+    </h2>
+
+    <p>
+        ライバル機能などを利用できます。
+        <br>
+        ※この機能は現在β版です。仕様が変更される場合があります。
+    </p>
+
+
+    <label>
+        メールアドレス
+    </label>
+
+    <input
+        id="authEmail"
+        type="email"
+        placeholder="メールアドレス"
+    >
+
+
+    <label>
+        パスワード
+    </label>
+
+    <input
+        id="authPassword"
+        type="password"
+        placeholder="パスワード"
+    >
+
+
+    <div
+        style="
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+            margin-top:15px;
+        "
+    >
+
+        <button
+            type="button"
+            class="record"
+            onclick="signUp()"
+        >
+            新規登録
+        </button>
+
+
+        <button
+            type="button"
+            class="record"
+            onclick="signIn()"
+        >
+            ログイン
+        </button>
+
+
+        <button
+            type="button"
+            class="reset"
+            onclick="signOut()"
+        >
+            ログアウト
+        </button>
+
+    </div>
+
+
+    <p
+        id="authStatus"
+        style="margin-top:15px;"
+    >
+        未ログイン
+    </p>
+
+</section>
 </div>
 
 
