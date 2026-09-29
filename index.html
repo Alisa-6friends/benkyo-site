@@ -2455,7 +2455,11 @@ async function saveStudyTime(seconds) {
         }
     } =
         await supabaseClient.auth.getSession();
-
+alert(
+    session
+        ? "Supabaseログイン確認OK"
+        : "Supabaseログイン情報なし"
+);
     if (session) {
 
         const minutes =
