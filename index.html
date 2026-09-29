@@ -67,7 +67,9 @@ async function signUp() {
     document.getElementById('authStatus').textContent =
         'ログインしました！';
 }
-        supabaseClient.auth.getSession().then(({ data }) => {
+        document.addEventListener('DOMContentLoaded', async () => {
+    const { data } = await supabaseClient.auth.getSession();
+
     if (data.session) {
         document.getElementById('authStatus').textContent =
             'ログイン中です！';
