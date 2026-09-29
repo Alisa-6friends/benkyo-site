@@ -2455,11 +2455,8 @@ async function saveStudyTime(seconds) {
         }
     } =
         await supabaseClient.auth.getSession();
-alert(
-    session
-        ? "Supabaseログイン確認OK"
-        : "Supabaseログイン情報なし"
-);
+
+
     if (session) {
 
         const minutes =
@@ -5153,8 +5150,58 @@ function changeNotebookMonth(
 ========================= */
 
 function updateAllDisplays() {
+    async function loadSupabaseStudyTime() {
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient.auth.getSession();
+
+    if (!session) {
+        return;
+    }
+
+    const dateKey =
+        getDateKey();
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("study_records")
+            .select("minutes")
+            .eq("user_id", session.user.id)
+            .eq("study_date", dateKey);
+
+    if (error) {
+
+        alert(
+            "勉強記録の読み込みエラー:\n" +
+            error.message
+        );
+
+        return;
+    }
+
+    let totalMinutes = 0;
+
+    data.forEach(record => {
+        totalMinutes +=
+            Number(record.minutes || 0);
+    });
+
+    console.log(
+        "Supabase今日の勉強時間:",
+        totalMinutes,
+        "分"
+    );
+}
 
     updateTodayTotal();
+    loadSupabaseStudyTime();
 
     updateTodayChart();
 
