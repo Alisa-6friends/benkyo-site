@@ -5217,10 +5217,12 @@ async function loadSupabaseStudyTime() {
 
     });
 
-    alert(
-    "Supabase今日の勉強時間: " +
-    totalMinutes +
-    "分"
+const totalSeconds =
+    totalMinutes * 60;
+
+localStorage.setItem(
+    `total_${dateKey}`,
+    totalSeconds
 );
 
 }
