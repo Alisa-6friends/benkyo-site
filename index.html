@@ -146,7 +146,9 @@ async function signUp() {
 
     document.getElementById('authStatus').textContent =
         'ログイン中です！';
-
+            
+document.getElementById('profileSettings').style.display = 'block';
+            
     const userId =
         data.session.user.id;
 
