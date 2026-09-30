@@ -103,11 +103,36 @@ async function signUp() {
             .eq('user_id', userId)
             .maybeSingle();
 
-    alert(
-        profile
-            ? 'プロフィール取得成功！'
-            : 'プロフィールはまだありません'
-    );
+   if (!profile) {
+
+    const { error: insertError } =
+        await supabaseClient
+            .from('profiles')
+            .insert({
+                user_id: userId,
+                nickname: '',
+                rival_code: '',
+                share_study: false,
+                share_time_period: false
+            });
+
+    if (insertError) {
+
+        alert(
+            'プロフィール作成エラー:\n' +
+            insertError.message
+        );
+
+        return;
+    }
+
+    alert('プロフィールを自動作成しました！');
+
+} else {
+
+    alert('プロフィール取得成功！');
+
+}
 
 });        </script>
 
