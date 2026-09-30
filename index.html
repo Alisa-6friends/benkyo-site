@@ -79,6 +79,62 @@ async function signUp() {
     document.getElementById('authStatus').textContent =
         'ログアウトしました！';
 }
+        async function saveProfile() {
+
+    const nickname =
+        document
+            .getElementById("profileNickname")
+            .value
+            .trim();
+
+    if (!nickname) {
+
+        alert("ニックネームを入力してください。");
+        return;
+
+    }
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient.auth.getSession();
+
+    if (!session) {
+
+        alert("ログインしてください。");
+        return;
+
+    }
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("profiles")
+            .update({
+                nickname: nickname
+            })
+            .eq(
+                "user_id",
+                session.user.id
+            );
+
+    if (error) {
+
+        alert(
+            "プロフィール保存エラー:\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+    alert("プロフィールを保存しました！");
+
+}
         document.addEventListener('DOMContentLoaded', async () => {
 
     const { data } =
@@ -960,7 +1016,30 @@ footer {
     >
         未ログイン
     </p>
+<div id="profileSettings" style="display:none; margin-top:20px;">
 
+    <h3>プロフィール設定</h3>
+
+    <label>
+        ニックネーム
+    </label>
+
+    <input
+        id="profileNickname"
+        type="text"
+        maxlength="20"
+        placeholder="表示する名前"
+    >
+
+    <button
+        type="button"
+        class="record"
+        onclick="saveProfile()"
+    >
+        プロフィールを保存
+    </button>
+
+</div>
 </section>
 </div>
 
