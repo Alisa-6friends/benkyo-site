@@ -79,28 +79,37 @@ async function signUp() {
     document.getElementById('authStatus').textContent =
         'ログアウトしました！';
 }
-        document.addEventListener('DOMContentLoaded', async () => {
-    const { data } = await supabaseClient.auth.getSession();
+        document.addEventListenerdocument.addEventListener('DOMContentLoaded', async () => {
 
-    if (data.session) {
-        document.getElementById('authStatus').textContent =
-            'ログイン中です！';
+    const { data } =
+        await supabaseClient.auth.getSession();
+
+    if (!data.session) {
+        return;
     }
-            const userId = data.session.user.id;
 
-const { data: profile } =
-    await supabaseClient
-        .from('profiles')
-        .select('user_id, nickname, rival_code, share_study, share_time_period')
-        .eq('user_id', userId)
-        .maybeSingle();
+    document.getElementById('authStatus').textContent =
+        'ログイン中です！';
 
-alert(
-    profile
-        ? 'プロフィール取得成功！'
-        : 'プロフィールはまだありません'
-);
-});
+    const userId =
+        data.session.user.id;
+
+    const { data: profile } =
+        await supabaseClient
+            .from('profiles')
+            .select(
+                'user_id, nickname, rival_code, share_study, share_time_period'
+            )
+            .eq('user_id', userId)
+            .maybeSingle();
+
+    alert(
+        profile
+            ? 'プロフィール取得成功！'
+            : 'プロフィールはまだありません'
+    );
+
+});});
         </script>
 
 <style>
